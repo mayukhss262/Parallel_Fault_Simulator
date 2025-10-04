@@ -1,0 +1,70 @@
+{
+    "modules": {
+        "combinatorial_1": {
+            "ports": {
+                "a": {
+                    "direction": "port"
+                },
+                "b": {
+                    "direction": "port"
+                },
+                "c": {
+                    "direction": "port"
+                },
+                "d": {
+                    "direction": "port"
+                },
+                "e": {
+                    "direction": "port"
+                },
+                "f": {
+                    "direction": "port"
+                }
+            },
+            "cells": {
+                "g1": {
+                    "type": "and",
+                    "connections": {
+                        "null": "b"
+                    }
+                },
+                "g2": {
+                    "type": "not",
+                    "connections": {
+                        "null": "c"
+                    }
+                },
+                "g3": {
+                    "type": "nor",
+                    "connections": {
+                        "null": "e"
+                    }
+                },
+                "g4": {
+                    "type": "xor",
+                    "connections": {
+                        "null": "w2"
+                    }
+                },
+                "g5": {
+                    "type": "nand",
+                    "connections": {
+                        "null": "w4"
+                    }
+                }
+            },
+            "nets": [
+                "a",
+                "b",
+                "c",
+                "d",
+                "e",
+                "f",
+                "w1",
+                "w2",
+                "w3",
+                "w4"
+            ]
+        }
+    }
+}
