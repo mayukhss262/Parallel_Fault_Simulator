@@ -3,53 +3,72 @@
         "combinatorial_1": {
             "ports": {
                 "a": {
-                    "direction": "port"
+                    "direction": "Input"
                 },
                 "b": {
-                    "direction": "port"
+                    "direction": "Input"
                 },
                 "c": {
-                    "direction": "port"
+                    "direction": "Input"
                 },
                 "d": {
-                    "direction": "port"
+                    "direction": "Input"
                 },
                 "e": {
-                    "direction": "port"
+                    "direction": "Input"
                 },
                 "f": {
-                    "direction": "port"
+                    "direction": "Output"
                 }
             },
             "cells": {
                 "g1": {
                     "type": "and",
                     "connections": {
-                        "null": "b"
+                        "output": "w1",
+                        "inputs": [
+                            "a",
+                            "b"
+                        ]
                     }
                 },
                 "g2": {
                     "type": "not",
                     "connections": {
-                        "null": "c"
+                        "output": "w2",
+                        "inputs": [
+                            "c"
+                        ]
                     }
                 },
                 "g3": {
                     "type": "nor",
                     "connections": {
-                        "null": "e"
+                        "output": "w3",
+                        "inputs": [
+                            "d",
+                            "e"
+                        ]
                     }
                 },
                 "g4": {
                     "type": "xor",
                     "connections": {
-                        "null": "w2"
+                        "output": "w4",
+                        "inputs": [
+                            "w1",
+                            "w2"
+                        ]
                     }
                 },
                 "g5": {
                     "type": "nand",
                     "connections": {
-                        "null": "w4"
+                        "output": "f",
+                        "inputs": [
+                            "w3",
+                            "w4"
+                        ]
                     }
                 }
             },
