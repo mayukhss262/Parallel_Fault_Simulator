@@ -1,5 +1,6 @@
 import json
 import sys
+import pyverilog
 from pyverilog.vparser.parser import parse
 
 def create_json_netlist(verilog_file_path):
@@ -19,18 +20,31 @@ def create_json_netlist(verilog_file_path):
 
     all_nets = set()
     for port in module_def.portlist.ports:
+    #port = module_def.portlist.ports[0]
         port_obj = None
+        port_name = None
+        port_direction = None
         if type(port).__name__=='Ioport':
             port_obj = port.first
+            port_name = port_obj.name
+            port_direction = type(port_obj).__name__
+
         else:
             port_obj = port
-        port_name = port_obj.name
-        port_direction = type(port_obj).__name__.replace("put", "").lower() 
-        netlist["modules"][module_name]["ports"][port_name] = {
-            "direction": port_direction
-        }
+            port_name = port_obj.name
+            for item in module_def.items:
+                 if isinstance(item, pyverilog.vparser.ast.Decl):
+                      for decl in item.list:
+                           if decl.name == port_name:
+                                port_direction = type(decl).__name__
+    
+    #print(vars(port_obj))
+    #print(vars(type(port_obj)))
+    #print(type(port_obj).__name__)
+    
+        netlist["modules"][module_name]["ports"][port_name] = {"direction": port_direction}
         all_nets.add(port_name)
-
+    
     for item in module_def.items:
         if item.__class__.__name__ == 'Decl':
             for declaration in item.list:
@@ -40,20 +54,19 @@ def create_json_netlist(verilog_file_path):
             for instance in item.instances:
                 instance_name = instance.name
                 instance_type = instance.module
-                
                 connections = {}
-                for port_conn in instance.portlist:
-                    connections[port_conn.portname] = port_conn.argname.name
+                connections["output"]=instance.portlist[0].argname.name
+                connections["inputs"]=[]
+                for port_conn in instance.portlist[1:]:
+                    #print(vars(port_conn))
+                    connections["inputs"].append(port_conn.argname.name)
 
-                netlist["modules"][module_name]["cells"][instance_name] = {
-                    "type": instance_type,
-                    "connections": connections
-                }
+                netlist["modules"][module_name]["cells"][instance_name] = {"type": instance_type, "connections": connections}
+    
     
     netlist["modules"][module_name]["nets"] = sorted(list(all_nets))
-    
     return netlist
-
+    
 def main():
     if len(sys.argv) < 2:
         print("Error. Could not find path to Verilog file.")
