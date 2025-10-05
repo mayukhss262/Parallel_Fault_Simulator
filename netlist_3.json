@@ -1,0 +1,866 @@
+{
+    "modules": {
+        "complex_netlist": {
+            "ports": {
+                "in0": {
+                    "direction": "Input"
+                },
+                "in1": {
+                    "direction": "Input"
+                },
+                "in2": {
+                    "direction": "Input"
+                },
+                "in3": {
+                    "direction": "Input"
+                },
+                "in4": {
+                    "direction": "Input"
+                },
+                "in5": {
+                    "direction": "Input"
+                },
+                "in6": {
+                    "direction": "Input"
+                },
+                "in7": {
+                    "direction": "Input"
+                },
+                "in8": {
+                    "direction": "Input"
+                },
+                "in9": {
+                    "direction": "Input"
+                },
+                "in10": {
+                    "direction": "Input"
+                },
+                "in11": {
+                    "direction": "Input"
+                },
+                "in12": {
+                    "direction": "Input"
+                },
+                "in13": {
+                    "direction": "Input"
+                },
+                "in14": {
+                    "direction": "Input"
+                },
+                "in15": {
+                    "direction": "Input"
+                },
+                "out0": {
+                    "direction": "Output"
+                },
+                "out1": {
+                    "direction": "Output"
+                },
+                "out2": {
+                    "direction": "Output"
+                },
+                "out3": {
+                    "direction": "Output"
+                },
+                "out4": {
+                    "direction": "Output"
+                },
+                "out5": {
+                    "direction": "Output"
+                },
+                "out6": {
+                    "direction": "Output"
+                },
+                "out7": {
+                    "direction": "Output"
+                },
+                "out8": {
+                    "direction": "Output"
+                },
+                "out9": {
+                    "direction": "Output"
+                },
+                "out10": {
+                    "direction": "Output"
+                },
+                "out11": {
+                    "direction": "Output"
+                },
+                "out12": {
+                    "direction": "Output"
+                },
+                "out13": {
+                    "direction": "Output"
+                },
+                "out14": {
+                    "direction": "Output"
+                },
+                "out15": {
+                    "direction": "Output"
+                }
+            },
+            "cells": {
+                "u_not0": {
+                    "type": "not",
+                    "connections": {
+                        "output": "fanout_wire1",
+                        "inputs": [
+                            "in4"
+                        ]
+                    }
+                },
+                "u_not1": {
+                    "type": "not",
+                    "connections": {
+                        "output": "fanout_wire2",
+                        "inputs": [
+                            "in5"
+                        ]
+                    }
+                },
+                "u_not2": {
+                    "type": "not",
+                    "connections": {
+                        "output": "fanout_wire3",
+                        "inputs": [
+                            "in6"
+                        ]
+                    }
+                },
+                "u_not3": {
+                    "type": "not",
+                    "connections": {
+                        "output": "fanout_wire4",
+                        "inputs": [
+                            "in7"
+                        ]
+                    }
+                },
+                "u_not4": {
+                    "type": "not",
+                    "connections": {
+                        "output": "fanout_wire5",
+                        "inputs": [
+                            "in8"
+                        ]
+                    }
+                },
+                "u_not5": {
+                    "type": "not",
+                    "connections": {
+                        "output": "fanout_wire6",
+                        "inputs": [
+                            "in9"
+                        ]
+                    }
+                },
+                "u_not6": {
+                    "type": "not",
+                    "connections": {
+                        "output": "fanout_wire7",
+                        "inputs": [
+                            "in10"
+                        ]
+                    }
+                },
+                "u_not7": {
+                    "type": "not",
+                    "connections": {
+                        "output": "fanout_wire8",
+                        "inputs": [
+                            "in11"
+                        ]
+                    }
+                },
+                "u_and0": {
+                    "type": "and",
+                    "connections": {
+                        "output": "a0",
+                        "inputs": [
+                            "n0",
+                            "fanout_wire1"
+                        ]
+                    }
+                },
+                "u_and1": {
+                    "type": "and",
+                    "connections": {
+                        "output": "a1",
+                        "inputs": [
+                            "n1",
+                            "fanout_wire1"
+                        ]
+                    }
+                },
+                "u_and2": {
+                    "type": "and",
+                    "connections": {
+                        "output": "a2",
+                        "inputs": [
+                            "n2",
+                            "fanout_wire1"
+                        ]
+                    }
+                },
+                "u_and3": {
+                    "type": "and",
+                    "connections": {
+                        "output": "a3",
+                        "inputs": [
+                            "fanout_wire2",
+                            "in12"
+                        ]
+                    }
+                },
+                "u_and4": {
+                    "type": "and",
+                    "connections": {
+                        "output": "a4",
+                        "inputs": [
+                            "fanout_wire2",
+                            "in13"
+                        ]
+                    }
+                },
+                "u_and5": {
+                    "type": "and",
+                    "connections": {
+                        "output": "a5",
+                        "inputs": [
+                            "fanout_wire3",
+                            "fanout_wire4"
+                        ]
+                    }
+                },
+                "u_and6": {
+                    "type": "and",
+                    "connections": {
+                        "output": "a6",
+                        "inputs": [
+                            "fanout_wire3",
+                            "n3"
+                        ]
+                    }
+                },
+                "u_and7": {
+                    "type": "and",
+                    "connections": {
+                        "output": "a7",
+                        "inputs": [
+                            "fanout_wire5",
+                            "fanout_wire6"
+                        ]
+                    }
+                },
+                "u_nand0": {
+                    "type": "nand",
+                    "connections": {
+                        "output": "b0",
+                        "inputs": [
+                            "a0",
+                            "a1"
+                        ]
+                    }
+                },
+                "u_nand1": {
+                    "type": "nand",
+                    "connections": {
+                        "output": "b1",
+                        "inputs": [
+                            "a2",
+                            "a3"
+                        ]
+                    }
+                },
+                "u_nand2": {
+                    "type": "nand",
+                    "connections": {
+                        "output": "b2",
+                        "inputs": [
+                            "a4",
+                            "a5"
+                        ]
+                    }
+                },
+                "u_nand3": {
+                    "type": "nand",
+                    "connections": {
+                        "output": "b3",
+                        "inputs": [
+                            "a6",
+                            "a7"
+                        ]
+                    }
+                },
+                "u_nand4": {
+                    "type": "nand",
+                    "connections": {
+                        "output": "b4",
+                        "inputs": [
+                            "fanout_wire7",
+                            "fanout_wire8"
+                        ]
+                    }
+                },
+                "u_nand5": {
+                    "type": "nand",
+                    "connections": {
+                        "output": "b5",
+                        "inputs": [
+                            "fanout_wire1",
+                            "fanout_wire4"
+                        ]
+                    }
+                },
+                "u_nand6": {
+                    "type": "nand",
+                    "connections": {
+                        "output": "b6",
+                        "inputs": [
+                            "n0",
+                            "n1"
+                        ]
+                    }
+                },
+                "u_nand7": {
+                    "type": "nand",
+                    "connections": {
+                        "output": "b7",
+                        "inputs": [
+                            "n2",
+                            "n3"
+                        ]
+                    }
+                },
+                "u_or0": {
+                    "type": "or",
+                    "connections": {
+                        "output": "c0",
+                        "inputs": [
+                            "b0",
+                            "b1"
+                        ]
+                    }
+                },
+                "u_or1": {
+                    "type": "or",
+                    "connections": {
+                        "output": "c1",
+                        "inputs": [
+                            "b0",
+                            "b2"
+                        ]
+                    }
+                },
+                "u_or2": {
+                    "type": "or",
+                    "connections": {
+                        "output": "c2",
+                        "inputs": [
+                            "b0",
+                            "b3"
+                        ]
+                    }
+                },
+                "u_or3": {
+                    "type": "or",
+                    "connections": {
+                        "output": "c3",
+                        "inputs": [
+                            "b4",
+                            "b5"
+                        ]
+                    }
+                },
+                "u_or4": {
+                    "type": "or",
+                    "connections": {
+                        "output": "c4",
+                        "inputs": [
+                            "b6",
+                            "b7"
+                        ]
+                    }
+                },
+                "u_or5": {
+                    "type": "or",
+                    "connections": {
+                        "output": "c5",
+                        "inputs": [
+                            "fanout_wire5",
+                            "fanout_wire6"
+                        ]
+                    }
+                },
+                "u_or6": {
+                    "type": "or",
+                    "connections": {
+                        "output": "c6",
+                        "inputs": [
+                            "fanout_wire7",
+                            "fanout_wire8"
+                        ]
+                    }
+                },
+                "u_or7": {
+                    "type": "or",
+                    "connections": {
+                        "output": "c7",
+                        "inputs": [
+                            "in14",
+                            "in15"
+                        ]
+                    }
+                },
+                "u_nor0": {
+                    "type": "nor",
+                    "connections": {
+                        "output": "d0",
+                        "inputs": [
+                            "c0",
+                            "c1"
+                        ]
+                    }
+                },
+                "u_nor1": {
+                    "type": "nor",
+                    "connections": {
+                        "output": "d1",
+                        "inputs": [
+                            "c1",
+                            "c2"
+                        ]
+                    }
+                },
+                "u_nor2": {
+                    "type": "nor",
+                    "connections": {
+                        "output": "d2",
+                        "inputs": [
+                            "c2",
+                            "c3"
+                        ]
+                    }
+                },
+                "u_nor3": {
+                    "type": "nor",
+                    "connections": {
+                        "output": "d3",
+                        "inputs": [
+                            "c3",
+                            "c4"
+                        ]
+                    }
+                },
+                "u_nor4": {
+                    "type": "nor",
+                    "connections": {
+                        "output": "d4",
+                        "inputs": [
+                            "c4",
+                            "c5"
+                        ]
+                    }
+                },
+                "u_nor5": {
+                    "type": "nor",
+                    "connections": {
+                        "output": "d5",
+                        "inputs": [
+                            "c5",
+                            "c6"
+                        ]
+                    }
+                },
+                "u_nor6": {
+                    "type": "nor",
+                    "connections": {
+                        "output": "d6",
+                        "inputs": [
+                            "c6",
+                            "c7"
+                        ]
+                    }
+                },
+                "u_nor7": {
+                    "type": "nor",
+                    "connections": {
+                        "output": "d7",
+                        "inputs": [
+                            "c7",
+                            "c0"
+                        ]
+                    }
+                },
+                "u_xor0": {
+                    "type": "xor",
+                    "connections": {
+                        "output": "n4",
+                        "inputs": [
+                            "d0",
+                            "d1"
+                        ]
+                    }
+                },
+                "u_xor1": {
+                    "type": "xor",
+                    "connections": {
+                        "output": "n5",
+                        "inputs": [
+                            "d1",
+                            "d2"
+                        ]
+                    }
+                },
+                "u_xor2": {
+                    "type": "xor",
+                    "connections": {
+                        "output": "n6",
+                        "inputs": [
+                            "d2",
+                            "d3"
+                        ]
+                    }
+                },
+                "u_xor3": {
+                    "type": "xor",
+                    "connections": {
+                        "output": "n7",
+                        "inputs": [
+                            "d3",
+                            "d4"
+                        ]
+                    }
+                },
+                "u_xor4": {
+                    "type": "xor",
+                    "connections": {
+                        "output": "n8",
+                        "inputs": [
+                            "d4",
+                            "d5"
+                        ]
+                    }
+                },
+                "u_xor5": {
+                    "type": "xor",
+                    "connections": {
+                        "output": "n9",
+                        "inputs": [
+                            "d5",
+                            "d6"
+                        ]
+                    }
+                },
+                "u_xor6": {
+                    "type": "xor",
+                    "connections": {
+                        "output": "n10",
+                        "inputs": [
+                            "d6",
+                            "d7"
+                        ]
+                    }
+                },
+                "u_xor7": {
+                    "type": "xor",
+                    "connections": {
+                        "output": "n11",
+                        "inputs": [
+                            "d7",
+                            "d0"
+                        ]
+                    }
+                },
+                "u_xnor0": {
+                    "type": "xnor",
+                    "connections": {
+                        "output": "n12",
+                        "inputs": [
+                            "n4",
+                            "n5"
+                        ]
+                    }
+                },
+                "u_xnor1": {
+                    "type": "xnor",
+                    "connections": {
+                        "output": "n13",
+                        "inputs": [
+                            "n6",
+                            "n7"
+                        ]
+                    }
+                },
+                "u_xnor2": {
+                    "type": "xnor",
+                    "connections": {
+                        "output": "n14",
+                        "inputs": [
+                            "n8",
+                            "n9"
+                        ]
+                    }
+                },
+                "u_xnor3": {
+                    "type": "xnor",
+                    "connections": {
+                        "output": "n15",
+                        "inputs": [
+                            "n10",
+                            "n11"
+                        ]
+                    }
+                },
+                "u_buf0": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out0",
+                        "inputs": [
+                            "n4"
+                        ]
+                    }
+                },
+                "u_buf1": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out1",
+                        "inputs": [
+                            "n4"
+                        ]
+                    }
+                },
+                "u_buf2": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out2",
+                        "inputs": [
+                            "n5"
+                        ]
+                    }
+                },
+                "u_buf3": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out3",
+                        "inputs": [
+                            "n6"
+                        ]
+                    }
+                },
+                "u_buf4": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out4",
+                        "inputs": [
+                            "n7"
+                        ]
+                    }
+                },
+                "u_buf5": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out5",
+                        "inputs": [
+                            "n8"
+                        ]
+                    }
+                },
+                "u_buf6": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out6",
+                        "inputs": [
+                            "n9"
+                        ]
+                    }
+                },
+                "u_buf7": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out7",
+                        "inputs": [
+                            "n10"
+                        ]
+                    }
+                },
+                "u_buf8": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out8",
+                        "inputs": [
+                            "n11"
+                        ]
+                    }
+                },
+                "u_buf9": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out9",
+                        "inputs": [
+                            "n12"
+                        ]
+                    }
+                },
+                "u_buf10": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out10",
+                        "inputs": [
+                            "n12"
+                        ]
+                    }
+                },
+                "u_buf11": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out11",
+                        "inputs": [
+                            "n13"
+                        ]
+                    }
+                },
+                "u_buf12": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out12",
+                        "inputs": [
+                            "n13"
+                        ]
+                    }
+                },
+                "u_buf13": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out13",
+                        "inputs": [
+                            "n14"
+                        ]
+                    }
+                },
+                "u_buf14": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out14",
+                        "inputs": [
+                            "n14"
+                        ]
+                    }
+                },
+                "u_buf15": {
+                    "type": "buf",
+                    "connections": {
+                        "output": "out15",
+                        "inputs": [
+                            "n15"
+                        ]
+                    }
+                }
+            },
+            "nets": [
+                "a0",
+                "a1",
+                "a2",
+                "a3",
+                "a4",
+                "a5",
+                "a6",
+                "a7",
+                "b0",
+                "b1",
+                "b2",
+                "b3",
+                "b4",
+                "b5",
+                "b6",
+                "b7",
+                "c0",
+                "c1",
+                "c2",
+                "c3",
+                "c4",
+                "c5",
+                "c6",
+                "c7",
+                "d0",
+                "d1",
+                "d2",
+                "d3",
+                "d4",
+                "d5",
+                "d6",
+                "d7",
+                "fanout_wire1",
+                "fanout_wire2",
+                "fanout_wire3",
+                "fanout_wire4",
+                "fanout_wire5",
+                "fanout_wire6",
+                "fanout_wire7",
+                "fanout_wire8",
+                "in0",
+                "in1",
+                "in10",
+                "in11",
+                "in12",
+                "in13",
+                "in14",
+                "in15",
+                "in2",
+                "in3",
+                "in4",
+                "in5",
+                "in6",
+                "in7",
+                "in8",
+                "in9",
+                "n0",
+                "n1",
+                "n10",
+                "n11",
+                "n12",
+                "n13",
+                "n14",
+                "n15",
+                "n2",
+                "n3",
+                "n4",
+                "n5",
+                "n6",
+                "n7",
+                "n8",
+                "n9",
+                "out0",
+                "out1",
+                "out10",
+                "out11",
+                "out12",
+                "out13",
+                "out14",
+                "out15",
+                "out2",
+                "out3",
+                "out4",
+                "out5",
+                "out6",
+                "out7",
+                "out8",
+                "out9"
+            ],
+            "fanouts": {
+                "in0": [
+                    "n0"
+                ],
+                "in1": [
+                    "n1"
+                ],
+                "in2": [
+                    "n2"
+                ],
+                "in3": [
+                    "n3"
+                ]
+            }
+        }
+    }
+}

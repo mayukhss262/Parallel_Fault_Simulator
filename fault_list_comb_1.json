@@ -1,0 +1,77 @@
+{
+    "metadata": {
+        "module_name": "combinatorial_1",
+        "generation_timestamp": "2025-10-05T22:45:49.031271",
+        "total_faults": 10,
+        "total_nodes": 5
+    },
+    "netlist_analysis": {
+        "primary_inputs": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e"
+        ],
+        "primary_outputs": [
+            "f"
+        ],
+        "fanout_branches": {}
+    },
+    "stuck_at_faults": {
+        "a:0": {
+            "node": "a",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'a' stuck at logic 0"
+        },
+        "a:1": {
+            "node": "a",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'a' stuck at logic 1"
+        },
+        "b:0": {
+            "node": "b",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'b' stuck at logic 0"
+        },
+        "b:1": {
+            "node": "b",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'b' stuck at logic 1"
+        },
+        "c:0": {
+            "node": "c",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'c' stuck at logic 0"
+        },
+        "c:1": {
+            "node": "c",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'c' stuck at logic 1"
+        },
+        "d:0": {
+            "node": "d",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'd' stuck at logic 0"
+        },
+        "d:1": {
+            "node": "d",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'd' stuck at logic 1"
+        },
+        "e:0": {
+            "node": "e",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'e' stuck at logic 0"
+        },
+        "e:1": {
+            "node": "e",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'e' stuck at logic 1"
+        }
+    },
+    "fault_summary": {
+        "stuck_at_0_count": 5,
+        "stuck_at_1_count": 5
+    }
+}
