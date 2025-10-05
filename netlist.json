@@ -1,6 +1,6 @@
 {
     "modules": {
-        "combinatorial_1": {
+        "combinatorial_2": {
             "ports": {
                 "a": {
                     "direction": "Input"
@@ -17,57 +17,71 @@
                 "e": {
                     "direction": "Input"
                 },
-                "f": {
+                "f1": {
+                    "direction": "Output"
+                },
+                "f2": {
                     "direction": "Output"
                 }
             },
             "cells": {
                 "g1": {
-                    "type": "and",
+                    "type": "nand",
                     "connections": {
-                        "output": "w1",
+                        "output": "x",
                         "inputs": [
-                            "a",
-                            "b"
-                        ]
-                    }
-                },
-                "g2": {
-                    "type": "not",
-                    "connections": {
-                        "output": "w2",
-                        "inputs": [
+                            "b",
                             "c"
                         ]
                     }
                 },
-                "g3": {
-                    "type": "nor",
+                "g2": {
+                    "type": "or",
                     "connections": {
-                        "output": "w3",
+                        "output": "w2",
+                        "inputs": [
+                            "a",
+                            "x1"
+                        ]
+                    }
+                },
+                "g3": {
+                    "type": "xnor",
+                    "connections": {
+                        "output": "w1",
                         "inputs": [
                             "d",
-                            "e"
+                            "e1"
                         ]
                     }
                 },
                 "g4": {
-                    "type": "xor",
+                    "type": "and",
                     "connections": {
-                        "output": "w4",
+                        "output": "y",
                         "inputs": [
                             "w1",
-                            "w2"
+                            "x2"
                         ]
                     }
                 },
                 "g5": {
-                    "type": "nand",
+                    "type": "and",
                     "connections": {
-                        "output": "f",
+                        "output": "f1",
                         "inputs": [
-                            "w3",
-                            "w4"
+                            "w2",
+                            "y1"
+                        ]
+                    }
+                },
+                "g6": {
+                    "type": "xor",
+                    "connections": {
+                        "output": "f2",
+                        "inputs": [
+                            "y2",
+                            "e2"
                         ]
                     }
                 }
@@ -78,12 +92,33 @@
                 "c",
                 "d",
                 "e",
-                "f",
+                "e1",
+                "e2",
+                "f1",
+                "f2",
                 "w1",
                 "w2",
-                "w3",
-                "w4"
-            ]
+                "x",
+                "x1",
+                "x2",
+                "y",
+                "y1",
+                "y2"
+            ],
+            "fanouts": {
+                "x": [
+                    "x1",
+                    "x2"
+                ],
+                "e": [
+                    "e1",
+                    "e2"
+                ],
+                "y": [
+                    "y1",
+                    "y2"
+                ]
+            }
         }
     }
 }
