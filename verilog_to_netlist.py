@@ -2,6 +2,7 @@ import json
 import sys
 import pyverilog
 from pyverilog.vparser.parser import parse
+from pyverilog.vparser import ast
 
 def create_json_netlist(verilog_file_path):
     """
@@ -15,7 +16,8 @@ def create_json_netlist(verilog_file_path):
     netlist["modules"][module_name] = { 
         "ports": {},
         "cells": {},
-        "nets": []
+        "nets": [],
+        "fanouts":{}
     }
 
     all_nets = set()
@@ -62,8 +64,15 @@ def create_json_netlist(verilog_file_path):
                     connections["inputs"].append(port_conn.argname.name)
 
                 netlist["modules"][module_name]["cells"][instance_name] = {"type": instance_type, "connections": connections}
-    
-    
+
+        elif item.__class__.__name__ == 'Assign':
+            stem = item.right.var.name
+            branch = item.left.var.name
+            if stem not in netlist["modules"][module_name]["fanouts"]:
+                netlist["modules"][module_name]["fanouts"][stem] = [branch]
+            else:
+                netlist["modules"][module_name]["fanouts"][stem].append(branch)
+
     netlist["modules"][module_name]["nets"] = sorted(list(all_nets))
     return netlist
     
