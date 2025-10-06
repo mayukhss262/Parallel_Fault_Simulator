@@ -1,0 +1,50 @@
+{
+    "modules": {
+        "combinatorial_4": {
+            "ports": {
+                "a": {
+                    "direction": "Input"
+                },
+                "b": {
+                    "direction": "Input"
+                },
+                "sel": {
+                    "direction": "Input"
+                },
+                "f": {
+                    "direction": "Output"
+                }
+            },
+            "cells": {
+                "g1": {
+                    "type": "and",
+                    "connections": {
+                        "output": "w",
+                        "inputs": [
+                            "a",
+                            "b"
+                        ]
+                    }
+                },
+                "b1": {
+                    "type": "bufif1",
+                    "connections": {
+                        "output": "f",
+                        "inputs": [
+                            "w",
+                            "sel"
+                        ]
+                    }
+                }
+            },
+            "nets": [
+                "a",
+                "b",
+                "f",
+                "sel",
+                "w"
+            ],
+            "fanouts": {}
+        }
+    }
+}

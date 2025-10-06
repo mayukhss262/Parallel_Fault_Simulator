@@ -1,0 +1,83 @@
+{
+    "modules": {
+        "combinatorial_5": {
+            "ports": {
+                "a": {
+                    "direction": "Input"
+                },
+                "b": {
+                    "direction": "Input"
+                },
+                "c": {
+                    "direction": "Input"
+                },
+                "d": {
+                    "direction": "Input"
+                },
+                "f": {
+                    "direction": "Output"
+                }
+            },
+            "cells": {
+                "g1": {
+                    "type": "xor",
+                    "connections": {
+                        "output": "w1",
+                        "inputs": [
+                            "a",
+                            "b"
+                        ]
+                    }
+                },
+                "g2": {
+                    "type": "or",
+                    "connections": {
+                        "output": "w2",
+                        "inputs": [
+                            "w11",
+                            "c"
+                        ]
+                    }
+                },
+                "g3": {
+                    "type": "and",
+                    "connections": {
+                        "output": "w3",
+                        "inputs": [
+                            "d",
+                            "w12"
+                        ]
+                    }
+                },
+                "g5": {
+                    "type": "or",
+                    "connections": {
+                        "output": "f",
+                        "inputs": [
+                            "w3",
+                            "w2"
+                        ]
+                    }
+                }
+            },
+            "nets": [
+                "a",
+                "b",
+                "c",
+                "d",
+                "f",
+                "w1",
+                "w11",
+                "w12",
+                "w2",
+                "w3"
+            ],
+            "fanouts": {
+                "w1": [
+                    "w11",
+                    "w12"
+                ]
+            }
+        }
+    }
+}
