@@ -9,3 +9,6 @@ fault_list_gen.py --> considers PI and fanout only
 fault_list_gen_v2.py --> considers PI,PO and fanout only
 
 logic_evaluator.py --> computation done by compute() function. Tester should invoke this function. Needs two parameters : a list of operand words (strings of any length) and a string mentioning the operation (and,or,not,buf,notif1,notif0,bufif1,bufif0,nand,nor,xor,xnor). For tristate gates, exactly two input words : first word is input, second word is control.
+
+logic_eval_checker.py --> invokes logic_evaluator.py, checks for all single input, 2 input and 3 input gates for all possible combinations of 3 bit word length vectors
+The exhaustive test results are written into a .txt file which is > 100MB, hence I will attach google drive link. If needed, that part can be commented out. FINAL SUMMARY is printed in terminal.
