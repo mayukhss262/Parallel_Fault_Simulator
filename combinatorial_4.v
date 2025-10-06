@@ -1,4 +1,4 @@
-module combinatorial_1(a,b,sel,f);
+module combinatorial_4(a,b,sel,f);
     
     input a,b,sel; 
     output f;
