@@ -8,4 +8,4 @@ fault_list_gen.py --> considers PI and fanout only
 
 fault_list_gen_v2.py --> considers PI,PO and fanout only
 
-logic_evaluator.py --> computation done by compute() function. Tester should invoke this function. Needs two parameters : a list of operand words (of any length) and a string mentioning the operation (and,or,not,buf,notif1,notif0,bufif1,bufif0,nand,nor,xor,xnor). For tristate gates, exactly two input words : first word is input, second word is control.
+logic_evaluator.py --> computation done by compute() function. Tester should invoke this function. Needs two parameters : a list of operand words (strings of any length) and a string mentioning the operation (and,or,not,buf,notif1,notif0,bufif1,bufif0,nand,nor,xor,xnor). For tristate gates, exactly two input words : first word is input, second word is control.
