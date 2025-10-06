@@ -11,7 +11,7 @@ fault_list_gen_v2.py --> considers PI,PO and fanout only
 logic_evaluator.py --> computation done by compute() function. Tester should invoke this function. Needs two parameters : a list of operand words (strings of any length) and a string mentioning the operation (and,or,not,buf,notif1,notif0,bufif1,bufif0,nand,nor,xor,xnor). For tristate gates, exactly two input words : first word is input, second word is control.
 
 logic_eval_checker.py --> invokes logic_evaluator.py, checks for all single input, 2 input and 3 input gates for all possible combinations of 3 bit word length vectors
-The exhaustive test results are written into a .txt file which is > 100MB, hence I will attach google drive link
+The exhaustive test results are written into a .txt file which is > 100MB, hence I will attach [google drive link](https://drive.google.com/drive/folders/1hZVgVDqM7l2cUY0yMfNnMxIHhtbDwZEr?usp=sharing)
 Default Mode (Terminal Summary Only)
 Running python **logic_evaluator_tester.py** without arguments executes all 1.6 million tests and prints only the final summary to the terminal without creating any files.
 File Writing Mode
