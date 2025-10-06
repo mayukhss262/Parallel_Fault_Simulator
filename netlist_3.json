@@ -177,8 +177,8 @@
                     "connections": {
                         "output": "a0",
                         "inputs": [
-                            "n0",
-                            "fanout_wire1"
+                            "n01",
+                            "fanout_wire11"
                         ]
                     }
                 },
@@ -187,8 +187,8 @@
                     "connections": {
                         "output": "a1",
                         "inputs": [
-                            "n1",
-                            "fanout_wire1"
+                            "n11",
+                            "fanout_wire12"
                         ]
                     }
                 },
@@ -197,8 +197,8 @@
                     "connections": {
                         "output": "a2",
                         "inputs": [
-                            "n2",
-                            "fanout_wire1"
+                            "n21",
+                            "fanout_wire13"
                         ]
                     }
                 },
@@ -207,7 +207,7 @@
                     "connections": {
                         "output": "a3",
                         "inputs": [
-                            "fanout_wire2",
+                            "fanout_wire21",
                             "in12"
                         ]
                     }
@@ -217,7 +217,7 @@
                     "connections": {
                         "output": "a4",
                         "inputs": [
-                            "fanout_wire2",
+                            "fanout_wire22",
                             "in13"
                         ]
                     }
@@ -227,8 +227,8 @@
                     "connections": {
                         "output": "a5",
                         "inputs": [
-                            "fanout_wire3",
-                            "fanout_wire4"
+                            "fanout_wire31",
+                            "fanout_wire41"
                         ]
                     }
                 },
@@ -237,8 +237,8 @@
                     "connections": {
                         "output": "a6",
                         "inputs": [
-                            "fanout_wire3",
-                            "n3"
+                            "fanout_wire32",
+                            "n31"
                         ]
                     }
                 },
@@ -247,8 +247,8 @@
                     "connections": {
                         "output": "a7",
                         "inputs": [
-                            "fanout_wire5",
-                            "fanout_wire6"
+                            "fanout_wire51",
+                            "fanout_wire61"
                         ]
                     }
                 },
@@ -297,8 +297,8 @@
                     "connections": {
                         "output": "b4",
                         "inputs": [
-                            "fanout_wire7",
-                            "fanout_wire8"
+                            "fanout_wire71",
+                            "fanout_wire81"
                         ]
                     }
                 },
@@ -307,8 +307,8 @@
                     "connections": {
                         "output": "b5",
                         "inputs": [
-                            "fanout_wire1",
-                            "fanout_wire4"
+                            "fanout_wire14",
+                            "fanout_wire42"
                         ]
                     }
                 },
@@ -317,8 +317,8 @@
                     "connections": {
                         "output": "b6",
                         "inputs": [
-                            "n0",
-                            "n1"
+                            "n02",
+                            "n12"
                         ]
                     }
                 },
@@ -327,8 +327,8 @@
                     "connections": {
                         "output": "b7",
                         "inputs": [
-                            "n2",
-                            "n3"
+                            "n22",
+                            "n32"
                         ]
                     }
                 },
@@ -337,7 +337,7 @@
                     "connections": {
                         "output": "c0",
                         "inputs": [
-                            "b0",
+                            "b01",
                             "b1"
                         ]
                     }
@@ -347,7 +347,7 @@
                     "connections": {
                         "output": "c1",
                         "inputs": [
-                            "b0",
+                            "b02",
                             "b2"
                         ]
                     }
@@ -357,7 +357,7 @@
                     "connections": {
                         "output": "c2",
                         "inputs": [
-                            "b0",
+                            "b03",
                             "b3"
                         ]
                     }
@@ -387,8 +387,8 @@
                     "connections": {
                         "output": "c5",
                         "inputs": [
-                            "fanout_wire5",
-                            "fanout_wire6"
+                            "fanout_wire52",
+                            "fanout_wire62"
                         ]
                     }
                 },
@@ -397,8 +397,8 @@
                     "connections": {
                         "output": "c6",
                         "inputs": [
-                            "fanout_wire7",
-                            "fanout_wire8"
+                            "fanout_wire72",
+                            "fanout_wire82"
                         ]
                     }
                 },
@@ -417,8 +417,8 @@
                     "connections": {
                         "output": "d0",
                         "inputs": [
-                            "c0",
-                            "c1"
+                            "c01",
+                            "c11"
                         ]
                     }
                 },
@@ -427,8 +427,8 @@
                     "connections": {
                         "output": "d1",
                         "inputs": [
-                            "c1",
-                            "c2"
+                            "c12",
+                            "c21"
                         ]
                     }
                 },
@@ -437,8 +437,8 @@
                     "connections": {
                         "output": "d2",
                         "inputs": [
-                            "c2",
-                            "c3"
+                            "c22",
+                            "c31"
                         ]
                     }
                 },
@@ -447,8 +447,8 @@
                     "connections": {
                         "output": "d3",
                         "inputs": [
-                            "c3",
-                            "c4"
+                            "c32",
+                            "c41"
                         ]
                     }
                 },
@@ -457,8 +457,8 @@
                     "connections": {
                         "output": "d4",
                         "inputs": [
-                            "c4",
-                            "c5"
+                            "c42",
+                            "c51"
                         ]
                     }
                 },
@@ -467,8 +467,8 @@
                     "connections": {
                         "output": "d5",
                         "inputs": [
-                            "c5",
-                            "c6"
+                            "c52",
+                            "c61"
                         ]
                     }
                 },
@@ -477,8 +477,8 @@
                     "connections": {
                         "output": "d6",
                         "inputs": [
-                            "c6",
-                            "c7"
+                            "c62",
+                            "c71"
                         ]
                     }
                 },
@@ -487,8 +487,8 @@
                     "connections": {
                         "output": "d7",
                         "inputs": [
-                            "c7",
-                            "c0"
+                            "c72",
+                            "c02"
                         ]
                     }
                 },
@@ -497,8 +497,8 @@
                     "connections": {
                         "output": "n4",
                         "inputs": [
-                            "d0",
-                            "d1"
+                            "d01",
+                            "d11"
                         ]
                     }
                 },
@@ -507,8 +507,8 @@
                     "connections": {
                         "output": "n5",
                         "inputs": [
-                            "d1",
-                            "d2"
+                            "d12",
+                            "d21"
                         ]
                     }
                 },
@@ -517,8 +517,8 @@
                     "connections": {
                         "output": "n6",
                         "inputs": [
-                            "d2",
-                            "d3"
+                            "d22",
+                            "d31"
                         ]
                     }
                 },
@@ -527,8 +527,8 @@
                     "connections": {
                         "output": "n7",
                         "inputs": [
-                            "d3",
-                            "d4"
+                            "d32",
+                            "d41"
                         ]
                     }
                 },
@@ -537,8 +537,8 @@
                     "connections": {
                         "output": "n8",
                         "inputs": [
-                            "d4",
-                            "d5"
+                            "d42",
+                            "d51"
                         ]
                     }
                 },
@@ -547,8 +547,8 @@
                     "connections": {
                         "output": "n9",
                         "inputs": [
-                            "d5",
-                            "d6"
+                            "d52",
+                            "d61"
                         ]
                     }
                 },
@@ -557,8 +557,8 @@
                     "connections": {
                         "output": "n10",
                         "inputs": [
-                            "d6",
-                            "d7"
+                            "d62",
+                            "d71"
                         ]
                     }
                 },
@@ -567,8 +567,8 @@
                     "connections": {
                         "output": "n11",
                         "inputs": [
-                            "d7",
-                            "d0"
+                            "d72",
+                            "d02"
                         ]
                     }
                 },
@@ -577,8 +577,8 @@
                     "connections": {
                         "output": "n12",
                         "inputs": [
-                            "n4",
-                            "n5"
+                            "n41",
+                            "n51"
                         ]
                     }
                 },
@@ -587,8 +587,8 @@
                     "connections": {
                         "output": "n13",
                         "inputs": [
-                            "n6",
-                            "n7"
+                            "n61",
+                            "n71"
                         ]
                     }
                 },
@@ -597,8 +597,8 @@
                     "connections": {
                         "output": "n14",
                         "inputs": [
-                            "n8",
-                            "n9"
+                            "n81",
+                            "n91"
                         ]
                     }
                 },
@@ -607,8 +607,8 @@
                     "connections": {
                         "output": "n15",
                         "inputs": [
-                            "n10",
-                            "n11"
+                            "n101",
+                            "n111"
                         ]
                     }
                 },
@@ -617,7 +617,7 @@
                     "connections": {
                         "output": "out0",
                         "inputs": [
-                            "n4"
+                            "n42"
                         ]
                     }
                 },
@@ -626,7 +626,7 @@
                     "connections": {
                         "output": "out1",
                         "inputs": [
-                            "n4"
+                            "n43"
                         ]
                     }
                 },
@@ -635,7 +635,7 @@
                     "connections": {
                         "output": "out2",
                         "inputs": [
-                            "n5"
+                            "n52"
                         ]
                     }
                 },
@@ -644,7 +644,7 @@
                     "connections": {
                         "output": "out3",
                         "inputs": [
-                            "n6"
+                            "n62"
                         ]
                     }
                 },
@@ -653,7 +653,7 @@
                     "connections": {
                         "output": "out4",
                         "inputs": [
-                            "n7"
+                            "n72"
                         ]
                     }
                 },
@@ -662,7 +662,7 @@
                     "connections": {
                         "output": "out5",
                         "inputs": [
-                            "n8"
+                            "n82"
                         ]
                     }
                 },
@@ -671,7 +671,7 @@
                     "connections": {
                         "output": "out6",
                         "inputs": [
-                            "n9"
+                            "n92"
                         ]
                     }
                 },
@@ -680,7 +680,7 @@
                     "connections": {
                         "output": "out7",
                         "inputs": [
-                            "n10"
+                            "n102"
                         ]
                     }
                 },
@@ -689,7 +689,7 @@
                     "connections": {
                         "output": "out8",
                         "inputs": [
-                            "n11"
+                            "n112"
                         ]
                     }
                 },
@@ -698,7 +698,7 @@
                     "connections": {
                         "output": "out9",
                         "inputs": [
-                            "n12"
+                            "n121"
                         ]
                     }
                 },
@@ -707,7 +707,7 @@
                     "connections": {
                         "output": "out10",
                         "inputs": [
-                            "n12"
+                            "n122"
                         ]
                     }
                 },
@@ -716,7 +716,7 @@
                     "connections": {
                         "output": "out11",
                         "inputs": [
-                            "n13"
+                            "n131"
                         ]
                     }
                 },
@@ -725,7 +725,7 @@
                     "connections": {
                         "output": "out12",
                         "inputs": [
-                            "n13"
+                            "n132"
                         ]
                     }
                 },
@@ -734,7 +734,7 @@
                     "connections": {
                         "output": "out13",
                         "inputs": [
-                            "n14"
+                            "n141"
                         ]
                     }
                 },
@@ -743,7 +743,7 @@
                     "connections": {
                         "output": "out14",
                         "inputs": [
-                            "n14"
+                            "n142"
                         ]
                     }
                 },
@@ -767,6 +767,9 @@
                 "a6",
                 "a7",
                 "b0",
+                "b01",
+                "b02",
+                "b03",
                 "b1",
                 "b2",
                 "b3",
@@ -775,29 +778,79 @@
                 "b6",
                 "b7",
                 "c0",
+                "c01",
+                "c02",
                 "c1",
+                "c11",
+                "c12",
                 "c2",
+                "c21",
+                "c22",
                 "c3",
+                "c31",
+                "c32",
                 "c4",
+                "c41",
+                "c42",
                 "c5",
+                "c51",
+                "c52",
                 "c6",
+                "c61",
+                "c62",
                 "c7",
+                "c71",
+                "c72",
                 "d0",
+                "d01",
+                "d02",
                 "d1",
+                "d11",
+                "d12",
                 "d2",
+                "d21",
+                "d22",
                 "d3",
+                "d31",
+                "d32",
                 "d4",
+                "d41",
+                "d42",
                 "d5",
+                "d51",
+                "d52",
                 "d6",
+                "d61",
+                "d62",
                 "d7",
+                "d71",
+                "d72",
                 "fanout_wire1",
+                "fanout_wire11",
+                "fanout_wire12",
+                "fanout_wire13",
+                "fanout_wire14",
                 "fanout_wire2",
+                "fanout_wire21",
+                "fanout_wire22",
                 "fanout_wire3",
+                "fanout_wire31",
+                "fanout_wire32",
                 "fanout_wire4",
+                "fanout_wire41",
+                "fanout_wire42",
                 "fanout_wire5",
+                "fanout_wire51",
+                "fanout_wire52",
                 "fanout_wire6",
+                "fanout_wire61",
+                "fanout_wire62",
                 "fanout_wire7",
+                "fanout_wire71",
+                "fanout_wire72",
                 "fanout_wire8",
+                "fanout_wire81",
+                "fanout_wire82",
                 "in0",
                 "in1",
                 "in10",
@@ -814,22 +867,47 @@
                 "in7",
                 "in8",
                 "in9",
-                "n0",
-                "n1",
+                "n01",
+                "n02",
                 "n10",
+                "n101",
+                "n102",
                 "n11",
+                "n111",
+                "n112",
                 "n12",
+                "n121",
+                "n122",
                 "n13",
+                "n131",
+                "n132",
                 "n14",
+                "n141",
+                "n142",
                 "n15",
-                "n2",
-                "n3",
+                "n21",
+                "n22",
+                "n31",
+                "n32",
                 "n4",
+                "n41",
+                "n42",
+                "n43",
                 "n5",
+                "n51",
+                "n52",
                 "n6",
+                "n61",
+                "n62",
                 "n7",
+                "n71",
+                "n72",
                 "n8",
+                "n81",
+                "n82",
                 "n9",
+                "n91",
+                "n92",
                 "out0",
                 "out1",
                 "out10",
@@ -848,17 +926,169 @@
                 "out9"
             ],
             "fanouts": {
-                "in0": [
-                    "n0"
+                "n0": [
+                    "n01",
+                    "n02"
                 ],
-                "in1": [
-                    "n1"
+                "fanout_wire1": [
+                    "fanout_wire11",
+                    "fanout_wire12",
+                    "fanout_wire13",
+                    "fanout_wire14"
                 ],
-                "in2": [
-                    "n2"
+                "n1": [
+                    "n11",
+                    "n12"
                 ],
-                "in3": [
-                    "n3"
+                "n2": [
+                    "n21",
+                    "n22"
+                ],
+                "fanout_wire2": [
+                    "fanout_wire21",
+                    "fanout_wire22"
+                ],
+                "fanout_wire3": [
+                    "fanout_wire31",
+                    "fanout_wire32"
+                ],
+                "fanout_wire4": [
+                    "fanout_wire41",
+                    "fanout_wire42"
+                ],
+                "n3": [
+                    "n31",
+                    "n32"
+                ],
+                "fanout_wire5": [
+                    "fanout_wire51",
+                    "fanout_wire52"
+                ],
+                "fanout_wire6": [
+                    "fanout_wire61",
+                    "fanout_wire62"
+                ],
+                "fanout_wire7": [
+                    "fanout_wire71",
+                    "fanout_wire72"
+                ],
+                "fanout_wire8": [
+                    "fanout_wire81",
+                    "fanout_wire82"
+                ],
+                "b0": [
+                    "b01",
+                    "b02",
+                    "b03"
+                ],
+                "c0": [
+                    "c01",
+                    "c02"
+                ],
+                "c1": [
+                    "c11",
+                    "c12"
+                ],
+                "c2": [
+                    "c21",
+                    "c22"
+                ],
+                "c3": [
+                    "c31",
+                    "c32"
+                ],
+                "c4": [
+                    "c41",
+                    "c42"
+                ],
+                "c5": [
+                    "c51",
+                    "c52"
+                ],
+                "c6": [
+                    "c61",
+                    "c62"
+                ],
+                "c7": [
+                    "c71",
+                    "c72"
+                ],
+                "d0": [
+                    "d01",
+                    "d02"
+                ],
+                "d1": [
+                    "d11",
+                    "d12"
+                ],
+                "d2": [
+                    "d21",
+                    "d22"
+                ],
+                "d3": [
+                    "d31",
+                    "d32"
+                ],
+                "d4": [
+                    "d41",
+                    "d42"
+                ],
+                "d5": [
+                    "d51",
+                    "d52"
+                ],
+                "d6": [
+                    "d61",
+                    "d62"
+                ],
+                "d7": [
+                    "d71",
+                    "d72"
+                ],
+                "n4": [
+                    "n41",
+                    "n42",
+                    "n43"
+                ],
+                "n5": [
+                    "n51",
+                    "n52"
+                ],
+                "n6": [
+                    "n61",
+                    "n62"
+                ],
+                "n7": [
+                    "n71",
+                    "n72"
+                ],
+                "n8": [
+                    "n81",
+                    "n82"
+                ],
+                "n9": [
+                    "n91",
+                    "n92"
+                ],
+                "n10": [
+                    "n101",
+                    "n102"
+                ],
+                "n11": [
+                    "n111",
+                    "n112"
+                ],
+                "n12": [
+                    "n121",
+                    "n122"
+                ],
+                "n13": [
+                    "n131",
+                    "n132"
+                ],
+                "n14": [
+                    "n141",
+                    "n142"
                 ]
             }
         }
