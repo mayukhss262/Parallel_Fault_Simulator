@@ -16,3 +16,6 @@ Default Mode (Terminal Summary Only)
 Running python **logic_evaluator_tester.py** without arguments executes all 1.6 million tests and prints only the final summary to the terminal without creating any files.
 File Writing Mode
 Running python **logic_evaluator_tester.py write** executes all tests and creates a timestamped text file containing detailed results for every test case, while also printing the summary to the terminal.
+
+
+test_vector_gen_v1.py  --> simply takes the JSON netlist file, counts the number of n inputs to the circuit and then creates a test vector file having all possible 2^n combinations for n bits.
