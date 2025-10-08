@@ -1,0 +1,38 @@
+ATPG Test Results
+============================================================
+
+FAULT a:0 | Node 'a' stuck at logic 0
+  --> Test vector: {'a': '1', 'b': '0', 'c': '0', 'd': '0', 'e': '0'}
+
+FAULT a:1 | Node 'a' stuck at logic 1
+  --> Test vector: {'a': '0', 'b': '0', 'c': '0', 'd': '0', 'e': '0'}
+
+FAULT b:0 | Node 'b' stuck at logic 0
+  --> Test vector: {'a': '0', 'b': '1', 'c': '0', 'd': '0', 'e': '0'}
+
+FAULT b:1 | Node 'b' stuck at logic 1
+  --> Test vector: {'a': '0', 'b': '0', 'c': '0', 'd': '0', 'e': '0'}
+
+FAULT c:0 | Node 'c' stuck at logic 0
+  --> Test vector: {'a': '0', 'b': '0', 'c': '1', 'd': '0', 'e': '0'}
+
+FAULT c:1 | Node 'c' stuck at logic 1
+  --> Test vector: {'a': '0', 'b': '0', 'c': '0', 'd': '0', 'e': '0'}
+
+FAULT d:0 | Node 'd' stuck at logic 0
+  --> Test vector: {'a': '0', 'b': '0', 'c': '0', 'd': '1', 'e': '0'}
+
+FAULT d:1 | Node 'd' stuck at logic 1
+  --> Test vector: {'a': '0', 'b': '0', 'c': '0', 'd': '0', 'e': '0'}
+
+FAULT e:0 | Node 'e' stuck at logic 0
+  --> Test vector: {'a': '0', 'b': '0', 'c': '0', 'd': '0', 'e': '1'}
+
+FAULT e:1 | Node 'e' stuck at logic 1
+  --> Test vector: {'a': '0', 'b': '0', 'c': '0', 'd': '0', 'e': '0'}
+
+============================================================
+Summary:
+  Total faults     : 10
+  Detected         : 10
+  Undetectable     : 0
