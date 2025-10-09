@@ -21,3 +21,9 @@ Running python **logic_evaluator_tester.py write** executes all tests and create
 test_vector_gen_v1.py  --> simply takes the JSON netlist file, counts the number of n inputs to the circuit and then creates a test vector file having all possible 2^n combinations for n bits.
 
 Use the atpg_tester.py --> which calls the d_algorithm_atpg.py file and takes a json netlist as input and generates test vectors for all faults in the fault_list_comb json and dumps into a atpg_results txt file
+
+test_vector_list_gen.py --> the top module to create test vectors. Takes a netlist.json and fault_list.json as input and produces test_vector.txt. It has a LOGIC_INPUT_LIMIT, if the netlist has less inouts than that it uses exhaustive_list_gen.py to create a exhasutive fault list, else it wil use atpg_tester_v2.py to create test vector curated for each fault in the fault list.
+
+exhaustive_list_gen.py  --> modified version of test_vector_gen_v1.py just to be called from test_vector_list_gen.
+
+atpg_tester_v2.py  --> modified version of atpg_tester.py just to be called from test_vector_list_gen.
