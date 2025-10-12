@@ -1,0 +1,475 @@
+{
+    "ripple_carry_adder_4bit": {
+        "ports": {
+            "A0": {
+                "direction": "Input"
+            },
+            "A1": {
+                "direction": "Input"
+            },
+            "A2": {
+                "direction": "Input"
+            },
+            "A3": {
+                "direction": "Input"
+            },
+            "B0": {
+                "direction": "Input"
+            },
+            "B1": {
+                "direction": "Input"
+            },
+            "B2": {
+                "direction": "Input"
+            },
+            "B3": {
+                "direction": "Input"
+            },
+            "CIN": {
+                "direction": "Input"
+            },
+            "SUM0": {
+                "direction": "Output"
+            },
+            "SUM1": {
+                "direction": "Output"
+            },
+            "SUM2": {
+                "direction": "Output"
+            },
+            "SUM3": {
+                "direction": "Output"
+            },
+            "COUT": {
+                "direction": "Output"
+            }
+        },
+        "cells": {
+            "u_fa0_xor1": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "A0_1",
+                        "B0_1"
+                    ],
+                    "outputs": [
+                        "fa0_xor1"
+                    ]
+                }
+            },
+            "u_fa0_xor2": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "fa0_xor1",
+                        "CIN_1"
+                    ],
+                    "outputs": [
+                        "SUM0"
+                    ]
+                }
+            },
+            "u_fa0_and1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A0_2",
+                        "B0_2"
+                    ],
+                    "outputs": [
+                        "fa0_and1"
+                    ]
+                }
+            },
+            "u_fa0_and2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "B0_3",
+                        "CIN_2"
+                    ],
+                    "outputs": [
+                        "fa0_and2"
+                    ]
+                }
+            },
+            "u_fa0_and3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "CIN_3",
+                        "A0_3"
+                    ],
+                    "outputs": [
+                        "fa0_and3"
+                    ]
+                }
+            },
+            "u_fa0_or": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "fa0_and1",
+                        "fa0_and2",
+                        "fa0_and3"
+                    ],
+                    "outputs": [
+                        "C1"
+                    ]
+                }
+            },
+            "u_fa1_xor1": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "A1_1",
+                        "B1_1"
+                    ],
+                    "outputs": [
+                        "fa1_xor1"
+                    ]
+                }
+            },
+            "u_fa1_xor2": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "fa1_xor1",
+                        "C1_1"
+                    ],
+                    "outputs": [
+                        "SUM1"
+                    ]
+                }
+            },
+            "u_fa1_and1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A1_2",
+                        "B1_2"
+                    ],
+                    "outputs": [
+                        "fa1_and1"
+                    ]
+                }
+            },
+            "u_fa1_and2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "B1_3",
+                        "C1_2"
+                    ],
+                    "outputs": [
+                        "fa1_and2"
+                    ]
+                }
+            },
+            "u_fa1_and3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "C1_3",
+                        "A1_3"
+                    ],
+                    "outputs": [
+                        "fa1_and3"
+                    ]
+                }
+            },
+            "u_fa1_or": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "fa1_and1",
+                        "fa1_and2",
+                        "fa1_and3"
+                    ],
+                    "outputs": [
+                        "C2"
+                    ]
+                }
+            },
+            "u_fa2_xor1": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "A2_1",
+                        "B2_1"
+                    ],
+                    "outputs": [
+                        "fa2_xor1"
+                    ]
+                }
+            },
+            "u_fa2_xor2": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "fa2_xor1",
+                        "C2_1"
+                    ],
+                    "outputs": [
+                        "SUM2"
+                    ]
+                }
+            },
+            "u_fa2_and1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A2_2",
+                        "B2_2"
+                    ],
+                    "outputs": [
+                        "fa2_and1"
+                    ]
+                }
+            },
+            "u_fa2_and2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "B2_3",
+                        "C2_2"
+                    ],
+                    "outputs": [
+                        "fa2_and2"
+                    ]
+                }
+            },
+            "u_fa2_and3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "C2_3",
+                        "A2_3"
+                    ],
+                    "outputs": [
+                        "fa2_and3"
+                    ]
+                }
+            },
+            "u_fa2_or": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "fa2_and1",
+                        "fa2_and2",
+                        "fa2_and3"
+                    ],
+                    "outputs": [
+                        "C3"
+                    ]
+                }
+            },
+            "u_fa3_xor1": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "A3_1",
+                        "B3_1"
+                    ],
+                    "outputs": [
+                        "fa3_xor1"
+                    ]
+                }
+            },
+            "u_fa3_xor2": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "fa3_xor1",
+                        "C3_1"
+                    ],
+                    "outputs": [
+                        "SUM3"
+                    ]
+                }
+            },
+            "u_fa3_and1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A3_2",
+                        "B3_2"
+                    ],
+                    "outputs": [
+                        "fa3_and1"
+                    ]
+                }
+            },
+            "u_fa3_and2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "B3_3",
+                        "C3_2"
+                    ],
+                    "outputs": [
+                        "fa3_and2"
+                    ]
+                }
+            },
+            "u_fa3_and3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "C3_3",
+                        "A3_3"
+                    ],
+                    "outputs": [
+                        "fa3_and3"
+                    ]
+                }
+            },
+            "u_fa3_or": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "fa3_and1",
+                        "fa3_and2",
+                        "fa3_and3"
+                    ],
+                    "outputs": [
+                        "COUT"
+                    ]
+                }
+            }
+        },
+        "nets": [
+            "A0",
+            "A0_1",
+            "A0_2",
+            "A0_3",
+            "A1",
+            "A1_1",
+            "A1_2",
+            "A1_3",
+            "A2",
+            "A2_1",
+            "A2_2",
+            "A2_3",
+            "A3",
+            "A3_1",
+            "A3_2",
+            "A3_3",
+            "B0",
+            "B0_1",
+            "B0_2",
+            "B0_3",
+            "B1",
+            "B1_1",
+            "B1_2",
+            "B1_3",
+            "B2",
+            "B2_1",
+            "B2_2",
+            "B2_3",
+            "B3",
+            "B3_1",
+            "B3_2",
+            "B3_3",
+            "C1",
+            "C1_1",
+            "C1_2",
+            "C1_3",
+            "C2",
+            "C2_1",
+            "C2_2",
+            "C2_3",
+            "C3",
+            "C3_1",
+            "C3_2",
+            "C3_3",
+            "CIN",
+            "CIN_1",
+            "CIN_2",
+            "CIN_3",
+            "COUT",
+            "SUM0",
+            "SUM1",
+            "SUM2",
+            "SUM3",
+            "fa0_and1",
+            "fa0_and2",
+            "fa0_and3",
+            "fa0_xor1",
+            "fa1_and1",
+            "fa1_and2",
+            "fa1_and3",
+            "fa1_xor1",
+            "fa2_and1",
+            "fa2_and2",
+            "fa2_and3",
+            "fa2_xor1",
+            "fa3_and1",
+            "fa3_and2",
+            "fa3_and3",
+            "fa3_xor1"
+        ],
+        "fanouts": {
+            "A0": [
+                "A0_1",
+                "A0_2",
+                "A0_3"
+            ],
+            "B0": [
+                "B0_1",
+                "B0_2",
+                "B0_3"
+            ],
+            "CIN": [
+                "CIN_1",
+                "CIN_2",
+                "CIN_3"
+            ],
+            "A1": [
+                "A1_1",
+                "A1_2",
+                "A1_3"
+            ],
+            "B1": [
+                "B1_1",
+                "B1_2",
+                "B1_3"
+            ],
+            "C1": [
+                "C1_1",
+                "C1_2",
+                "C1_3"
+            ],
+            "A2": [
+                "A2_1",
+                "A2_2",
+                "A2_3"
+            ],
+            "B2": [
+                "B2_1",
+                "B2_2",
+                "B2_3"
+            ],
+            "C2": [
+                "C2_1",
+                "C2_2",
+                "C2_3"
+            ],
+            "A3": [
+                "A3_1",
+                "A3_2",
+                "A3_3"
+            ],
+            "B3": [
+                "B3_1",
+                "B3_2",
+                "B3_3"
+            ],
+            "C3": [
+                "C3_1",
+                "C3_2",
+                "C3_3"
+            ]
+        }
+    }
+}
