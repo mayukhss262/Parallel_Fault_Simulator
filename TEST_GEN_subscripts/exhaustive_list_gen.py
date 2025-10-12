@@ -15,8 +15,10 @@ def generate_exhaustive_vectors(netlist_file_path):
         print(f"Error: Could not parse the JSON file '{netlist_file_path}'.")
         return None, None, 0
 
-    module_name = list(netlist_data['modules'].keys())[0]
-    ports = netlist_data['modules'][module_name]['ports']
+    # --- MODIFIED: Handle netlist format where module is the top-level key ---
+    module_name = list(netlist_data.keys())[0]
+    ports = netlist_data[module_name]['ports']
+    # --- End of modification ---
     
     primary_inputs = [p for p, attr in ports.items() if attr.get('direction') == 'Input']
     primary_inputs.sort()

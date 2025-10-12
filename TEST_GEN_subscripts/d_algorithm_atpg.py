@@ -132,8 +132,11 @@ class DAlgorithmATPG:
                     - fanouts: Dictionary mapping nets to fanout nets
         """
         self.netlist = netlist
-        self.module_name = list(netlist['modules'].keys())[0]
-        self.module = netlist['modules'][self.module_name]
+        # --- MODIFIED: Handle netlist format where module is the top-level key ---
+        self.module_name = list(netlist.keys())[0]
+        self.module = netlist[self.module_name]
+        # --- End of modification ---
+
         
         # Extract circuit structure
         self.ports = self.module['ports']
@@ -402,7 +405,8 @@ class DAlgorithmATPG:
             Tuple of (gate_name, gate_info_dict) or None if net is primary input
         """
         for gate_name, gate_info in self.cells.items():
-            if gate_info['connections']['output'] == net:
+            # --- MODIFIED: Handle 'outputs' list instead of single 'output' ---
+            if 'outputs' in gate_info['connections'] and gate_info['connections']['outputs'] and gate_info['connections']['outputs'][0] == net:
                 return gate_name, gate_info
         return None
     
@@ -442,7 +446,9 @@ class DAlgorithmATPG:
             
             for gate_name, gate_info in self.cells.items():
                 gate_type = gate_info['type']
-                output_net = gate_info['connections']['output']
+                # --- MODIFIED: Handle 'outputs' list instead of single 'output' ---
+                output_net = gate_info['connections']['outputs'][0]
+                # --- End of modification ---
                 input_nets = gate_info['connections']['inputs']
                 
                 # Get current input values
@@ -575,7 +581,9 @@ class DAlgorithmATPG:
         self.j_frontier = []
         
         for gate_name, gate_info in self.cells.items():
-            output_net = gate_info['connections']['output']
+            # --- MODIFIED: Handle 'outputs' list instead of single 'output' ---
+            output_net = gate_info['connections']['outputs'][0]
+            # --- End of modification ---
             input_nets = gate_info['connections']['inputs']
             
             input_values = [self.values[inp] for inp in input_nets]
@@ -656,7 +664,9 @@ class DAlgorithmATPG:
             True if X-path exists to output
         """
         gate_info = self.cells[gate_name]
-        output_net = gate_info['connections']['output']
+        # --- MODIFIED: Handle 'outputs' list instead of single 'output' ---
+        output_net = gate_info['connections']['outputs'][0]
+        # --- End of modification ---
         
         # BFS to find path to primary output through X values
         visited = set()
@@ -678,7 +688,9 @@ class DAlgorithmATPG:
                 # Find gates driven by this net
                 driven_gates = self._get_gates_driven_by_net(current_net)
                 for driven_gate_name, driven_gate_info in driven_gates:
-                    next_net = driven_gate_info['connections']['output']
+                    # --- MODIFIED: Handle 'outputs' list instead of single 'output' ---
+                    next_net = driven_gate_info['connections']['outputs'][0]
+                    # --- End of modification ---
                     if next_net not in visited:
                         queue.append(next_net)
         
@@ -891,36 +903,49 @@ def main():
                     "g1": {
                         "type": "xor",
                         "connections": {
-                            "output": "w1",
-                            "inputs": ["a", "b"]
+                            "inputs": [
+                                "a",
+                                "b"
+                            ],
+                            "outputs": [
+                                "w1"
+                            ]
                         }
                     },
                     "g2": {
                         "type": "or",
                         "connections": {
-                            "output": "w2",
-                            "inputs": ["w11", "c"]
+                            "inputs": [
+                                "w1_1",
+                                "c"
+                            ],
+                            "outputs": [
+                                "w2"
+                            ]
                         }
                     },
                     "g3": {
                         "type": "and",
                         "connections": {
-                            "output": "w3",
-                            "inputs": ["d", "w12"]
+                            "inputs": [
+                                "d",
+                                "w1_2"
+                            ],
+                            "outputs": [
+                                "w3"
+                            ]
                         }
                     },
                     "g5": {
                         "type": "or",
                         "connections": {
-                            "output": "f",
-                            "inputs": ["w3", "w2"]
+                            "inputs": ["w3", "w2"],
+                            "outputs": ["f"]
                         }
                     }
                 },
-                "nets": ["a", "b", "c", "d", "f", "w1", "w11", "w12", "w2", "w3"],
-                "fanouts": {
-                    "w1": ["w11", "w12"]
-                }
+                "nets": ["a", "b", "c", "d", "f", "w1", "w1_1", "w1_2", "w2", "w3"],
+                "fanouts": {"w1": ["w1_1", "w1_2"]}
             }
         }
     }

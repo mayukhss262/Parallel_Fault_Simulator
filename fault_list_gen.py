@@ -16,8 +16,8 @@ def analyze_netlist(netlist_json):
     """
     
     # Get the first (and typically only) module
-    module_name = list(netlist_json['modules'].keys())[0]
-    module_data = netlist_json['modules'][module_name]
+    module_name = list(netlist_json.keys())[0]
+    module_data = netlist_json[module_name]
     
     # Extract Primary Inputs
     primary_inputs = []
@@ -183,8 +183,10 @@ def export_faults_to_json(fault_data, input_filename, output_filename=None):
     if not output_filename.endswith('.json'):
         output_filename += '.json'
     
-    # Get current working directory
-    output_path = os.path.join(os.getcwd(), output_filename)
+    # Define the output directory
+    output_dir = "FAULT_LISTS"
+    # Construct the full path for the output file
+    output_path = os.path.join(output_dir, output_filename)
     
     # Write JSON to file with proper formatting
     try:
@@ -340,10 +342,14 @@ Examples:
     # Parse command-line arguments
     args = parser.parse_args()
     
+    # Construct the full path to the input netlist file inside the NETLISTS directory
+    input_dir = "NETLISTS"
+    netlist_file_path = os.path.join(input_dir, args.netlist_file)
+    
     # Load netlist from the specified file
-    print(f"Loading netlist from: {args.netlist_file}")
+    print(f"Loading netlist from: {netlist_file_path}")
     print()
-    netlist_data = load_netlist_from_file(args.netlist_file)
+    netlist_data = load_netlist_from_file(netlist_file_path)
     
     # Analyze the netlist
     analysis = analyze_netlist(netlist_data)
@@ -367,4 +373,3 @@ Examples:
 
 if __name__ == "__main__":
     main()
-
