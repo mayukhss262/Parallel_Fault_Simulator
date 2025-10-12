@@ -32,4 +32,36 @@ atpg_tester_v2.py  --> modified version of atpg_tester.py just to be called from
 
 **ALL DEPENDENCIES OF THE TOP MODULES ARE STORED IN A SUBFOLDR CALLED TEST_GEN_subscripts ( ALL PATH MANAGED)**
 
+**VERILOG STYLE INPUT TO NETLIST PORT MAPPING**
+
+python vector_to_netlist_mapper.py **netlist_7.json A=10011001 B=11001100 CIN=1**
+--- Input Vector to Netlist Port Mapping ---
+Original Verilog-style inputs:
+{
+    "A": "10011001",
+    "B": "11001100",
+    "CIN": "1"
+}
+Mapped to scalar netlist ports (Console Output):
+{
+    "A0": "1",
+    "A1": "0",
+    "A2": "0",
+    "A3": "1",
+    "A4": "1",
+    "A5": "0",
+    "A6": "0",
+    "A7": "1",
+    "B0": "0",
+    "B1": "0",
+    "B2": "1",
+    "B3": "1",
+    "B4": "0",
+    "B5": "0",
+    "B6": "1",
+    "B7": "1",
+    "CIN": "1"
+}
+Successfully generated mapping report at: 'MAPPING_REPORTS\mapping_report_netlist_7.txt'
+
 
