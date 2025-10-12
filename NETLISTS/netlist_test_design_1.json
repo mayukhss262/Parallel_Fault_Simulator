@@ -1,0 +1,271 @@
+{
+    "top": {
+        "ports": {
+            "a0": {
+                "direction": "Input"
+            },
+            "a1": {
+                "direction": "Input"
+            },
+            "a2": {
+                "direction": "Input"
+            },
+            "a3": {
+                "direction": "Input"
+            },
+            "b": {
+                "direction": "Input"
+            },
+            "c": {
+                "direction": "Input"
+            },
+            "d0": {
+                "direction": "Input"
+            },
+            "d1": {
+                "direction": "Input"
+            },
+            "d2": {
+                "direction": "Input"
+            },
+            "f1": {
+                "direction": "Output"
+            },
+            "f0": {
+                "direction": "Output"
+            }
+        },
+        "cells": {
+            "g1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "c",
+                        "w5_1"
+                    ],
+                    "outputs": [
+                        "w6"
+                    ]
+                }
+            },
+            "g2": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "w5_2",
+                        "b"
+                    ],
+                    "outputs": [
+                        "w7"
+                    ]
+                }
+            },
+            "g3": {
+                "type": "not",
+                "connections": {
+                    "inputs": [
+                        "w3"
+                    ],
+                    "outputs": [
+                        "f0"
+                    ]
+                }
+            },
+            "g4": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "w4",
+                        "w6"
+                    ],
+                    "outputs": [
+                        "w8"
+                    ]
+                }
+            },
+            "g5": {
+                "type": "nand",
+                "connections": {
+                    "inputs": [
+                        "w7",
+                        "w8"
+                    ],
+                    "outputs": [
+                        "f1"
+                    ]
+                }
+            },
+            "m1_g1": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "a1",
+                        "a2"
+                    ],
+                    "outputs": [
+                        "m1_a"
+                    ]
+                }
+            },
+            "m1_g2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "m1_b",
+                        "a0"
+                    ],
+                    "outputs": [
+                        "w1"
+                    ]
+                }
+            },
+            "m1_g3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "m1_c",
+                        "a3"
+                    ],
+                    "outputs": [
+                        "w2"
+                    ]
+                }
+            },
+            "m2_g1": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "b",
+                        "w2"
+                    ],
+                    "outputs": [
+                        "m2_a"
+                    ]
+                }
+            },
+            "m2_g2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "m2_b",
+                        "c"
+                    ],
+                    "outputs": [
+                        "w3"
+                    ]
+                }
+            },
+            "m2_g3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "m2_c",
+                        "w1"
+                    ],
+                    "outputs": [
+                        "w4"
+                    ]
+                }
+            },
+            "m3_g1": {
+                "type": "not",
+                "connections": {
+                    "inputs": [
+                        "m3_c_2"
+                    ],
+                    "outputs": [
+                        "m3_w2"
+                    ]
+                }
+            },
+            "m3_g2": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "m3_w1",
+                        "m3_w2"
+                    ],
+                    "outputs": [
+                        "w5"
+                    ]
+                }
+            },
+            "m3_m1_g1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "d2",
+                        "d1"
+                    ],
+                    "outputs": [
+                        "m3_m1_w"
+                    ]
+                }
+            },
+            "m3_m1_g2": {
+                "type": "xnor",
+                "connections": {
+                    "inputs": [
+                        "m3_m1_w",
+                        "m3_c_1"
+                    ],
+                    "outputs": [
+                        "m3_w1"
+                    ]
+                }
+            }
+        },
+        "nets": [
+            "a0",
+            "a1",
+            "a2",
+            "a3",
+            "b",
+            "c",
+            "d0",
+            "d1",
+            "d2",
+            "f0",
+            "f1",
+            "w1",
+            "w2",
+            "w3",
+            "w4",
+            "w5",
+            "w5_1",
+            "w5_2",
+            "w6",
+            "w7",
+            "w8",
+            "m1_a",
+            "m1_b",
+            "m1_c",
+            "m2_a",
+            "m2_b",
+            "m2_c",
+            "m3_c_1",
+            "m3_c_2",
+            "m3_w1",
+            "m3_w2",
+            "m3_m1_w"
+        ],
+        "fanouts": {
+            "w5": [
+                "w5_1",
+                "w5_2"
+            ],
+            "m1_a": [
+                "m1_b",
+                "m1_c"
+            ],
+            "m2_a": [
+                "m2_b",
+                "m2_c"
+            ],
+            "d0": [
+                "m3_c_1",
+                "m3_c_2"
+            ]
+        }
+    }
+}
