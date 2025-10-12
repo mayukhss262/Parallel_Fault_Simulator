@@ -521,10 +521,14 @@ def flatten_netlist(netlist_dict):
 
     return {top_module_name: flattened_module}
 
-def process_verilog_files(folder_path: str):
+def process_verilog_files(folder_path):
     """
-    Finds all .v files, extracts unique module definitions, and writes a clean,
-    de-duplicated Verilog file with the top module listed first.
+    Finds all .v files, extracts unique module definitions, and writes them
+    to a new file named 'all_modules.v'. If the file exists, a numeric
+    suffix is added to find a unique name. The top module is listed first.
+
+    Returns:
+        str: The absolute path to the newly created Verilog file.
     """
     try:
         all_files = os.listdir(folder_path)
@@ -547,8 +551,7 @@ def process_verilog_files(folder_path: str):
 
     top_file_name = top_files_found[0]
     
-    # Use a dictionary to store the source code of unique modules
-    # Key: module_name, Value: module_source_code
+    # Dictionary to store unique modules (Key: module_name, Value: source_code)
     unique_modules = {}
     top_module_name_from_file = ""
 
@@ -559,20 +562,18 @@ def process_verilog_files(folder_path: str):
             content = f.read()
 
         # Find all module definitions in the current file
-        # This regex is robust for structural Verilog
         module_definitions = re.findall(r'(\bmodule\s+.*?\bendmodule)', content, re.DOTALL)
         
         for module_code in module_definitions:
-            # Extract the module name
             match = re.search(r'\bmodule\s+(\w+)', module_code)
             if match:
                 module_name = match.group(1)
                 
-                # If we haven't seen this module before, store its source code
+                # Store the module's source code if it's new
                 if module_name not in unique_modules:
                     unique_modules[module_name] = module_code
                 
-                # If this is the top file, identify the first module as the top module
+                # Identify the top module from the designated top file
                 if file_name == top_file_name and not top_module_name_from_file:
                     top_module_name_from_file = module_name
 
@@ -581,47 +582,31 @@ def process_verilog_files(folder_path: str):
         print(f"Error: Could not determine top module name from '{top_file_name}'.")
         sys.exit(1)
         
-    # Start with the top module's source code
     final_content = unique_modules.pop(top_module_name_from_file, '') + '\n\n'
-    
-    # Append all other unique submodule definitions
-    for module_name, module_code in unique_modules.items():
+    for module_code in unique_modules.values():
         final_content += module_code + '\n\n'
         
-    # Write the clean, merged content back to the top file
-    top_file_path = os.path.join(folder_path, top_file_name)
-    with open(top_file_path, 'w') as f:
+    # --- File naming logic ---
+    base_output_name = "all_modules.v"
+    name, ext = os.path.splitext(base_output_name)
+    counter = 1
+    output_file_path = os.path.join(folder_path, base_output_name)
+
+    # If file exists, find a unique name by appending a number
+    while os.path.exists(output_file_path):
+        new_filename = f"{name}_{counter}{ext}"
+        output_file_path = os.path.join(folder_path, new_filename)
+        counter += 1
+    
+    # Write the clean, merged content to the uniquely named output file
+    with open(output_file_path, 'w') as f:
         f.write(final_content.strip())
-        
-    print(f"Success! All unique modules have been merged into '{top_file_name}'.")
+    
+    final_filename = os.path.basename(output_file_path)
+    print(f"Success! All unique modules have been merged into '{final_filename}'.")
 
-def find_top_verilog_file(folder_path: str) -> str:
-    """
-    Scans a directory to find a unique Verilog file matching the pattern
-    'combinatorial_<integer>.v' and returns its full path.
-
-    """
-    if not os.path.isdir(folder_path):
-        raise FileNotFoundError(f"Error: The directory '{folder_path}' was not found.")
-
-    v_files = [f for f in os.listdir(folder_path) if f.endswith('.v')]
-    if not v_files:
-        raise FileNotFoundError(f"Error: No .v files found in '{folder_path}'.")
-
-    top_file_pattern = re.compile(r'^combinatorial_\d+\.v$')
-    top_files_found = [f for f in v_files if top_file_pattern.match(f)]
-
-    if len(top_files_found) == 0:
-        raise FileNotFoundError(
-            "Error: No top file found matching 'combinatorial_<integer>.v'."
-        )
-    if len(top_files_found) > 1:
-        raise ValueError(
-            f"Error: Multiple top files found: {', '.join(top_files_found)}"
-        )
-
-    # Return the full path to the single top file found
-    return os.path.join(folder_path, top_files_found[0])
+    # Return the absolute path to the created file
+    return os.path.abspath(output_file_path)
 
 
 def main():
@@ -630,21 +615,14 @@ def main():
         sys.exit(1)
     
     directory_path = sys.argv[1]
-    process_verilog_files(directory_path)
 
-    top_verilog_file = find_top_verilog_file(directory_path)
+    top_verilog_file = process_verilog_files(directory_path)
     
     generated_netlist = create_json_netlist(top_verilog_file)
     
-    base_filename = os.path.basename(top_verilog_file)
-    match = re.search(r'_(\d+)\.v$', base_filename)
-    if match:
-        number = match.group(1)
-        output_json_file = f'netlist_{number}.json'
-    else:
-        # Fallback for filenames not matching the pattern
-        filename_no_ext = os.path.splitext(base_filename)[0]
-        output_json_file = f'netlist_{filename_no_ext}.json'
+    directory_name = os.path.basename(directory_path)
+    
+    output_json_file = f'netlist_{directory_name}.json'
     
     # Define the output directory and ensure it exists
     output_dir = "NETLISTS"
