@@ -8,7 +8,7 @@ verilog_to_netlist.py --> Netlist generator. Takes path to design folder as inpu
 
 fault_list_gen.py --> considers PI and fanout only
 
-fault_list_gen_v2.py --> considers PI,PO and fanout only
+fault_list_gen_with_PO.py --> considers PI,PO and fanout only (KIND OF USELESS< WILL DELETE LATER)
 
 logic_evaluator.py --> computation done by compute() function. Tester should invoke this function. Needs two parameters : a list of operand words (strings of any length) and a string mentioning the operation (and,or,not,buf,notif1,notif0,bufif1,bufif0,nand,nor,xor,xnor). For tristate gates, exactly two input words : first word is input, second word is control.
 
