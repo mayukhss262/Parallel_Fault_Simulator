@@ -646,10 +646,17 @@ def main():
         filename_no_ext = os.path.splitext(base_filename)[0]
         output_json_file = f'netlist_{filename_no_ext}.json'
     
-    with open(output_json_file, 'w') as f:
+    # Define the output directory and ensure it exists
+    output_dir = "NETLISTS"
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Construct the full path for the output file
+    output_path = os.path.join(output_dir, output_json_file)
+
+    with open(output_path, 'w') as f:
         json.dump(generated_netlist, f, indent=4)
         
-    print(f"Successfully generated netlist at '{output_json_file}'")
+    print(f"Successfully generated netlist at '{output_path}'")
 
 
 if __name__ == "__main__":
