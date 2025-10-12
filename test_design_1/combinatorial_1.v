@@ -24,36 +24,3 @@ module top(a,b,c,d,f);
 
 endmodule
 
-module submod1(input [3:0]in, output x, output y);
-
-    wire a,b,c;
-
-    xor g1(a,in[2],in[1]);
-
-    assign b = a;
-    assign c = a;
-
-    and g2(x,b,in[3]);
-    and g3(y,c,in[0]);
-
-endmodule
-
-module submod2(a,b,z,c);
-
-    input a,b,c;
-    output z;
-
-    submod3 m1(w1,a,b,c);
-    not g1(w2,c);
-
-    or g2(z,w1,w2);
-
-endmodule
-
-module submod3(output t, input x, input y, input z);
-
-    wire w;
-    and g1(w,x,y);
-    xnor g2(t,w,z);
-
-endmodule
