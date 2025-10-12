@@ -23,9 +23,9 @@ Running python **logic_evaluator_tester.py write** executes all tests and create
 
 **TEST VECTOR GENERATION SCRIPTS**
 
-test_vector_list_gen.py --> the top module to create test vectors. Takes a  netlist_[INTEGER].json AUTOMATICALLY FROM NETLISTS SUBFOLDER and fault_list_comb_[INTEGER] from the AUTOMATICALLY FROM FAULT_LISTS SUBFOLDER as input and produces test_vector_[INTEGER].txt INSIDE THE SUBFOLDER NAMED TEST_VECTOR_RESULTS. It has a LOGIC_INPUT_LIMIT, if the netlist has less inouts than that it uses **exhaustive_list_gen.py** to create a exhasutive fault list, else it wil use **atpg_tester_v2.py****(which calls d_algorithm_atpg.py)** to create test vector curated for each fault in the fault list.
+test_vector_list_gen.py --> the top module to create test vectors. Takes a  netlist_[INTEGER].json AUTOMATICALLY FROM NETLISTS SUBFOLDER and fault_list_comb_[INTEGER] from the AUTOMATICALLY FROM FAULT_LISTS SUBFOLDER as input and produces test_vector_[INTEGER].txt INSIDE THE SUBFOLDER NAMED TEST_VECTOR_RESULTS. It has a LOGIC_INPUT_LIMIT, if the netlist has less inouts than that it uses **exhaustive_list_gen.py** to create a exhasutive fault list, else it wil use **atpg_tester_v2.py(which calls d_algorithm_atpg.py)** to create test vector curated for each fault in the fault list.
 
-exhaustive_list_gen.py  --> modified version of test_vector_gen_v1.py just to be called from test_vector_list_gen.
+exhaustive_list_gen.py  --> generates all possible test vectors --> to be called from test_vector_list_gen.
 atpg_tester_v2.py  --> modified version of atpg_tester.py just to be called from test_vector_list_gen.
 
 **ALL DEPENDENCIES OF THE TOP MODULES ARE STORED IN A SUBFOLDR CALLED TEST_GEN_subscripts ( ALL PATH MANAGED)**
