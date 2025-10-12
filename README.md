@@ -1,3 +1,5 @@
+**IGNORE THE delete FOLDER COMPLETELY**
+
 Verilog folder(not file) naming convention: test_design_[INTEGER].v
 
 **NETLIST GENERATION SCRIPTS**
