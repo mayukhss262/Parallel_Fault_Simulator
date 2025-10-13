@@ -1,0 +1,113 @@
+{
+    "test_top": {
+        "ports": {
+            "a0": {
+                "direction": "Input"
+            },
+            "a1": {
+                "direction": "Input"
+            },
+            "a2": {
+                "direction": "Input"
+            },
+            "b": {
+                "direction": "Input"
+            },
+            "c": {
+                "direction": "Input"
+            },
+            "d": {
+                "direction": "Input"
+            },
+            "f1": {
+                "direction": "Output"
+            },
+            "f0": {
+                "direction": "Output"
+            }
+        },
+        "cells": {
+            "g1": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "b",
+                        "z_1"
+                    ],
+                    "outputs": [
+                        "f0"
+                    ]
+                }
+            },
+            "g2": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "d",
+                        "c",
+                        "z_2"
+                    ],
+                    "outputs": [
+                        "f1"
+                    ]
+                }
+            },
+            "b1_g1": {
+                "type": "not",
+                "connections": {
+                    "inputs": [
+                        "a0"
+                    ],
+                    "outputs": [
+                        "b1_w"
+                    ]
+                }
+            },
+            "b1_g2": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "a2",
+                        "a1"
+                    ],
+                    "outputs": [
+                        "b1_z"
+                    ]
+                }
+            },
+            "b1_g3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "b1_w",
+                        "b1_z"
+                    ],
+                    "outputs": [
+                        "z"
+                    ]
+                }
+            }
+        },
+        "nets": [
+            "a0",
+            "a1",
+            "a2",
+            "b",
+            "c",
+            "d",
+            "f0",
+            "f1",
+            "z",
+            "z_1",
+            "z_2",
+            "b1_w",
+            "b1_z"
+        ],
+        "fanouts": {
+            "z": [
+                "z_1",
+                "z_2"
+            ]
+        }
+    }
+}
