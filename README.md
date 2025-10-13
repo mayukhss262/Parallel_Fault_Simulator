@@ -64,4 +64,6 @@ Mapped to scalar netlist ports (Console Output):
 }
 Successfully generated mapping report at: 'MAPPING_REPORTS\mapping_report_netlist_7.txt'
 
+**SIMULATOR** 
 
+simulator.py --> contains function simulate(). Do not run simulator.py directly. Import simulate() function and run that instead. simulate() takes three arguments - path to netlist JSON file, input word list (list of strings) and stuck-at fault, specified as a string in this format : "[net_name]:[fault_value]". If no fault is to be injected, this argument is set to None. Function returns output words in dict format. {[output_port_name] : "output_word"}. Refer to simulator_test.py for example usage.
