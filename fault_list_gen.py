@@ -7,6 +7,7 @@ from datetime import datetime
 
 
 
+
 def analyze_netlist(netlist_json):
     """ 
     Args:
@@ -46,6 +47,7 @@ def analyze_netlist(netlist_json):
         'primary_outputs': primary_outputs,
         'fanout_branches': fanout_branches
     }
+
 
 
 
@@ -94,6 +96,7 @@ def generate_stuck_at_faults(analysis_result):
 
 
 
+
 def create_fault_json_structure(analysis_result, stuck_at_faults):
     """
     Creates a comprehensive JSON structure with analysis results and fault list
@@ -128,15 +131,16 @@ def create_fault_json_structure(analysis_result, stuck_at_faults):
 
 
 
-def extract_number_from_filename(filename):
+
+def extract_design_name_from_filename(filename):
     """
-    Extracts the number from a filename (e.g., 'combinatorial_2.v' -> '2')
+    Extracts the design name from a filename with pattern 'netlist_[design_name].json'
     
     Args:
         filename: The input filename
     
     Returns:
-        The extracted number as a string, or empty string if no number found
+        The extracted design_name as a string
     """
     # Get just the filename without path
     basename = os.path.basename(filename)
@@ -144,14 +148,15 @@ def extract_number_from_filename(filename):
     # Remove extension
     filename_without_ext = os.path.splitext(basename)[0]
     
-    # Extract numbers using regex
-    numbers = re.findall(r'\d+', filename_without_ext)
+    # Try to match the pattern netlist_[design_name]
+    match = re.match(r'netlist_(.+)', filename_without_ext)
     
-    # Return the last number found (typically the one at the end)
-    if numbers:
-        return numbers[-1]
+    if match:
+        return match.group(1)
     else:
-        return ""
+        # Fallback: if no "netlist_" prefix, return the whole name
+        return filename_without_ext
+
 
 
 
@@ -169,15 +174,11 @@ def export_faults_to_json(fault_data, input_filename, output_filename=None):
     """
     # Generate default filename if not provided
     if output_filename is None:
-        # Extract number from input filename
-        number = extract_number_from_filename(input_filename)
+        # Extract design name from input filename
+        design_name = extract_design_name_from_filename(input_filename)
         
-        # Create filename in format: fault_list_comb_<NUMBER>.json
-        if number:
-            output_filename = f"fault_list_comb_{number}.json"
-        else:
-            # Fallback if no number found
-            output_filename = "fault_list_comb.json"
+        # Create filename in format: fault_list_[design_name].json
+        output_filename = f"fault_list_{design_name}.json"
     
     # Ensure .json extension
     if not output_filename.endswith('.json'):
@@ -198,6 +199,7 @@ def export_faults_to_json(fault_data, input_filename, output_filename=None):
     except Exception as e:
         print(f"\n✗ Error writing JSON file: {e}")
         sys.exit(1)
+
 
 
 
@@ -246,6 +248,7 @@ def print_netlist_analysis(analysis_result):
 
 
 
+
 def print_fault_summary(stuck_at_faults):
     """
     Prints a summary of the generated stuck-at faults
@@ -281,6 +284,7 @@ def print_fault_summary(stuck_at_faults):
 
 
 
+
 def load_netlist_from_file(filename):
     """
     Loads netlist JSON from a file
@@ -308,6 +312,7 @@ def load_netlist_from_file(filename):
 
 
 
+
 def main():
     """
     Main function to handle command-line arguments and run the netlist analysis
@@ -318,9 +323,9 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 Examples:
-  python netlist_analyzer.py netlist.json
-  python netlist_analyzer.py path/to/combinatorial_2.json
-  python netlist_analyzer.py netlist.json -o custom_faults.json
+  python netlist_analyzer.py netlist_combinatorial_2.json
+  python netlist_analyzer.py netlist_adder.json
+  python netlist_analyzer.py netlist_my_design.json -o custom_faults.json
         '''
     )
     
@@ -366,8 +371,9 @@ Examples:
     # Create comprehensive fault JSON structure
     fault_json_data = create_fault_json_structure(analysis, stuck_at_faults)
     
-    # Export to JSON file (passing input filename for number extraction)
+    # Export to JSON file (passing input filename for design name extraction)
     export_faults_to_json(fault_json_data, args.netlist_file, args.output)
+
 
 
 
