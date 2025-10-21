@@ -602,8 +602,8 @@ def process_verilog_files(folder_path):
     with open(output_file_path, 'w') as f:
         f.write(final_content.strip())
     
-    final_filename = os.path.basename(output_file_path)
-    print(f"Success! All unique modules have been merged into '{final_filename}'.")
+    #final_filename = os.path.basename(output_file_path)
+    #print(f"Success! All unique modules have been merged into '{final_filename}'.")
 
     # Return the absolute path to the created file
     return os.path.abspath(output_file_path)
@@ -616,9 +616,9 @@ def main():
     
     directory_path = sys.argv[1]
 
-    top_verilog_file = process_verilog_files(directory_path)
+    all_modules_file = process_verilog_files(directory_path)
     
-    generated_netlist = create_json_netlist(top_verilog_file)
+    generated_netlist = create_json_netlist(all_modules_file)
     
     directory_name = os.path.basename(directory_path)
     
@@ -635,6 +635,8 @@ def main():
         json.dump(generated_netlist, f, indent=4)
         
     print(f"Successfully generated netlist at '{output_path}'")
+
+    os.remove(all_modules_file) #cleanup all_modules.v
 
 
 if __name__ == "__main__":
