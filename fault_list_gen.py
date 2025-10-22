@@ -193,11 +193,11 @@ def export_faults_to_json(fault_data, input_filename, output_filename=None):
     try:
         with open(output_path, 'w') as f:
             json.dump(fault_data, f, indent=4, sort_keys=False)
-        print(f"\n✓ Stuck-at fault JSON file successfully created:")
+        print(f"\n [SUCESS] Stuck-at fault JSON file successfully created:")
         print(f"  {output_path}")
         return output_path
     except Exception as e:
-        print(f"\n✗ Error writing JSON file: {e}")
+        print(f"\n [FAIL] Error writing JSON file: {e}")
         sys.exit(1)
 
 
