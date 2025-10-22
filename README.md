@@ -20,7 +20,7 @@ TEST_DESIGNS - Directory to store Verilog design folders.
 
 USER_TEST_VECTORS - Directory to store test vectors defined in Verilog format specified by user in .txt files. 
                     .txt files have no fixed naming convention.
-                    CONSTRAINT - In case of multibit input ports, user must specify the values from LSB to MSB.
+                    
 
 **NETLIST GENERATION SCRIPTS**
 
