@@ -1,6 +1,26 @@
 **IGNORE THE delete FOLDER COMPLETELY**
 
-Verilog folder(not file) naming convention: NO MANDATORY CONVENTION
+**WARNING**
+
+No script should use any Unicode extended character in ANY output (terminal output or file write). Use only ASCII characters in output.
+
+**FILE ORGANIZATION**
+
+FAULT_LISTS - Directory to store all collapsed fault list JSON files
+              File Naming Convention - fault_list_[VERILOG DIRECTORY NAME].json
+
+FAULT_STATISTICS - Directory to store final fault statistics result
+                   File Naming Convention - fault_statistics_[VERILOG DIRECTORY NAME].txt
+
+NETLISTS - Directory to store flattened netlist JSON files
+           File Naming Convention - netlist_[VERILOG DIRECTORY NAME].json
+
+TEST_DESIGNS - Directory to store Verilog design folders. 
+               Verilog design folders have no fixed naming convention.
+
+USER_TEST_VECTORS - Directory to store test vectors defined in Verilog format specified by user in .txt files. 
+                    .txt files have no fixed naming convention.
+                    CONSTRAINT - In case of multibit input ports, user must specify the values from LSB to MSB.
 
 **NETLIST GENERATION SCRIPTS**
 
@@ -63,7 +83,16 @@ Mapped to scalar netlist ports (Console Output):
     "CIN": "1"
 }
 Successfully generated mapping report at: 'MAPPING_REPORTS\mapping_report_netlist_7.txt'
+Script must return the complete path to the .txt file containing the unpacked test vectors.
 
 **SIMULATOR** 
 
-simulator.py --> contains function simulate(). Do not run simulator.py directly. Import simulate() function and run that instead. simulate() takes three arguments - path to netlist JSON file, input word list (list of strings) and stuck-at fault, specified as a string in this format : "[net_name]:[fault_value]". If no fault is to be injected, this argument is set to None. Function returns output words in dict format. {[output_port_name] : "output_word"}. Refer to simulator_test.py for example usage.
+simulator.py --> contains function simulate(). Do not run simulator.py directly. Import simulate() function and run that instead. simulate() takes three arguments - path to netlist JSON file, input word list (list of strings) and stuck-at fault, specified as a string in this format : "[net_name]:[fault_value]". If no fault is to be injected, this argument is set to None. Function returns output words in dict format. {[output_port_name] : "output_word"}. Refer to simulator_test.py for example usage. 
+
+NOTE : Simulator supports 4-value logic (0,1,x,z). x and z must be specified in lowercase. Uppercase X and Z will cause errors.
+
+**FAULT STATISTICS GENERATOR**
+
+generate_fault_statistics.py --> Frontend script invoked by the user, performs parallel fault simulation and generates fault statistics report in FAULT_STATISTICS folder. 
+Usage : python generate_fault_statistics.py [path to Verilog folder] [path to .txt file containing user defined input vectors] [OPTIONAL][parallel simulation word length]
+If not specified by user, default parallel simulation word length is 4.
