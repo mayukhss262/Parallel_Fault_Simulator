@@ -1,0 +1,253 @@
+{
+    "metadata": {
+        "module_name": "top",
+        "generation_timestamp": "2025-10-22T18:03:56.398118",
+        "total_faults": 40,
+        "total_nodes": 20
+    },
+    "netlist_analysis": {
+        "primary_inputs": [
+            "a0",
+            "a1",
+            "a2",
+            "a3",
+            "b",
+            "c",
+            "d0",
+            "d1",
+            "d2"
+        ],
+        "primary_outputs": [
+            "f1",
+            "f0"
+        ],
+        "fanout_branches": {
+            "w5": [
+                "w5",
+                "w5_1",
+                "w5_2"
+            ],
+            "m1_a": [
+                "m1_a",
+                "m1_b",
+                "m1_c"
+            ],
+            "m2_a": [
+                "m2_a",
+                "m2_b",
+                "m2_c"
+            ],
+            "d0": [
+                "d0",
+                "m3_c_1",
+                "m3_c_2"
+            ]
+        }
+    },
+    "stuck_at_faults": {
+        "a0:0": {
+            "node": "a0",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'a0' stuck at logic 0"
+        },
+        "a0:1": {
+            "node": "a0",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'a0' stuck at logic 1"
+        },
+        "a1:0": {
+            "node": "a1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'a1' stuck at logic 0"
+        },
+        "a1:1": {
+            "node": "a1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'a1' stuck at logic 1"
+        },
+        "a2:0": {
+            "node": "a2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'a2' stuck at logic 0"
+        },
+        "a2:1": {
+            "node": "a2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'a2' stuck at logic 1"
+        },
+        "a3:0": {
+            "node": "a3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'a3' stuck at logic 0"
+        },
+        "a3:1": {
+            "node": "a3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'a3' stuck at logic 1"
+        },
+        "b:0": {
+            "node": "b",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'b' stuck at logic 0"
+        },
+        "b:1": {
+            "node": "b",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'b' stuck at logic 1"
+        },
+        "c:0": {
+            "node": "c",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'c' stuck at logic 0"
+        },
+        "c:1": {
+            "node": "c",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'c' stuck at logic 1"
+        },
+        "d0:0": {
+            "node": "d0",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'd0' stuck at logic 0"
+        },
+        "d0:1": {
+            "node": "d0",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'd0' stuck at logic 1"
+        },
+        "d1:0": {
+            "node": "d1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'd1' stuck at logic 0"
+        },
+        "d1:1": {
+            "node": "d1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'd1' stuck at logic 1"
+        },
+        "d2:0": {
+            "node": "d2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'd2' stuck at logic 0"
+        },
+        "d2:1": {
+            "node": "d2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'd2' stuck at logic 1"
+        },
+        "m1_a:0": {
+            "node": "m1_a",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'm1_a' stuck at logic 0"
+        },
+        "m1_a:1": {
+            "node": "m1_a",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'm1_a' stuck at logic 1"
+        },
+        "m1_b:0": {
+            "node": "m1_b",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'm1_b' stuck at logic 0"
+        },
+        "m1_b:1": {
+            "node": "m1_b",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'm1_b' stuck at logic 1"
+        },
+        "m1_c:0": {
+            "node": "m1_c",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'm1_c' stuck at logic 0"
+        },
+        "m1_c:1": {
+            "node": "m1_c",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'm1_c' stuck at logic 1"
+        },
+        "m2_a:0": {
+            "node": "m2_a",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'm2_a' stuck at logic 0"
+        },
+        "m2_a:1": {
+            "node": "m2_a",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'm2_a' stuck at logic 1"
+        },
+        "m2_b:0": {
+            "node": "m2_b",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'm2_b' stuck at logic 0"
+        },
+        "m2_b:1": {
+            "node": "m2_b",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'm2_b' stuck at logic 1"
+        },
+        "m2_c:0": {
+            "node": "m2_c",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'm2_c' stuck at logic 0"
+        },
+        "m2_c:1": {
+            "node": "m2_c",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'm2_c' stuck at logic 1"
+        },
+        "m3_c_1:0": {
+            "node": "m3_c_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'm3_c_1' stuck at logic 0"
+        },
+        "m3_c_1:1": {
+            "node": "m3_c_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'm3_c_1' stuck at logic 1"
+        },
+        "m3_c_2:0": {
+            "node": "m3_c_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'm3_c_2' stuck at logic 0"
+        },
+        "m3_c_2:1": {
+            "node": "m3_c_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'm3_c_2' stuck at logic 1"
+        },
+        "w5:0": {
+            "node": "w5",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'w5' stuck at logic 0"
+        },
+        "w5:1": {
+            "node": "w5",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'w5' stuck at logic 1"
+        },
+        "w5_1:0": {
+            "node": "w5_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'w5_1' stuck at logic 0"
+        },
+        "w5_1:1": {
+            "node": "w5_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'w5_1' stuck at logic 1"
+        },
+        "w5_2:0": {
+            "node": "w5_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'w5_2' stuck at logic 0"
+        },
+        "w5_2:1": {
+            "node": "w5_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'w5_2' stuck at logic 1"
+        }
+    },
+    "fault_summary": {
+        "stuck_at_0_count": 20,
+        "stuck_at_1_count": 20
+    }
+}
