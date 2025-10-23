@@ -1,0 +1,262 @@
+{
+    "decoder_3_to_8": {
+        "ports": {
+            "A0": {
+                "direction": "Input"
+            },
+            "A1": {
+                "direction": "Input"
+            },
+            "A2": {
+                "direction": "Input"
+            },
+            "Y0": {
+                "direction": "Output"
+            },
+            "Y1": {
+                "direction": "Output"
+            },
+            "Y2": {
+                "direction": "Output"
+            },
+            "Y3": {
+                "direction": "Output"
+            },
+            "Y4": {
+                "direction": "Output"
+            },
+            "Y5": {
+                "direction": "Output"
+            },
+            "Y6": {
+                "direction": "Output"
+            },
+            "Y7": {
+                "direction": "Output"
+            }
+        },
+        "cells": {
+            "n0": {
+                "type": "not",
+                "connections": {
+                    "inputs": [
+                        "A0_1"
+                    ],
+                    "outputs": [
+                        "A0_n"
+                    ]
+                }
+            },
+            "n1": {
+                "type": "not",
+                "connections": {
+                    "inputs": [
+                        "A1_1"
+                    ],
+                    "outputs": [
+                        "A1_n"
+                    ]
+                }
+            },
+            "n2": {
+                "type": "not",
+                "connections": {
+                    "inputs": [
+                        "A2_1"
+                    ],
+                    "outputs": [
+                        "A2_n"
+                    ]
+                }
+            },
+            "a0": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A2_n_1",
+                        "A1_n_1",
+                        "A0_n_1"
+                    ],
+                    "outputs": [
+                        "Y0"
+                    ]
+                }
+            },
+            "a1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A2_n_2",
+                        "A1_n_2",
+                        "A0_2"
+                    ],
+                    "outputs": [
+                        "Y1"
+                    ]
+                }
+            },
+            "a2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A2_n_3",
+                        "A1_2",
+                        "A0_n_2"
+                    ],
+                    "outputs": [
+                        "Y2"
+                    ]
+                }
+            },
+            "a3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A2_n_4",
+                        "A1_3",
+                        "A0_3"
+                    ],
+                    "outputs": [
+                        "Y3"
+                    ]
+                }
+            },
+            "a4": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A2_2",
+                        "A1_n_3",
+                        "A0_n_3"
+                    ],
+                    "outputs": [
+                        "Y4"
+                    ]
+                }
+            },
+            "a5": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A2_3",
+                        "A1_n_4",
+                        "A0_4"
+                    ],
+                    "outputs": [
+                        "Y5"
+                    ]
+                }
+            },
+            "a6": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A2_4",
+                        "A1_4",
+                        "A0_n_4"
+                    ],
+                    "outputs": [
+                        "Y6"
+                    ]
+                }
+            },
+            "a7": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A2_5",
+                        "A1_5",
+                        "A0_5"
+                    ],
+                    "outputs": [
+                        "Y7"
+                    ]
+                }
+            }
+        },
+        "nets": [
+            "A0",
+            "A0_1",
+            "A0_2",
+            "A0_3",
+            "A0_4",
+            "A0_5",
+            "A0_n",
+            "A0_n_1",
+            "A0_n_2",
+            "A0_n_3",
+            "A0_n_4",
+            "A1",
+            "A1_1",
+            "A1_2",
+            "A1_3",
+            "A1_4",
+            "A1_5",
+            "A1_n",
+            "A1_n_1",
+            "A1_n_2",
+            "A1_n_3",
+            "A1_n_4",
+            "A2",
+            "A2_1",
+            "A2_2",
+            "A2_3",
+            "A2_4",
+            "A2_5",
+            "A2_n",
+            "A2_n_1",
+            "A2_n_2",
+            "A2_n_3",
+            "A2_n_4",
+            "Y0",
+            "Y1",
+            "Y2",
+            "Y3",
+            "Y4",
+            "Y5",
+            "Y6",
+            "Y7"
+        ],
+        "fanouts": {
+            "A0": [
+                "A0_1",
+                "A0_2",
+                "A0_3",
+                "A0_4",
+                "A0_5"
+            ],
+            "A1": [
+                "A1_1",
+                "A1_2",
+                "A1_3",
+                "A1_4",
+                "A1_5"
+            ],
+            "A2": [
+                "A2_1",
+                "A2_2",
+                "A2_3",
+                "A2_4",
+                "A2_5"
+            ],
+            "A2_n": [
+                "A2_n_1",
+                "A2_n_2",
+                "A2_n_3",
+                "A2_n_4"
+            ],
+            "A1_n": [
+                "A1_n_1",
+                "A1_n_2",
+                "A1_n_3",
+                "A1_n_4"
+            ],
+            "A0_n": [
+                "A0_n_1",
+                "A0_n_2",
+                "A0_n_3",
+                "A0_n_4"
+            ]
+        }
+    }
+}

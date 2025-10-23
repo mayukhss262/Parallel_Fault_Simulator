@@ -1,0 +1,475 @@
+{
+    "ripple_carry_adder_4bit": {
+        "ports": {
+            "A3": {
+                "direction": "Input"
+            },
+            "A2": {
+                "direction": "Input"
+            },
+            "A1": {
+                "direction": "Input"
+            },
+            "A0": {
+                "direction": "Input"
+            },
+            "B3": {
+                "direction": "Input"
+            },
+            "B2": {
+                "direction": "Input"
+            },
+            "B1": {
+                "direction": "Input"
+            },
+            "B0": {
+                "direction": "Input"
+            },
+            "CIN": {
+                "direction": "Input"
+            },
+            "SUM3": {
+                "direction": "Output"
+            },
+            "SUM2": {
+                "direction": "Output"
+            },
+            "SUM1": {
+                "direction": "Output"
+            },
+            "SUM0": {
+                "direction": "Output"
+            },
+            "COUT": {
+                "direction": "Output"
+            }
+        },
+        "cells": {
+            "FA0_u_xor1": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "FA0_A_1",
+                        "FA0_B_1"
+                    ],
+                    "outputs": [
+                        "FA0_xor1_out"
+                    ]
+                }
+            },
+            "FA0_u_xor2": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "FA0_xor1_out",
+                        "FA0_CIN_1"
+                    ],
+                    "outputs": [
+                        "C1"
+                    ]
+                }
+            },
+            "FA0_u_and1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "FA0_A_2",
+                        "FA0_B_2"
+                    ],
+                    "outputs": [
+                        "FA0_and1_out"
+                    ]
+                }
+            },
+            "FA0_u_and2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "FA0_B_3",
+                        "FA0_CIN_2"
+                    ],
+                    "outputs": [
+                        "FA0_and2_out"
+                    ]
+                }
+            },
+            "FA0_u_and3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "FA0_CIN_3",
+                        "FA0_A_3"
+                    ],
+                    "outputs": [
+                        "FA0_and3_out"
+                    ]
+                }
+            },
+            "FA0_u_or": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "FA0_and1_out",
+                        "FA0_and2_out",
+                        "FA0_and3_out"
+                    ],
+                    "outputs": [
+                        "SUM3"
+                    ]
+                }
+            },
+            "FA1_u_xor1": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "FA1_A_1",
+                        "FA1_B_1"
+                    ],
+                    "outputs": [
+                        "FA1_xor1_out"
+                    ]
+                }
+            },
+            "FA1_u_xor2": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "FA1_xor1_out",
+                        "FA1_CIN_1"
+                    ],
+                    "outputs": [
+                        "C2"
+                    ]
+                }
+            },
+            "FA1_u_and1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "FA1_A_2",
+                        "FA1_B_2"
+                    ],
+                    "outputs": [
+                        "FA1_and1_out"
+                    ]
+                }
+            },
+            "FA1_u_and2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "FA1_B_3",
+                        "FA1_CIN_2"
+                    ],
+                    "outputs": [
+                        "FA1_and2_out"
+                    ]
+                }
+            },
+            "FA1_u_and3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "FA1_CIN_3",
+                        "FA1_A_3"
+                    ],
+                    "outputs": [
+                        "FA1_and3_out"
+                    ]
+                }
+            },
+            "FA1_u_or": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "FA1_and1_out",
+                        "FA1_and2_out",
+                        "FA1_and3_out"
+                    ],
+                    "outputs": [
+                        "SUM2"
+                    ]
+                }
+            },
+            "FA2_u_xor1": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "FA2_A_1",
+                        "FA2_B_1"
+                    ],
+                    "outputs": [
+                        "FA2_xor1_out"
+                    ]
+                }
+            },
+            "FA2_u_xor2": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "FA2_xor1_out",
+                        "FA2_CIN_1"
+                    ],
+                    "outputs": [
+                        "C3"
+                    ]
+                }
+            },
+            "FA2_u_and1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "FA2_A_2",
+                        "FA2_B_2"
+                    ],
+                    "outputs": [
+                        "FA2_and1_out"
+                    ]
+                }
+            },
+            "FA2_u_and2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "FA2_B_3",
+                        "FA2_CIN_2"
+                    ],
+                    "outputs": [
+                        "FA2_and2_out"
+                    ]
+                }
+            },
+            "FA2_u_and3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "FA2_CIN_3",
+                        "FA2_A_3"
+                    ],
+                    "outputs": [
+                        "FA2_and3_out"
+                    ]
+                }
+            },
+            "FA2_u_or": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "FA2_and1_out",
+                        "FA2_and2_out",
+                        "FA2_and3_out"
+                    ],
+                    "outputs": [
+                        "SUM1"
+                    ]
+                }
+            },
+            "FA3_u_xor1": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "FA3_A_1",
+                        "FA3_B_1"
+                    ],
+                    "outputs": [
+                        "FA3_xor1_out"
+                    ]
+                }
+            },
+            "FA3_u_xor2": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "FA3_xor1_out",
+                        "FA3_CIN_1"
+                    ],
+                    "outputs": [
+                        "COUT"
+                    ]
+                }
+            },
+            "FA3_u_and1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "FA3_A_2",
+                        "FA3_B_2"
+                    ],
+                    "outputs": [
+                        "FA3_and1_out"
+                    ]
+                }
+            },
+            "FA3_u_and2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "FA3_B_3",
+                        "FA3_CIN_2"
+                    ],
+                    "outputs": [
+                        "FA3_and2_out"
+                    ]
+                }
+            },
+            "FA3_u_and3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "FA3_CIN_3",
+                        "FA3_A_3"
+                    ],
+                    "outputs": [
+                        "FA3_and3_out"
+                    ]
+                }
+            },
+            "FA3_u_or": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "FA3_and1_out",
+                        "FA3_and2_out",
+                        "FA3_and3_out"
+                    ],
+                    "outputs": [
+                        "SUM0"
+                    ]
+                }
+            }
+        },
+        "nets": [
+            "A0",
+            "A1",
+            "A2",
+            "A3",
+            "B0",
+            "B1",
+            "B2",
+            "B3",
+            "C1",
+            "C2",
+            "C3",
+            "CIN",
+            "COUT",
+            "SUM0",
+            "SUM1",
+            "SUM2",
+            "SUM3",
+            "FA0_A_1",
+            "FA0_A_2",
+            "FA0_A_3",
+            "FA0_B_1",
+            "FA0_B_2",
+            "FA0_B_3",
+            "FA0_CIN_1",
+            "FA0_CIN_2",
+            "FA0_CIN_3",
+            "FA0_and1_out",
+            "FA0_and2_out",
+            "FA0_and3_out",
+            "FA0_xor1_out",
+            "FA1_A_1",
+            "FA1_A_2",
+            "FA1_A_3",
+            "FA1_B_1",
+            "FA1_B_2",
+            "FA1_B_3",
+            "FA1_CIN_1",
+            "FA1_CIN_2",
+            "FA1_CIN_3",
+            "FA1_and1_out",
+            "FA1_and2_out",
+            "FA1_and3_out",
+            "FA1_xor1_out",
+            "FA2_A_1",
+            "FA2_A_2",
+            "FA2_A_3",
+            "FA2_B_1",
+            "FA2_B_2",
+            "FA2_B_3",
+            "FA2_CIN_1",
+            "FA2_CIN_2",
+            "FA2_CIN_3",
+            "FA2_and1_out",
+            "FA2_and2_out",
+            "FA2_and3_out",
+            "FA2_xor1_out",
+            "FA3_A_1",
+            "FA3_A_2",
+            "FA3_A_3",
+            "FA3_B_1",
+            "FA3_B_2",
+            "FA3_B_3",
+            "FA3_CIN_1",
+            "FA3_CIN_2",
+            "FA3_CIN_3",
+            "FA3_and1_out",
+            "FA3_and2_out",
+            "FA3_and3_out",
+            "FA3_xor1_out"
+        ],
+        "fanouts": {
+            "A3": [
+                "FA0_A_1",
+                "FA0_A_2",
+                "FA0_A_3"
+            ],
+            "B3": [
+                "FA0_B_1",
+                "FA0_B_2",
+                "FA0_B_3"
+            ],
+            "CIN": [
+                "FA0_CIN_1",
+                "FA0_CIN_2",
+                "FA0_CIN_3"
+            ],
+            "A2": [
+                "FA1_A_1",
+                "FA1_A_2",
+                "FA1_A_3"
+            ],
+            "B2": [
+                "FA1_B_1",
+                "FA1_B_2",
+                "FA1_B_3"
+            ],
+            "C1": [
+                "FA1_CIN_1",
+                "FA1_CIN_2",
+                "FA1_CIN_3"
+            ],
+            "A1": [
+                "FA2_A_1",
+                "FA2_A_2",
+                "FA2_A_3"
+            ],
+            "B1": [
+                "FA2_B_1",
+                "FA2_B_2",
+                "FA2_B_3"
+            ],
+            "C2": [
+                "FA2_CIN_1",
+                "FA2_CIN_2",
+                "FA2_CIN_3"
+            ],
+            "A0": [
+                "FA3_A_1",
+                "FA3_A_2",
+                "FA3_A_3"
+            ],
+            "B0": [
+                "FA3_B_1",
+                "FA3_B_2",
+                "FA3_B_3"
+            ],
+            "C3": [
+                "FA3_CIN_1",
+                "FA3_CIN_2",
+                "FA3_CIN_3"
+            ]
+        }
+    }
+}

@@ -1,0 +1,330 @@
+{
+    "mux_8_to_1": {
+        "ports": {
+            "I0": {
+                "direction": "Input"
+            },
+            "I1": {
+                "direction": "Input"
+            },
+            "I2": {
+                "direction": "Input"
+            },
+            "I3": {
+                "direction": "Input"
+            },
+            "I4": {
+                "direction": "Input"
+            },
+            "I5": {
+                "direction": "Input"
+            },
+            "I6": {
+                "direction": "Input"
+            },
+            "I7": {
+                "direction": "Input"
+            },
+            "S0": {
+                "direction": "Input"
+            },
+            "S1": {
+                "direction": "Input"
+            },
+            "S2": {
+                "direction": "Input"
+            },
+            "EN": {
+                "direction": "Input"
+            },
+            "Y": {
+                "direction": "Output"
+            }
+        },
+        "cells": {
+            "n0": {
+                "type": "not",
+                "connections": {
+                    "inputs": [
+                        "S0_1"
+                    ],
+                    "outputs": [
+                        "S0_n"
+                    ]
+                }
+            },
+            "n1": {
+                "type": "not",
+                "connections": {
+                    "inputs": [
+                        "S1_1"
+                    ],
+                    "outputs": [
+                        "S1_n"
+                    ]
+                }
+            },
+            "n2": {
+                "type": "not",
+                "connections": {
+                    "inputs": [
+                        "S2_1"
+                    ],
+                    "outputs": [
+                        "S2_n"
+                    ]
+                }
+            },
+            "a0": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "I0",
+                        "S2_n_1",
+                        "S1_n_1",
+                        "S0_n_1",
+                        "EN_1"
+                    ],
+                    "outputs": [
+                        "m0"
+                    ]
+                }
+            },
+            "a1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "I1",
+                        "S2_n_2",
+                        "S1_n_2",
+                        "S0_2",
+                        "EN_2"
+                    ],
+                    "outputs": [
+                        "m1"
+                    ]
+                }
+            },
+            "a2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "I2",
+                        "S2_n_3",
+                        "S1_2",
+                        "S0_n_2",
+                        "EN_3"
+                    ],
+                    "outputs": [
+                        "m2"
+                    ]
+                }
+            },
+            "a3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "I3",
+                        "S2_n_4",
+                        "S1_3",
+                        "S0_3",
+                        "EN_4"
+                    ],
+                    "outputs": [
+                        "m3"
+                    ]
+                }
+            },
+            "a4": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "I4",
+                        "S2_2",
+                        "S1_n_3",
+                        "S0_n_3",
+                        "EN_5"
+                    ],
+                    "outputs": [
+                        "m4"
+                    ]
+                }
+            },
+            "a5": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "I5",
+                        "S2_3",
+                        "S1_n_4",
+                        "S0_4",
+                        "EN_6"
+                    ],
+                    "outputs": [
+                        "m5"
+                    ]
+                }
+            },
+            "a6": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "I6",
+                        "S2_4",
+                        "S1_4",
+                        "S0_n_4",
+                        "EN_7"
+                    ],
+                    "outputs": [
+                        "m6"
+                    ]
+                }
+            },
+            "a7": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "I7",
+                        "S2_5",
+                        "S1_5",
+                        "S0_5",
+                        "EN_8"
+                    ],
+                    "outputs": [
+                        "m7"
+                    ]
+                }
+            },
+            "o_final": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "m0",
+                        "m1",
+                        "m2",
+                        "m3",
+                        "m4",
+                        "m5",
+                        "m6",
+                        "m7"
+                    ],
+                    "outputs": [
+                        "Y"
+                    ]
+                }
+            }
+        },
+        "nets": [
+            "EN",
+            "EN_1",
+            "EN_2",
+            "EN_3",
+            "EN_4",
+            "EN_5",
+            "EN_6",
+            "EN_7",
+            "EN_8",
+            "I0",
+            "I1",
+            "I2",
+            "I3",
+            "I4",
+            "I5",
+            "I6",
+            "I7",
+            "S0",
+            "S0_1",
+            "S0_2",
+            "S0_3",
+            "S0_4",
+            "S0_5",
+            "S0_n",
+            "S0_n_1",
+            "S0_n_2",
+            "S0_n_3",
+            "S0_n_4",
+            "S1",
+            "S1_1",
+            "S1_2",
+            "S1_3",
+            "S1_4",
+            "S1_5",
+            "S1_n",
+            "S1_n_1",
+            "S1_n_2",
+            "S1_n_3",
+            "S1_n_4",
+            "S2",
+            "S2_1",
+            "S2_2",
+            "S2_3",
+            "S2_4",
+            "S2_5",
+            "S2_n",
+            "S2_n_1",
+            "S2_n_2",
+            "S2_n_3",
+            "S2_n_4",
+            "Y",
+            "m0",
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6",
+            "m7"
+        ],
+        "fanouts": {
+            "S0": [
+                "S0_1",
+                "S0_2",
+                "S0_3",
+                "S0_4",
+                "S0_5"
+            ],
+            "S1": [
+                "S1_1",
+                "S1_2",
+                "S1_3",
+                "S1_4",
+                "S1_5"
+            ],
+            "S2": [
+                "S2_1",
+                "S2_2",
+                "S2_3",
+                "S2_4",
+                "S2_5"
+            ],
+            "S2_n": [
+                "S2_n_1",
+                "S2_n_2",
+                "S2_n_3",
+                "S2_n_4"
+            ],
+            "S1_n": [
+                "S1_n_1",
+                "S1_n_2",
+                "S1_n_3",
+                "S1_n_4"
+            ],
+            "S0_n": [
+                "S0_n_1",
+                "S0_n_2",
+                "S0_n_3",
+                "S0_n_4"
+            ],
+            "EN": [
+                "EN_1",
+                "EN_2",
+                "EN_3",
+                "EN_4",
+                "EN_5",
+                "EN_6",
+                "EN_7",
+                "EN_8"
+            ]
+        }
+    }
+}
