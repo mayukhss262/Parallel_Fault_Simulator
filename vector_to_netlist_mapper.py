@@ -1,179 +1,226 @@
+#!/usr/bin/env python3
+"""
+Vector to Netlist Mapper - FIXED VERSION
+Input:
+  - Netlist JSON file path (CLI arg 1)
+  - User input TXT file path (CLI arg 2) 
+Output:
+  - Unpacked input TXT file with netlist-mapped port assignments
+"""
+
 import json
-import re
-import os
 import sys
-import argparse
-from datetime import datetime
+import os
+import re
+from collections import OrderedDict
 
 
-def map_vectors_to_netlist_inputs(netlist_path, vector_inputs):
+def parse_netlist_ports(netlist_path):
     """
-    Maps Verilog-style vector inputs to the scalar ports of a flattened JSON netlist.
+    Parse netlist JSON to extract port structure.
 
-    Args:
-        netlist_path (str): The file path to the JSON netlist.
-        vector_inputs (dict): A dictionary where keys are Verilog input names (e.g., 'A', 'B')
-                              and values are the binary strings (e.g., '1001').
+    CRITICAL: First occurrence of each vector bit (top-to-bottom scan) is the LSB.
 
     Returns:
-        dict: A dictionary mapping the scalar netlist port names to their single-bit values.
-              Returns None if an error occurs.
+        OrderedDict: Maps base port names to their bit structure
+            - For vectors: {'A': {'indices': [0,1,2,3], 'width': 4}}
+            - For single-bit: {'CIN': None}
     """
-    try:
-        with open(netlist_path, 'r') as f:
-            netlist = json.load(f)
-    except FileNotFoundError:
-        print(f"Error: Netlist file not found at '{netlist_path}'")
-        return None
-    except json.JSONDecodeError:
-        print(f"Error: Could not parse JSON from '{netlist_path}'")
-        return None
+    with open(netlist_path, 'r') as f:
+        netlist = json.load(f)
 
-    # Get the top module name and its ports from the netlist
-    module_name = list(netlist.keys())[0]
-    ports = netlist[module_name].get('ports', {})
+    # Get the top-level module name dynamically (handles "top", "ripple_carry_adder_4bit", etc.)
+    top_module_name = list(netlist.keys())[0]
+    ports = netlist.get(top_module_name, {}).get('ports', {})
 
-    # Filter for only the primary input ports
-    primary_inputs = {name for name, attr in ports.items() if attr.get('direction') == 'Input'}
+    # Preserve order from JSON (top to bottom scan)
+    port_structure = OrderedDict()
 
-    mapped_inputs = {}
+    # Scan ports top-to-bottom
+    for port_name in ports.keys():
+        # Regex: Match any word characters followed by digits at the end
+        # Examples: A0, SUM12, my_signal_99
+        match = re.match(r'^([a-zA-Z_]\w*?)(\d+)$', port_name)
 
-    for vec_name, vec_value in vector_inputs.items():
-        # Handle scalar inputs (like CIN)
-        if vec_name in primary_inputs:
-            if len(vec_value) != 1:
-                print(f"Warning: Scalar input '{vec_name}' was given a vector value '{vec_value}'. Using the first bit.")
-            mapped_inputs[vec_name] = vec_value[0]
-            continue
+        if match:
+            # This is a vector bit
+            base_name = match.group(1)  # e.g., "A", "SUM", "my_signal"
+            bit_index = int(match.group(2))  # e.g., 0, 12, 99
 
-        # Handle vector inputs (like A and B)
-        # The Verilog vector is MSB-first, e.g., "1001" for [3:0] means A[3]=1, A[2]=0, etc.
-        # The length of the binary string determines the MSB index.
-        msb_index = len(vec_value) - 1
-        for i, bit in enumerate(vec_value):
-            # Calculate the bit index in Verilog [MSB:LSB] order
-            bit_index = msb_index - i
-            
-            # Construct the expected netlist port name (e.g., 'A0', 'A1')
-            netlist_port_name = f"{vec_name}{bit_index}"
+            # First time seeing this base name - initialize structure
+            if base_name not in port_structure:
+                port_structure[base_name] = {
+                    'indices': [],      # List of bit indices in order of appearance
+                    'first_idx': None,  # The first index seen (this is LSB)
+                    'width': 0          # Total number of bits
+                }
 
-            if netlist_port_name in primary_inputs:
-                mapped_inputs[netlist_port_name] = bit
-            else:
-                print(f"Warning: Could not find a matching input port for '{vec_name}[{bit_index}]' (expected '{netlist_port_name}') in the netlist.")
+            # Record this bit's index in order of appearance
+            port_structure[base_name]['indices'].append(bit_index)
 
-    return mapped_inputs
+            # Mark the first index as LSB
+            if port_structure[base_name]['first_idx'] is None:
+                port_structure[base_name]['first_idx'] = bit_index
 
-def write_mapping_report(netlist_path, verilog_inputs, mapped_inputs):
+            # Update width
+            port_structure[base_name]['width'] += 1
+        else:
+            # Single-bit port (no trailing digit)
+            if port_name not in port_structure:
+                port_structure[port_name] = None
+
+    return port_structure
+
+
+def parse_user_input_line(line):
     """
-    Writes a detailed report of the mapping to a text file.
+    Parse a single line of user input.
+
+    Input: "A=1100 B=1010 CIN=1"
+    Returns: OrderedDict({'A': '1100', 'B': '1010', 'CIN': '1'})
+
+    User convention: LEFTMOST bit is MSB
+    """
+    assignments = OrderedDict()
+
+    # Split by whitespace and parse each assignment
+    tokens = line.strip().split()
+
+    for token in tokens:
+        if '=' in token:
+            port, value = token.split('=', 1)
+            assignments[port] = value
+
+    return assignments
+
+
+def map_to_netlist_format(user_assignments, port_structure):
+    """
+    Map user assignments to netlist format.
+
+    CRITICAL LOGIC:
+    - User provides: MSB on LEFT (e.g., A=1100 means bit[3]=1, bit[2]=1, bit[1]=0, bit[0]=0)
+    - Netlist: First occurrence top-to-bottom is LSB
+    - We must map user bit positions to actual netlist port indices
 
     Args:
-        netlist_path (str): Path to the netlist file used.
-        verilog_inputs (dict): The original Verilog-style inputs.
-        mapped_inputs (dict): The resulting scalar netlist port values.
+        user_assignments: OrderedDict from parse_user_input_line
+        port_structure: OrderedDict from parse_netlist_ports
+
+    Returns:
+        str: Netlist-formatted assignments (e.g., "A0=0 A1=0 A2=1 A3=1 CIN=1")
     """
-    # Create the output directory if it doesn't exist
-    output_dir = "MAPPING_REPORTS"
-    os.makedirs(output_dir, exist_ok=True)
+    result_parts = []
 
-    # Generate a descriptive filename
-    base_name = os.path.basename(netlist_path)
-    file_name_no_ext = os.path.splitext(base_name)[0]
-    report_filename = f"mapping_report_{file_name_no_ext}.txt"
-    report_path = os.path.join(output_dir, report_filename)
+    for port_name, user_value in user_assignments.items():
+        # Check if port exists in netlist
+        if port_name not in port_structure:
+            continue
 
-    with open(report_path, 'w') as f:
-        f.write("=" * 70 + "\n")
-        f.write("      Verilog Vector to Netlist Port Mapping Report\n")
-        f.write("=" * 70 + "\n\n")
-        f.write(f"Timestamp:      {datetime.now().isoformat()}\n")
-        f.write(f"Netlist File:   {netlist_path}\n\n")
+        port_info = port_structure[port_name]
 
-        f.write("-" * 70 + "\n")
-        f.write("1. Verilog-Style Inputs Provided\n")
-        f.write("-" * 70 + "\n")
-        f.write("These are the high-level vector inputs, as they would be used in a Verilog testbench.\n\n")
-        for name, value in verilog_inputs.items():
-            f.write(f"  - Input '{name}': {value}\n")
+        if port_info is None:
+            # Single-bit port: direct assignment
+            result_parts.append(f"{port_name}={user_value}")
+        else:
+            # Vector port: need careful mapping
+            indices = port_info['indices']
+            width = port_info['width']
 
-        f.write("\n" + "-" * 70 + "\n")
-        f.write("2. Detailed Bit-to-Port Mapping\n")
-        f.write("-" * 70 + "\n")
-        f.write("Each bit of the Verilog vectors is mapped to a specific scalar port in the flattened netlist.\n")
-        f.write("The mapping assumes MSB-first for the input string (e.g., '1001' -> A[3]=1, A[2]=0, ...).\n\n")
+            # Validate user input length
+            if len(user_value) != width:
+                continue
 
-        # Sort for consistent output
-        for port_name in sorted(mapped_inputs.keys()):
-            value = mapped_inputs[port_name]
-            f.write(f"  - Netlist Port '{port_name}' <-- receives value '{value}'\n")
+            # User input interpretation:
+            # user_value[0] = MSB (highest bit position)
+            # user_value[-1] = LSB (lowest bit position)
 
-        f.write("\n" + "=" * 70 + "\n")
-        f.write("End of Report\n")
-        f.write("=" * 70 + "\n")
+            # Netlist interpretation:
+            # indices[0] = first port seen = LSB
+            # indices[-1] = last port seen = MSB
 
-    print(f"\nSuccessfully generated mapping report at: '{report_path}'")
+            # KEY INSIGHT:
+            # - User MSB (leftmost) should map to highest bit position
+            # - User LSB (rightmost) should map to lowest bit position
+            # - Netlist first index = LSB, so we map from right-to-left of user input
+
+            # Find min and max bit indices to determine bit positions
+            min_idx = min(indices)
+            max_idx = max(indices)
+
+            # Create mapping: bit_position -> netlist_index
+            # Assumption: indices represent bit positions (A0=bit[0], A1=bit[1], etc.)
+
+            for netlist_idx in indices:
+                # Calculate bit position (0 is LSB, width-1 is MSB)
+                bit_position = netlist_idx - min_idx
+
+                # Map to user input (reversed: rightmost is bit 0)
+                user_bit_position = width - 1 - bit_position
+
+                if user_bit_position < len(user_value):
+                    bit_value = user_value[user_bit_position]
+                    result_parts.append(f"{port_name}{netlist_idx}={bit_value}")
+
+    return ' '.join(result_parts)
 
 
 def main():
-    """
-    Main function to parse command-line arguments and run the mapping process.
-    """
-    parser = argparse.ArgumentParser(
-        description="Map Verilog-style vector inputs to flattened netlist ports.",
-        formatter_class=argparse.RawTextHelpFormatter,
-        epilog="""
-Example Usage:
-  python vector_to_netlist_mapper.py netlist_3.json A=1001 B=1100 CIN=1
-
-This command will:
-1. Automatically find and read 'netlist_3.json' from the 'NETLISTS' directory.
-2. Map the Verilog-style inputs: A='1001', B='1100', CIN='1'.
-3. Print a summary to the console.
-4. Generate a detailed report in the 'MAPPING_REPORTS' directory.
-"""
-    )
-    parser.add_argument(
-        "netlist_file",
-        help="Name of the JSON netlist file (must be located in the 'NETLISTS' directory)."
-    )
-    parser.add_argument(
-        "inputs",
-        nargs='+',
-        help="List of Verilog-style inputs in 'NAME=VALUE' format (e.g., A=1001)."
-    )
-    args = parser.parse_args()
-
-    # Construct the full path to the netlist file inside the NETLISTS directory
-    netlist_dir = "NETLISTS"
-    netlist_file_path = os.path.join(netlist_dir, args.netlist_file)
-    
-    # --- 1. Parse Verilog-style inputs from command line ---
-    verilog_inputs = {}
-    for item in args.inputs:
-        if '=' not in item:
-            print(f"Error: Invalid input format '{item}'. Please use 'NAME=VALUE'.")
-            sys.exit(1)
-        name, value = item.split('=', 1)
-        verilog_inputs[name] = value
-
-    # --- 2. Perform the mapping ---
-    netlist_input_values = map_vectors_to_netlist_inputs(netlist_file_path, verilog_inputs)
-
-    # --- 3. Print the results and generate the report ---
-    if netlist_input_values:
-        print("--- Input Vector to Netlist Port Mapping ---")
-        print(f"\nOriginal Verilog-style inputs:\n{json.dumps(verilog_inputs, indent=4)}")
-        print(f"\nMapped to scalar netlist ports (Console Output):")
-        print(json.dumps(netlist_input_values, indent=4, sort_keys=True))
-
-        # --- 4. Write the detailed report to a text file ---
-        write_mapping_report(netlist_file_path, verilog_inputs, netlist_input_values)
-    else:
-        print("\nMapping failed. Please check the error messages above.")
+    if len(sys.argv) != 3:
+        print("Usage: python vector_to_netlist_mapper.py <netlist_json_path> <user_input_txt_path>")
         sys.exit(1)
 
-if __name__ == '__main__':
-    main()
+    netlist_path = sys.argv[1]
+    user_input_path = sys.argv[2]
 
-    
+    # Validate input files
+    if not os.path.exists(netlist_path):
+        print(f"Error: Netlist file not found: {netlist_path}")
+        sys.exit(1)
+
+    if not os.path.exists(user_input_path):
+        print(f"Error: User input file not found: {user_input_path}")
+        sys.exit(1)
+
+    # Extract base name for output file
+    netlist_basename = os.path.basename(netlist_path)
+
+    # Remove 'netlist_' prefix if present
+    if netlist_basename.startswith('netlist_'):
+        base_name = netlist_basename[8:]
+    else:
+        base_name = netlist_basename
+
+    # Remove '.json' extension
+    if base_name.endswith('.json'):
+        base_name = base_name[:-5]
+
+    # Create MAPPING_RESULTS directory
+    output_dir = os.path.join(os.getcwd(), 'MAPPING_RESULTS')
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Generate output filename
+    output_filename = f"unpacked_inp_{base_name}.txt"
+    output_path = os.path.join(output_dir, output_filename)
+
+    # Parse netlist structure
+    port_structure = parse_netlist_ports(netlist_path)
+
+    # Process user input file line by line
+    with open(user_input_path, 'r') as infile, open(output_path, 'w') as outfile:
+        for line in infile:
+            line = line.strip()
+            if not line:
+                continue  # Skip empty lines
+
+            user_assignments = parse_user_input_line(line)
+            netlist_format = map_to_netlist_format(user_assignments, port_structure)
+
+            if netlist_format:
+                outfile.write(netlist_format + '\n')
+
+    print(output_path)
+
+
+if __name__ == "__main__":
+    main()
