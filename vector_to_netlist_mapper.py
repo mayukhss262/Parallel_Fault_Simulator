@@ -170,7 +170,9 @@ def main():
         print("Usage: python vector_to_netlist_mapper.py <netlist_json_path> <user_input_txt_path>")
         sys.exit(1)
 
-    netlist_path = sys.argv[1]
+    #netlist_path = sys.argv[1]
+    netlist_filename = sys.argv[1]
+    netlist_path = os.path.join(os.getcwd(), 'NETLISTS', netlist_filename)
     user_input_path = sys.argv[2]
 
     # Validate input files
