@@ -54,36 +54,26 @@ atpg_tester_v2.py  --> modified version of atpg_tester.py just to be called from
 
 **VERILOG STYLE INPUT TO NETLIST PORT MAPPING**
 
-python vector_to_netlist_mapper.py **netlist_7.json A=10011001 B=11001100 CIN=1**
---- Input Vector to Netlist Port Mapping ---
-Original Verilog-style inputs:
-{
-    "A": "10011001",
-    "B": "11001100",
-    "CIN": "1"
-}
-Mapped to scalar netlist ports (Console Output):
-{
-    "A0": "1",
-    "A1": "0",
-    "A2": "0",
-    "A3": "1",
-    "A4": "1",
-    "A5": "0",
-    "A6": "0",
-    "A7": "1",
-    "B0": "0",
-    "B1": "0",
-    "B2": "1",
-    "B3": "1",
-    "B4": "0",
-    "B5": "0",
-    "B6": "1",
-    "B7": "1",
-    "CIN": "1"
-}
-Successfully generated mapping report at: 'MAPPING_REPORTS\mapping_report_netlist_7.txt'
-Script must return the complete path to the .txt file containing the unpacked test vectors.
+I/O IN TERMINAL LOOKS LIKE THIS: 
+python vector_to_netlist_mapper.py netlist_decoder_1.json USER_TEST_VECTORS/user_input_decoder_1.txt
+**D:\PROJECT_2\MAPPING_RESULTS\unpacked_inp_decoder_1.txt**
+IT TAKES A TEXT FILE CONTAINING USER TEST INPUTS AND MAPS VALUES AND GIVES FULL PATH OF OUTPUT txt FILE IN TERMINAL
+
+USER TEST INPUT LOOKS LIKE THIS:
+a=1110 b=1 c=0 d=000 f=10
+a=1011 b=1 c=1 d=001 f=11
+a=0010 b=1 c=0 d=111 f=00
+a=1010 b=1 c=1 d=101 f=11
+a=1010 b=1 c=0 d=101 f=10
+a=1110 b=1 c=0 d=101 f=01
+
+OUTPUT OF THIS SCRIPT LOOKS LIKE THIS:
+a0=0 a1=1 a2=1 a3=1 b=1 c=0 d0=0 d1=0 d2=0 f1=1 f0=0
+a0=1 a1=1 a2=0 a3=1 b=1 c=1 d0=1 d1=0 d2=0 f1=1 f0=1
+a0=0 a1=1 a2=0 a3=0 b=1 c=0 d0=1 d1=1 d2=1 f1=0 f0=0
+a0=0 a1=1 a2=0 a3=1 b=1 c=1 d0=1 d1=0 d2=1 f1=1 f0=1
+a0=0 a1=1 a2=0 a3=1 b=1 c=0 d0=1 d1=0 d2=1 f1=1 f0=0
+a0=0 a1=1 a2=1 a3=1 b=1 c=0 d0=1 d1=0 d2=1 f1=0 f0=1
 
 **SIMULATOR** 
 
