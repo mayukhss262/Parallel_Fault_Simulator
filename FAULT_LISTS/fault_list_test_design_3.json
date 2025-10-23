@@ -1,0 +1,588 @@
+{
+    "metadata": {
+        "module_name": "ripple_carry_adder_4bit",
+        "generation_timestamp": "2025-10-24T00:55:14.628950",
+        "total_faults": 96,
+        "total_nodes": 48
+    },
+    "netlist_analysis": {
+        "primary_inputs": [
+            "A0",
+            "A1",
+            "A2",
+            "A3",
+            "B0",
+            "B1",
+            "B2",
+            "B3",
+            "CIN"
+        ],
+        "primary_outputs": [
+            "SUM0",
+            "SUM1",
+            "SUM2",
+            "SUM3",
+            "COUT"
+        ],
+        "fanout_branches": {
+            "A0": [
+                "A0",
+                "FA0_A_1",
+                "FA0_A_2",
+                "FA0_A_3"
+            ],
+            "B0": [
+                "B0",
+                "FA0_B_1",
+                "FA0_B_2",
+                "FA0_B_3"
+            ],
+            "CIN": [
+                "CIN",
+                "FA0_CIN_1",
+                "FA0_CIN_2",
+                "FA0_CIN_3"
+            ],
+            "A1": [
+                "A1",
+                "FA1_A_1",
+                "FA1_A_2",
+                "FA1_A_3"
+            ],
+            "B1": [
+                "B1",
+                "FA1_B_1",
+                "FA1_B_2",
+                "FA1_B_3"
+            ],
+            "C1": [
+                "C1",
+                "FA1_CIN_1",
+                "FA1_CIN_2",
+                "FA1_CIN_3"
+            ],
+            "A2": [
+                "A2",
+                "FA2_A_1",
+                "FA2_A_2",
+                "FA2_A_3"
+            ],
+            "B2": [
+                "B2",
+                "FA2_B_1",
+                "FA2_B_2",
+                "FA2_B_3"
+            ],
+            "C2": [
+                "C2",
+                "FA2_CIN_1",
+                "FA2_CIN_2",
+                "FA2_CIN_3"
+            ],
+            "A3": [
+                "A3",
+                "FA3_A_1",
+                "FA3_A_2",
+                "FA3_A_3"
+            ],
+            "B3": [
+                "B3",
+                "FA3_B_1",
+                "FA3_B_2",
+                "FA3_B_3"
+            ],
+            "C3": [
+                "C3",
+                "FA3_CIN_1",
+                "FA3_CIN_2",
+                "FA3_CIN_3"
+            ]
+        }
+    },
+    "stuck_at_faults": {
+        "A0:0": {
+            "node": "A0",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'A0' stuck at logic 0"
+        },
+        "A0:1": {
+            "node": "A0",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'A0' stuck at logic 1"
+        },
+        "A1:0": {
+            "node": "A1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'A1' stuck at logic 0"
+        },
+        "A1:1": {
+            "node": "A1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'A1' stuck at logic 1"
+        },
+        "A2:0": {
+            "node": "A2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'A2' stuck at logic 0"
+        },
+        "A2:1": {
+            "node": "A2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'A2' stuck at logic 1"
+        },
+        "A3:0": {
+            "node": "A3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'A3' stuck at logic 0"
+        },
+        "A3:1": {
+            "node": "A3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'A3' stuck at logic 1"
+        },
+        "B0:0": {
+            "node": "B0",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'B0' stuck at logic 0"
+        },
+        "B0:1": {
+            "node": "B0",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'B0' stuck at logic 1"
+        },
+        "B1:0": {
+            "node": "B1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'B1' stuck at logic 0"
+        },
+        "B1:1": {
+            "node": "B1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'B1' stuck at logic 1"
+        },
+        "B2:0": {
+            "node": "B2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'B2' stuck at logic 0"
+        },
+        "B2:1": {
+            "node": "B2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'B2' stuck at logic 1"
+        },
+        "B3:0": {
+            "node": "B3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'B3' stuck at logic 0"
+        },
+        "B3:1": {
+            "node": "B3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'B3' stuck at logic 1"
+        },
+        "C1:0": {
+            "node": "C1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'C1' stuck at logic 0"
+        },
+        "C1:1": {
+            "node": "C1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'C1' stuck at logic 1"
+        },
+        "C2:0": {
+            "node": "C2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'C2' stuck at logic 0"
+        },
+        "C2:1": {
+            "node": "C2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'C2' stuck at logic 1"
+        },
+        "C3:0": {
+            "node": "C3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'C3' stuck at logic 0"
+        },
+        "C3:1": {
+            "node": "C3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'C3' stuck at logic 1"
+        },
+        "CIN:0": {
+            "node": "CIN",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'CIN' stuck at logic 0"
+        },
+        "CIN:1": {
+            "node": "CIN",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'CIN' stuck at logic 1"
+        },
+        "FA0_A_1:0": {
+            "node": "FA0_A_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA0_A_1' stuck at logic 0"
+        },
+        "FA0_A_1:1": {
+            "node": "FA0_A_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA0_A_1' stuck at logic 1"
+        },
+        "FA0_A_2:0": {
+            "node": "FA0_A_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA0_A_2' stuck at logic 0"
+        },
+        "FA0_A_2:1": {
+            "node": "FA0_A_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA0_A_2' stuck at logic 1"
+        },
+        "FA0_A_3:0": {
+            "node": "FA0_A_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA0_A_3' stuck at logic 0"
+        },
+        "FA0_A_3:1": {
+            "node": "FA0_A_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA0_A_3' stuck at logic 1"
+        },
+        "FA0_B_1:0": {
+            "node": "FA0_B_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA0_B_1' stuck at logic 0"
+        },
+        "FA0_B_1:1": {
+            "node": "FA0_B_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA0_B_1' stuck at logic 1"
+        },
+        "FA0_B_2:0": {
+            "node": "FA0_B_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA0_B_2' stuck at logic 0"
+        },
+        "FA0_B_2:1": {
+            "node": "FA0_B_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA0_B_2' stuck at logic 1"
+        },
+        "FA0_B_3:0": {
+            "node": "FA0_B_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA0_B_3' stuck at logic 0"
+        },
+        "FA0_B_3:1": {
+            "node": "FA0_B_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA0_B_3' stuck at logic 1"
+        },
+        "FA0_CIN_1:0": {
+            "node": "FA0_CIN_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA0_CIN_1' stuck at logic 0"
+        },
+        "FA0_CIN_1:1": {
+            "node": "FA0_CIN_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA0_CIN_1' stuck at logic 1"
+        },
+        "FA0_CIN_2:0": {
+            "node": "FA0_CIN_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA0_CIN_2' stuck at logic 0"
+        },
+        "FA0_CIN_2:1": {
+            "node": "FA0_CIN_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA0_CIN_2' stuck at logic 1"
+        },
+        "FA0_CIN_3:0": {
+            "node": "FA0_CIN_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA0_CIN_3' stuck at logic 0"
+        },
+        "FA0_CIN_3:1": {
+            "node": "FA0_CIN_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA0_CIN_3' stuck at logic 1"
+        },
+        "FA1_A_1:0": {
+            "node": "FA1_A_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA1_A_1' stuck at logic 0"
+        },
+        "FA1_A_1:1": {
+            "node": "FA1_A_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA1_A_1' stuck at logic 1"
+        },
+        "FA1_A_2:0": {
+            "node": "FA1_A_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA1_A_2' stuck at logic 0"
+        },
+        "FA1_A_2:1": {
+            "node": "FA1_A_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA1_A_2' stuck at logic 1"
+        },
+        "FA1_A_3:0": {
+            "node": "FA1_A_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA1_A_3' stuck at logic 0"
+        },
+        "FA1_A_3:1": {
+            "node": "FA1_A_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA1_A_3' stuck at logic 1"
+        },
+        "FA1_B_1:0": {
+            "node": "FA1_B_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA1_B_1' stuck at logic 0"
+        },
+        "FA1_B_1:1": {
+            "node": "FA1_B_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA1_B_1' stuck at logic 1"
+        },
+        "FA1_B_2:0": {
+            "node": "FA1_B_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA1_B_2' stuck at logic 0"
+        },
+        "FA1_B_2:1": {
+            "node": "FA1_B_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA1_B_2' stuck at logic 1"
+        },
+        "FA1_B_3:0": {
+            "node": "FA1_B_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA1_B_3' stuck at logic 0"
+        },
+        "FA1_B_3:1": {
+            "node": "FA1_B_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA1_B_3' stuck at logic 1"
+        },
+        "FA1_CIN_1:0": {
+            "node": "FA1_CIN_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA1_CIN_1' stuck at logic 0"
+        },
+        "FA1_CIN_1:1": {
+            "node": "FA1_CIN_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA1_CIN_1' stuck at logic 1"
+        },
+        "FA1_CIN_2:0": {
+            "node": "FA1_CIN_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA1_CIN_2' stuck at logic 0"
+        },
+        "FA1_CIN_2:1": {
+            "node": "FA1_CIN_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA1_CIN_2' stuck at logic 1"
+        },
+        "FA1_CIN_3:0": {
+            "node": "FA1_CIN_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA1_CIN_3' stuck at logic 0"
+        },
+        "FA1_CIN_3:1": {
+            "node": "FA1_CIN_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA1_CIN_3' stuck at logic 1"
+        },
+        "FA2_A_1:0": {
+            "node": "FA2_A_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA2_A_1' stuck at logic 0"
+        },
+        "FA2_A_1:1": {
+            "node": "FA2_A_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA2_A_1' stuck at logic 1"
+        },
+        "FA2_A_2:0": {
+            "node": "FA2_A_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA2_A_2' stuck at logic 0"
+        },
+        "FA2_A_2:1": {
+            "node": "FA2_A_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA2_A_2' stuck at logic 1"
+        },
+        "FA2_A_3:0": {
+            "node": "FA2_A_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA2_A_3' stuck at logic 0"
+        },
+        "FA2_A_3:1": {
+            "node": "FA2_A_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA2_A_3' stuck at logic 1"
+        },
+        "FA2_B_1:0": {
+            "node": "FA2_B_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA2_B_1' stuck at logic 0"
+        },
+        "FA2_B_1:1": {
+            "node": "FA2_B_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA2_B_1' stuck at logic 1"
+        },
+        "FA2_B_2:0": {
+            "node": "FA2_B_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA2_B_2' stuck at logic 0"
+        },
+        "FA2_B_2:1": {
+            "node": "FA2_B_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA2_B_2' stuck at logic 1"
+        },
+        "FA2_B_3:0": {
+            "node": "FA2_B_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA2_B_3' stuck at logic 0"
+        },
+        "FA2_B_3:1": {
+            "node": "FA2_B_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA2_B_3' stuck at logic 1"
+        },
+        "FA2_CIN_1:0": {
+            "node": "FA2_CIN_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA2_CIN_1' stuck at logic 0"
+        },
+        "FA2_CIN_1:1": {
+            "node": "FA2_CIN_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA2_CIN_1' stuck at logic 1"
+        },
+        "FA2_CIN_2:0": {
+            "node": "FA2_CIN_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA2_CIN_2' stuck at logic 0"
+        },
+        "FA2_CIN_2:1": {
+            "node": "FA2_CIN_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA2_CIN_2' stuck at logic 1"
+        },
+        "FA2_CIN_3:0": {
+            "node": "FA2_CIN_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA2_CIN_3' stuck at logic 0"
+        },
+        "FA2_CIN_3:1": {
+            "node": "FA2_CIN_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA2_CIN_3' stuck at logic 1"
+        },
+        "FA3_A_1:0": {
+            "node": "FA3_A_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA3_A_1' stuck at logic 0"
+        },
+        "FA3_A_1:1": {
+            "node": "FA3_A_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA3_A_1' stuck at logic 1"
+        },
+        "FA3_A_2:0": {
+            "node": "FA3_A_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA3_A_2' stuck at logic 0"
+        },
+        "FA3_A_2:1": {
+            "node": "FA3_A_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA3_A_2' stuck at logic 1"
+        },
+        "FA3_A_3:0": {
+            "node": "FA3_A_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA3_A_3' stuck at logic 0"
+        },
+        "FA3_A_3:1": {
+            "node": "FA3_A_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA3_A_3' stuck at logic 1"
+        },
+        "FA3_B_1:0": {
+            "node": "FA3_B_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA3_B_1' stuck at logic 0"
+        },
+        "FA3_B_1:1": {
+            "node": "FA3_B_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA3_B_1' stuck at logic 1"
+        },
+        "FA3_B_2:0": {
+            "node": "FA3_B_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA3_B_2' stuck at logic 0"
+        },
+        "FA3_B_2:1": {
+            "node": "FA3_B_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA3_B_2' stuck at logic 1"
+        },
+        "FA3_B_3:0": {
+            "node": "FA3_B_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA3_B_3' stuck at logic 0"
+        },
+        "FA3_B_3:1": {
+            "node": "FA3_B_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA3_B_3' stuck at logic 1"
+        },
+        "FA3_CIN_1:0": {
+            "node": "FA3_CIN_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA3_CIN_1' stuck at logic 0"
+        },
+        "FA3_CIN_1:1": {
+            "node": "FA3_CIN_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA3_CIN_1' stuck at logic 1"
+        },
+        "FA3_CIN_2:0": {
+            "node": "FA3_CIN_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA3_CIN_2' stuck at logic 0"
+        },
+        "FA3_CIN_2:1": {
+            "node": "FA3_CIN_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA3_CIN_2' stuck at logic 1"
+        },
+        "FA3_CIN_3:0": {
+            "node": "FA3_CIN_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'FA3_CIN_3' stuck at logic 0"
+        },
+        "FA3_CIN_3:1": {
+            "node": "FA3_CIN_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'FA3_CIN_3' stuck at logic 1"
+        }
+    },
+    "fault_summary": {
+        "stuck_at_0_count": 48,
+        "stuck_at_1_count": 48
+    }
+}
