@@ -1,0 +1,16 @@
+Word Group 1: {'Y': '11'}
+Word Group 2: {'Y': '11'}
+Word Group 3: {'Y': '10'}
+Word Group 4: {'Y': '10'}
+Word Group 5: {'Y': '00'}
+Word Group 6: {'Y': '11'}
+Word Group 7: {'Y': '01'}
+Word Group 8: {'Y': '11'}
+Word Group 9: {'Y': '11'}
+Word Group 10: {'Y': '11'}
+Word Group 11: {'Y': '11'}
+Word Group 12: {'Y': '11'}
+Word Group 13: {'Y': '01'}
+Word Group 14: {'Y': '11'}
+Word Group 15: {'Y': '11'}
+Word Group 16: {'Y': '10'}

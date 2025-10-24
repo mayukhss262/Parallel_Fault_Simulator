@@ -1,0 +1,8 @@
+Word Group 1: {'f0': '00', 'f1': '01'}
+Word Group 2: {'f0': '01', 'f1': '10'}
+Word Group 3: {'f0': '11', 'f1': '11'}
+Word Group 4: {'f0': '01', 'f1': '11'}
+Word Group 5: {'f0': '01', 'f1': '01'}
+Word Group 6: {'f0': '01', 'f1': '11'}
+Word Group 7: {'f0': '01', 'f1': '10'}
+Word Group 8: {'f0': '11', 'f1': '11'}
