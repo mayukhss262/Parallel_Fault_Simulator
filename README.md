@@ -50,6 +50,11 @@ test_vector_list_gen.py --> the top module to create test vectors. Takes a  netl
 exhaustive_list_gen.py  --> generates all possible test vectors --> to be called from test_vector_list_gen.
 atpg_tester_v2.py  --> modified version of atpg_tester.py just to be called from test_vector_list_gen.
 
+test_vector_list_gen_v3.py --> the top module to create test vectors. Takes a  netlist_[INTEGER].json AUTOMATICALLY FROM NETLISTS SUBFOLDER and fault_list_comb_[INTEGER] from the AUTOMATICALLY FROM FAULT_LISTS SUBFOLDER as input and produces test_vector_[INTEGER].txt INSIDE THE SUBFOLDER NAMED TEST_VECTOR_RESULTS. It has a LOGIC_INPUT_LIMIT, if the netlist has less inouts than that it uses **exhaustive_list_gen_v2.py** to create a exhasutive fault list, else it wil use **atpg_v2.py** to create test vector curated for each fault in the fault list. [in the decided format]
+
+exhaustive_list_gen_v2.py  --> generates all possible test vectors --> to be called from test_vector_list_gen_v3. [in the decided format]
+atpg_v2.py  --> modified version of atpg_tester.py just to be called from test_vector_list_gen_v3. [in the decided format]
+
 **ALL DEPENDENCIES OF THE TOP MODULES ARE STORED IN A SUBFOLDR CALLED TEST_GEN_subscripts ( ALL PATH MANAGED)**
 
 **VERILOG STYLE INPUT TO NETLIST PORT MAPPING**
