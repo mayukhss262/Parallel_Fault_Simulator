@@ -45,10 +45,22 @@ class DAlgorithmATPG:
 
     def __init__(self, netlist: Dict):
         """Initialize with circuit netlist"""
-        if 'top' in netlist:
-            self.module = netlist['top']
-        else:
-            self.module = netlist
+        # Universal format: {"module_name": {"ports": ..., "cells": ...}}
+        # Extract the first key as the module name
+        module_names = list(netlist.keys())
+        if not module_names:
+            raise ValueError("Empty netlist provided")
+        
+        module_name = module_names[0]
+        self.module = netlist[module_name]
+        
+        # Verify required keys exist
+        if 'ports' not in self.module:
+            raise ValueError(f"Module '{module_name}' missing 'ports' key")
+        if 'cells' not in self.module:
+            raise ValueError(f"Module '{module_name}' missing 'cells' key")
+        if 'nets' not in self.module:
+            raise ValueError(f"Module '{module_name}' missing 'nets' key")
 
         self.ports = self.module['ports']
         self.cells = self.module['cells']
@@ -422,7 +434,7 @@ def load_fault_list(fault_list_json: Dict) -> List[Tuple[str, str]]:
 
 
 def run_atpg_on_fault_list(netlist_json: Dict, fault_list_json: Dict, 
-                           max_faults: int = None) -> Dict[str, Dict]:
+                           max_faults: int = None) -> Tuple[Dict[str, Dict], int, int, int]:
     """Run ATPG on all faults (silent, for file processing)"""
     faults = load_fault_list(fault_list_json)
 
@@ -541,7 +553,8 @@ def main():
         # Write test vectors
         for fault_id, test_vector in results.items():
             if test_vector:
-                f.write(f"  --> Test vector: {test_vector}\n")
+                f.write(f"Fault {fault_id}\n")
+                f.write(f"  --> Test vector: {test_vector}\n\n")
 
         f.write("\n" + "="*80 + "\n")
         f.write("UNTESTABLE FAULTS\n")
