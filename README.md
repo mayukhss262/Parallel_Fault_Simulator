@@ -86,6 +86,12 @@ simulator.py --> contains function simulate(). Do not run simulator.py directly.
 
 NOTE : Simulator supports 4-value logic (0,1,x,z). x and z must be specified in lowercase. Uppercase X and Z will cause errors.
 
+**TRUE VALUE SIMULATOR**
+
+simulator_test.py --> True value generator script invoked by the developers for verification, performs true value simulation without faults in TREU_VALUES folder. 
+Usage : python simulator_test.py [path to Verilog folder] [path to .txt file containing user defined input vectors] [OPTIONAL][parallel simulation word length]
+If not specified by user, default parallel simulation word length is 4.
+
 **FAULT STATISTICS GENERATOR**
 
 generate_fault_statistics.py --> Frontend script invoked by the user, performs parallel fault simulation and generates fault statistics report in FAULT_STATISTICS folder. 
