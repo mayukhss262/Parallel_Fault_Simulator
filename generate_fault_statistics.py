@@ -55,8 +55,8 @@ def run_fault_list_generator(netlist_file):
 
 def detect_multibit_inputs(test_vectors_path):
     multibit_flag = 0
-    # This regex finds patterns like 'a : 110' or 'd:0'
-    pattern = re.compile(r"\b([a-zA-Z]\w*)\b\s*:\s*([01]+)")
+    # MODIFIED: This regex now finds patterns like 'a=110' or 'd=0'
+    pattern = re.compile(r"\b([a-zA-Z]\w*)\b\s*=\s*([01]+)")
 
     try:
         with open(test_vectors_path, 'r') as f:
@@ -79,19 +79,36 @@ def detect_multibit_inputs(test_vectors_path):
         multibit_flag = 2
         return multibit_flag
 
-def run_verilog_to_netlist_mapper():
-    print('DUMMY') #INCOMPLETE
+def run_vector_to_netlist_mapper(netlist_file, test_vectors_path):
+    script_name = "vector_to_netlist_mapper.py"
+    if not os.path.exists(script_name):
+        print(f"Error: The script '{script_name}' was not found in the current directory.")
+        return
+    try:
+        command = ["python", script_name, netlist_file, test_vectors_path]
+        cmd_out = subprocess.run(command, check=True, capture_output=True, text=True, encoding = 'utf-8') #check=True will raise an exception if the script returns a non-zero exit code (an error)
+        mapped_vectors_path = (cmd_out.stdout.split("Repository\\")[1])[:-1]
+        return mapped_vectors_path
+    
+    except subprocess.CalledProcessError as e:
+        print(f"--- Error executing {script_name} ---")
+        print(f"Return Code: {e.returncode}")
+        print("Error Output (stderr):")
+        print(e.stderr)
+        
+    except FileNotFoundError:
+        print("Error: 'python' command not found. Please ensure Python is installed and in your system's PATH.")
 
 def pack_inputs_to_words(file_path, word_length):
     
-    # This regex finds patterns like 'a : 0' 
-    pattern = re.compile(r"\b([a-zA-Z]\w*)\b\s*:\s*([01xz])")
+    # This regex finds patterns like 'a=0'
+    pattern = re.compile(r"\b([a-zA-Z]\w*)\b\s*=\s*([01xz])")
     bit_sequences = defaultdict(str)
     try:
         with open(file_path, 'r') as f:
             for line_num, line in enumerate(f, 1):
                 line = line.strip()
-                if not line.startswith('{'):
+                if not line:
                     continue
                     
                 matches = pattern.finditer(line)
@@ -118,6 +135,132 @@ def pack_inputs_to_words(file_path, word_length):
         packed_words[variable] = chunks
 
     return packed_words
+
+def get_port_info_from_json(netlist_file_path):
+    """
+    Analyzes a JSON netlist to deduce input port names, widths, and MSB/LSB,
+    inferring the order [MSB:LSB] vs [LSB:MSB] from the port iteration order.
+
+    Returns:
+        port_info_list: List of dictionaries describing each base input port
+                        (scalar or vector) sorted alphabetically by base name.
+        netlist_input_order: List of ALL individual input port names (e.g., 'a0', 'a1', 'b')
+                             IN THE ORDER THEY APPEAR IN THE JSON.
+        total_input_width: Total number of individual input bits.
+        Returns (None, None, 0) on error.
+    """
+    VECTOR_BIT_REGEX = re.compile(r"^([a-zA-Z][a-zA-Z0-9]*)(\d+)$")
+    port_info_list = []
+    # Stores base_name -> {'indices': [int], 'first_idx': int}
+    vector_candidates = defaultdict(lambda: {'indices': [], 'first_idx': None})
+    scalar_inputs = []
+    netlist_input_order = []
+    total_input_width = 0
+
+    try:
+        with open(netlist_file_path, 'r') as f:
+            netlist_data = json.load(f)
+
+        if not netlist_data: raise ValueError("JSON file is empty.")
+        module_name = list(netlist_data.keys())[0]
+        if 'ports' not in netlist_data[module_name]:
+            raise ValueError(f"Could not find 'ports' in module '{module_name}'.")
+
+        ports = netlist_data[module_name]['ports']
+
+        # Identify inputs and track order
+        for port_name, attributes in ports.items():
+            if attributes.get('direction') == 'Input':
+                netlist_input_order.append(port_name)
+                total_input_width += 1
+                match = VECTOR_BIT_REGEX.match(port_name)
+                if match:
+                    base_name = match.group(1)
+                    index = int(match.group(2))
+                    vector_candidates[base_name]['indices'].append(index)
+                    if vector_candidates[base_name]['first_idx'] is None:
+                        vector_candidates[base_name]['first_idx'] = index
+                else:
+                    scalar_inputs.append(port_name)
+
+        # Process vector candidates
+        for base_name, data in vector_candidates.items():
+            indices = data['indices']
+            if not indices: continue
+            min_idx, max_idx = min(indices), max(indices)
+            width = abs(max_idx - min_idx) + 1
+            msb, lsb = max_idx, min_idx # Default [MSB:LSB]
+            if data['first_idx'] is not None:
+                 if data['first_idx'] == max_idx and min_idx != max_idx: # Infer [LSB:MSB]
+                      msb, lsb = min_idx, max_idx
+            port_info_list.append({
+                'name': base_name, 'is_vector': True, 'msb': msb, 'lsb': lsb, 'width': width
+            })
+
+        # Add scalar inputs
+        for port_name in scalar_inputs:
+            port_info_list.append({
+                'name': port_name, 'is_vector': False, 'width': 1, 'msb': 0, 'lsb': 0
+            })
+
+        port_info_list.sort(key=lambda p: p['name'])
+        return port_info_list, netlist_input_order, total_input_width
+
+    except FileNotFoundError:
+        print(f"Error: Could not find netlist file at '{netlist_file_path}'")
+        return None, None, 0
+    except (json.JSONDecodeError, ValueError, IndexError, KeyError) as e:
+        print(f"Error processing JSON netlist '{netlist_file_path}': {e}")
+        return None, None, 0
+
+def pack_vector_string(netlist_file_path, binary_vector_string) :
+    """
+    Takes a netlist file path and a binary vector string (ordered according to
+    JSON port iteration), returns the packed dictionary with values ordered
+    according to the inferred Verilog declaration.
+    """
+    port_info, netlist_input_order, total_width = get_port_info_from_json(netlist_file_path)
+    if port_info is None: return None
+
+    if len(binary_vector_string) != len(netlist_input_order):
+        print(f"Error: Input vector length ({len(binary_vector_string)}) "
+              f"does not match number of input ports in netlist ({len(netlist_input_order)}).")
+        return None
+    if len(binary_vector_string) != total_width:
+         print(f"Internal Warning: binary string length {len(binary_vector_string)} != calculated total_width {total_width}.")
+
+    # Step 1: Map input string bits to individual port names based on JSON order
+    unpacked_bits = {}
+    for i, port_name in enumerate(netlist_input_order):
+        # Handle potential length mismatch gracefully if warning occurred
+        unpacked_bits[port_name] = binary_vector_string[i] if i < len(binary_vector_string) else 'X'
+
+    # Step 2: Build the output dictionary using the inferred declaration order
+    packed_vector_dict = {}
+    for port in port_info: # Iterate through alphabetically sorted base ports
+        port_name = port['name']
+        if port['is_vector']:
+            packed_value = ""
+            # Determine iteration direction for declaration order
+            start, end, step = 0, 0, 0
+            if port['msb'] > port['lsb']: # Standard [MSB:LSB]
+                start, end, step = port['msb'], port['lsb'] - 1, -1
+            else: # Reversed [LSB:MSB]
+                 start, end, step = port['msb'], port['lsb'] + 1, 1
+
+            # Build string IN declaration order using mapped bits
+            for i in range(start, end, step):
+                unpacked_bit_name = f"{port_name}{i}"
+                bit_value = unpacked_bits.get(unpacked_bit_name, 'X')
+                packed_value += bit_value
+
+            key_str = f"{port_name}[{port['msb']}:{port['lsb']}]"
+            packed_vector_dict[key_str] = packed_value
+        else: # Scalar port
+            packed_vector_dict[port_name] = unpacked_bits.get(port_name, 'X')
+
+    return packed_vector_dict
+
 
 def main():
     word_length = None 
@@ -146,7 +289,7 @@ def main():
     multibit_flag = detect_multibit_inputs(user_test_vectors_path)
 
     if multibit_flag == 1:  
-        test_vectors_path = run_verilog_to_netlist_mapper()
+        test_vectors_path = run_vector_to_netlist_mapper(netlist_path.split('\\')[-1], user_test_vectors_path)
     elif multibit_flag == 0:
         test_vectors_path = user_test_vectors_path
     else:
@@ -193,6 +336,7 @@ def main():
     output_directory_name = "FAULT_STATISTICS"
     os.makedirs(output_directory_name,exist_ok=True)
     output_file_path = os.path.join(output_directory_name,output_file_name)
+    print(f"Writing fault statistics report at : {output_file_path}")
     with open(output_file_path, 'w') as f:
         f.write('---------- FAULT STATISTICS REPORT ----------\n')
         f.write('\n')
@@ -210,7 +354,10 @@ def main():
         f.write('\n')
         f.write("Detected Faults And Detecting Vectors :\n")
         for k, v in fault_detection_vectors.items():
-            f.write(f"  {k}: {v}\n")
+            f.write(f" {k} : ")
+            for vec in v:
+                f.write(f"{pack_vector_string(netlist_path,vec)}")
+            f.write("\n")
         f.write("\n")
         f.write("---------- END OF REPORT ----------")
 
