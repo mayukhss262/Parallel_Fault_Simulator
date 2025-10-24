@@ -87,7 +87,7 @@ def run_vector_to_netlist_mapper(netlist_file, test_vectors_path):
     try:
         command = ["python", script_name, netlist_file, test_vectors_path]
         cmd_out = subprocess.run(command, check=True, capture_output=True, text=True, encoding = 'utf-8') #check=True will raise an exception if the script returns a non-zero exit code (an error)
-        mapped_vectors_path = (cmd_out.stdout.split("Repository\\")[1])[:-1]
+        mapped_vectors_path = (cmd_out.stdout)[:-1]
         return mapped_vectors_path
     
     except subprocess.CalledProcessError as e:
