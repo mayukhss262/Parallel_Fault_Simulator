@@ -133,31 +133,26 @@ def simulate(netlist_path, input_words, fault=None):
     return output_words
 
 def run_verilog_netlist_generator(folder_path):
-
     script_name = 'verilog_to_netlist.py'
     if not os.path.exists(script_name):
         print(f"Error: The script '{script_name}' was not found in the current directory.")
         return
-        
     if not os.path.isdir(folder_path):
         print(f"Error: The specified directory '{folder_path}' does not exist.")
         return
-    
     try:
         command = ["python", script_name, folder_path]
         cmd_out = subprocess.run(command, check=True, capture_output=True, text=True) #check=True will raise an exception if the script returns a non-zero exit code (an error)
         netlist_path = cmd_out.stdout.split("at '")[1].rstrip("'")
         return netlist_path
-    
     except subprocess.CalledProcessError as e:
         print(f"--- Error executing {script_name} ---")
         print(f"Return Code: {e.returncode}")
         print("Error Output (stderr):")
         print(e.stderr)
-        
     except FileNotFoundError:
         print("Error: 'python' command not found. Please ensure Python is installed and in your system's PATH.")
-  
+
 def run_simulation(test_vector_path, netlist_path, word_length):
     print("="*80)
     print("Starting Test Vector Simulation")
@@ -215,9 +210,7 @@ def run_simulation(test_vector_path, netlist_path, word_length):
 
 def detect_multibit_inputs(test_vectors_path):
     multibit_flag = 0
-    # MODIFIED: This regex now finds patterns like 'a=110' or 'd=0'
     pattern = re.compile(r"\b([a-zA-Z]\w*)\b\s*=\s*([01]+)")
-
     try:
         with open(test_vectors_path, 'r') as f:
             for line_num, line in enumerate(f, 1):
@@ -227,9 +220,7 @@ def detect_multibit_inputs(test_vectors_path):
                     value = match.group(2)
                     if len(value) > 1:
                         multibit_flag = 1
-        
         return multibit_flag
-
     except FileNotFoundError:
         print(f"[ERROR] The file '{test_vectors_path}' was not found.")
         multibit_flag = 2
@@ -246,24 +237,22 @@ def run_vector_to_netlist_mapper(netlist_file, test_vectors_path):
         return
     try:
         command = ["python", script_name, netlist_file, test_vectors_path]
-        cmd_out = subprocess.run(command, check=True, capture_output=True, text=True, encoding = 'utf-8') #check=True will raise an exception if the script returns a non-zero exit code (an error)
+        cmd_out = subprocess.run(command, check=True, capture_output=True, text=True, encoding = 'utf-8')
         mapped_vectors_path = (cmd_out.stdout)[:-1]
         return mapped_vectors_path
-    
     except subprocess.CalledProcessError as e:
         print(f"--- Error executing {script_name} ---")
         print(f"Return Code: {e.returncode}")
         print("Error Output (stderr):")
         print(e.stderr)
-        
     except FileNotFoundError:
         print("Error: 'python' command not found. Please ensure Python is installed and in your system's PATH.")
 
-
 def main():
+    # --- MODIFIED SECTION FOR ARGUMENT PARSING ---
     word_length = None 
-    if len(sys.argv) != 3 and len(sys.argv) != 4:
-        print("Usage: python simulator_test.py <path_to_design_folder> <path_to_test_vectors_text_file> [OPTIONAL]<parallel_sim_word_length>")
+    if len(sys.argv) != 4 and len(sys.argv) != 3:
+        print("Usage: python simulator_test.py <path_to_design_folder> <path_to_test_vectors_text_file> <parallel_sim_word_length>")
         sys.exit(1) 
     elif len(sys.argv) == 3:
         word_length = 4 #default
@@ -273,13 +262,12 @@ def main():
         else:
             print('[ERROR] Invalid word length')
             sys.exit(1)
-    
+
     design_folder_path = sys.argv[1]
     user_test_vectors_path = sys.argv[2]
     test_vectors_path = None
-    WORD_LENGTH = 2
-    netlist_path = run_verilog_netlist_generator(design_folder_path)[:-2]
 
+    netlist_path = run_verilog_netlist_generator(design_folder_path)[:-2]
     multibit_flag = detect_multibit_inputs(user_test_vectors_path)
 
     if multibit_flag == 1:  
@@ -289,9 +277,7 @@ def main():
     else:
         sys.exit(1)
     
-    run_simulation(test_vectors_path, netlist_path, WORD_LENGTH)
+    run_simulation(test_vectors_path, netlist_path, word_length)
    
 if __name__ == "__main__":
     main()
-
-   
