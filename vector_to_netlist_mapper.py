@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """
-Vector to Netlist Mapper - FIXED VERSION
 Input:
   - Netlist JSON file path (CLI arg 1)
   - User input TXT file path (CLI arg 2) 
@@ -221,7 +220,8 @@ def main():
             if netlist_format:
                 outfile.write(netlist_format + '\n')
 
-    print(output_path)
+    #print(output_path)
+    print(os.path.join('MAPPING_RESULTS', output_filename))
 
 
 if __name__ == "__main__":
