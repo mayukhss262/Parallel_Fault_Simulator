@@ -27,8 +27,8 @@ def simulate(netlist_path, input_words, fault):
     nets = netlist[top_module]["nets"]
     fanouts = netlist[top_module]["fanouts"]
 
-    input_ports = sorted([p for p, d in ports.items() if d.get("direction") == "Input"])
-    output_ports = sorted([p for p, d in ports.items() if d.get("direction") == "Output"])
+    input_ports = [p for p, d in ports.items() if d.get("direction") == "Input"]
+    output_ports = [p for p, d in ports.items() if d.get("direction") == "Output"]
 
     if len(input_words) != len(input_ports):
         print(f"Error: Mismatch in number of inputs.")
