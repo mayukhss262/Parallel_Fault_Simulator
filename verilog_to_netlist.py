@@ -475,8 +475,8 @@ def flatten_netlist(netlist_dict):
 
         # Map ports by connecting them to the nets specified in the instance
         # Sorting ensures a deterministic order for port connections
-        sub_input_ports = sorted([p for p, d in submodule_def['ports'].items() if d['direction'] == 'Input'])
-        sub_output_ports = sorted([p for p, d in submodule_def['ports'].items() if d['direction'] == 'Output'])
+        sub_input_ports = [p for p, d in submodule_def['ports'].items() if d['direction'] == 'Input']
+        sub_output_ports = [p for p, d in submodule_def['ports'].items() if d['direction'] == 'Output']
         
         for i, port_name in enumerate(sub_input_ports):
             net_map[port_name] = instance_data['connections']['inputs'][i]
