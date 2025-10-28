@@ -2,8 +2,8 @@ from simulator import simulate
 
 def main():
 
-    netlist = 'NETLISTS/netlist_MUX_with_en.json'
-    input_words = ['11','11','11','11','11','11','11','11','00','00','00','00']
+    netlist = 'NETLISTS/netlist_RCA_4b_3.json'
+    input_words = ['0','1','0','1','0','0','1','1','1']
     fault = None #set to None if no fault is to be injected
 
     output_words = simulate(netlist,input_words,fault)
