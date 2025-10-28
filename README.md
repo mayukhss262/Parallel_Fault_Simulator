@@ -88,7 +88,7 @@ NOTE : Simulator supports 4-value logic (0,1,x,z). x and z must be specified in 
 
 **TRUE VALUE SIMULATOR**
 
-simulator_test.py --> True value generator script invoked by the developers for verification, performs true value simulation without faults in TREU_VALUES folder. 
+simulator_test.py --> True value generator script invoked by the developers for verification, performs true value simulation without faults in FAULT_FREE_OUTPUTS folder. 
 Usage : python simulator_test.py [path to Verilog folder] [path to .txt file containing user defined input vectors] [OPTIONAL][parallel simulation word length]
 If not specified by user, default parallel simulation word length is 4.
 
