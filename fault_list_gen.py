@@ -295,9 +295,9 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 Examples:
-  python netlist_analyzer.py netlist_combinatorial_2.json
-  python netlist_analyzer.py netlist_adder.json
-  python netlist_analyzer.py netlist_my_design.json -o custom_faults.json
+  python fault_list_gen.py netlist_combinatorial_2.json
+  python fault_list_gen.py netlist_adder.json
+  python fault_list_gen.py netlist_my_design.json -o custom_faults.json
         '''
     )
     
