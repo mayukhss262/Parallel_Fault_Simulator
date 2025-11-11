@@ -1,14 +1,14 @@
 import json
 import sys
 
-# --- MODIFIED: Updated the import statements to use the new filenames ---
+
 from exhaustive_list_gen_v2 import run_exhaustive_generator
 from atpg_v2 import run_d_algorithm_atpg
-# --- End of modification ---
 
-# ----- CONFIGURATION -----
+
+
 LOGIC_INPUT_LIMIT = 10
-# -------------------------
+
 
 def get_num_inputs(netlist_file_path):
     """A helper function to quickly parse a netlist and count primary inputs."""
@@ -19,7 +19,7 @@ def get_num_inputs(netlist_file_path):
         if not data:
              print("Error: JSON file is empty.")
              return -1
-        module_name = list(data.keys())[0] # Get the first key (e.g., 'top')
+        module_name = list(data.keys())[0] 
 
         if 'ports' not in data[module_name]:
             print(f"Error: Could not find 'ports' key within module '{module_name}'.")
@@ -32,9 +32,9 @@ def get_num_inputs(netlist_file_path):
     except FileNotFoundError:
         print(f"Error: Could not find netlist file '{netlist_file_path}'.")
         return -1
-    except (IndexError, KeyError, TypeError, json.JSONDecodeError) as e: # Added JSONDecodeError
+    except (IndexError, KeyError, TypeError, json.JSONDecodeError) as e: 
         print(f"Error parsing JSON structure in '{netlist_file_path}': {e}")
-        return -1 # Return an error code
+        return -1 
 
 def main():
     """Main controller to decide which testing strategy to use."""
@@ -53,7 +53,7 @@ def main():
 
     print(f"Circuit has {num_inputs} inputs. The limit is {LOGIC_INPUT_LIMIT}.")
 
-    # --- The Core Decision Logic ---
+   
     if num_inputs <= LOGIC_INPUT_LIMIT:
         print("--> Input count is within the limit. Using exhaustive vector generator.")
         run_exhaustive_generator(netlist_file)
@@ -62,4 +62,5 @@ def main():
         run_d_algorithm_atpg(netlist_file, fault_list_file)
 
 if __name__ == "__main__":
+
     main()
