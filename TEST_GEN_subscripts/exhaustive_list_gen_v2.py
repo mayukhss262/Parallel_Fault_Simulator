@@ -17,18 +17,18 @@ def generate_exhaustive_vectors(netlist_file_path):
         and the number of inputs. Returns (None, None, -1) on error.
     """
     try:
-        # Ensure path is a Path object for consistency
+
         netlist_path = Path(netlist_file_path)
         with open(netlist_path, 'r') as f:
             netlist_data = json.load(f)
     except FileNotFoundError:
         print(f"Error: Could not find netlist file at '{netlist_file_path}'")
-        return None, None, -1 # Indicate error
+        return None, None, -1 
     except json.JSONDecodeError:
         print(f"Error: Could not parse the JSON file '{netlist_file_path}'.")
-        return None, None, -1 # Indicate error
+        return None, None, -1 
 
-    # --- Find the actual module name ---
+
     try:
         if not netlist_data:
              print("Error: JSON file is empty.")
@@ -43,18 +43,18 @@ def generate_exhaustive_vectors(netlist_file_path):
         return None, None, -1
 
     primary_inputs = [p for p, attr in ports.items() if attr.get('direction') == 'Input']
-    primary_inputs.sort() # Sort for consistent output order
+    primary_inputs.sort() 
 
     num_inputs = len(primary_inputs)
     if num_inputs == 0:
         print("Warning: No primary inputs found in the netlist.")
         return primary_inputs, [], num_inputs
 
-    # --- Generate All 2^n Test Vectors ---
+    # Generate All 2^n Test Vectors 
     test_vectors = []
     num_vectors = 2 ** num_inputs
 
-    if num_inputs > 20: # Safety check
+    if num_inputs > 20:
         print(f"Warning: {num_inputs} inputs detected. Generating {num_vectors} vectors might take a very long time...")
 
     for i in range(num_vectors):
@@ -69,25 +69,25 @@ def run_exhaustive_generator(netlist_file_input):
     Looks for the netlist file in the 'NETLISTS' subdirectory if not found directly.
     """
     
-    # --- MODIFIED: Input Path Handling ---
+
     netlist_path_arg = Path(netlist_file_input)
     script_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
     netlist_dir = script_dir / "NETLISTS"
 
-    # Check if the input is just a filename, if so, prepend the NETLISTS dir
+
     if not netlist_path_arg.is_file() and not netlist_path_arg.is_absolute():
         netlist_full_path = netlist_dir / netlist_path_arg.name
     else:
-        netlist_full_path = netlist_path_arg # Assume it's a full or correct relative path
+        netlist_full_path = netlist_path_arg 
 
-    # Check if the file actually exists at the determined path
+
     if not netlist_full_path.is_file():
         print(f"Error: Netlist file not found at '{netlist_path_arg}' or '{netlist_full_path}'.")
-        return # Exit the function if file not found
-    # --- End of Input Path Handling ---
+        return 
+   
 
-    # --- Determine output filename and directory (using the resolved full path) ---
-    netlist_stem = netlist_full_path.stem # e.g., "netlist_test_design_1"
+    
+    netlist_stem = netlist_full_path.stem 
     
     if netlist_stem.startswith("netlist_"):
         design_name = netlist_stem[len("netlist_"):]
@@ -98,9 +98,9 @@ def run_exhaustive_generator(netlist_file_input):
     output_dir = script_dir / "TEST_VECTOR_RESULTS"
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file_path = output_dir / output_filename
-    # --- End of Output Path Logic ---
+   
 
-    # Call generator with the confirmed full path
+
     input_names, vectors, num_inputs = generate_exhaustive_vectors(netlist_full_path)
 
     if input_names is None or vectors is None:
@@ -131,4 +131,5 @@ if __name__ == "__main__":
     # --- MODIFIED: Call run_exhaustive_generator directly ---
     # The function now handles path construction internally
     run_exhaustive_generator(sys.argv[1])
+
     # --- End of modification ---
