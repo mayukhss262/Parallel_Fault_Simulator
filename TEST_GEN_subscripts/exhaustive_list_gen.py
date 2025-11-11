@@ -4,7 +4,7 @@ import os
 import re
 
 def generate_exhaustive_vectors(netlist_file_path):
-    # This function remains unchanged...
+
     try:
         with open(netlist_file_path, 'r') as f:
             netlist_data = json.load(f)
@@ -15,10 +15,10 @@ def generate_exhaustive_vectors(netlist_file_path):
         print(f"Error: Could not parse the JSON file '{netlist_file_path}'.")
         return None, None, 0
 
-    # --- MODIFIED: Handle netlist format where module is the top-level key ---
+
     module_name = list(netlist_data.keys())[0]
     ports = netlist_data[module_name]['ports']
-    # --- End of modification ---
+
     
     primary_inputs = [p for p, attr in ports.items() if attr.get('direction') == 'Input']
     primary_inputs.sort()
@@ -63,7 +63,8 @@ def run_exhaustive_generator(netlist_file):
 if __name__ == "__main__":
     """Run as a standalone script."""
     if len(sys.argv) != 2:
-        # --- MODIFIED: Updated usage message ---
+
         print("Usage: python exhaustive_list_gen.py <netlist_num.json>")
         sys.exit(1)
+
     run_exhaustive_generator(sys.argv[1])
