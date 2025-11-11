@@ -1,7 +1,6 @@
 {
     "metadata": {
         "module_name": "ripple_carry_adder_4bit",
-        "generation_timestamp": "2025-10-24T00:55:08.061847",
         "total_faults": 96,
         "total_nodes": 48
     },

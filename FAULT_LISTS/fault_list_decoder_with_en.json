@@ -1,15 +1,15 @@
 {
     "metadata": {
-        "module_name": "decoder_3_to_8",
-        "generation_timestamp": "2025-10-24T00:55:32.180774",
-        "total_faults": 66,
-        "total_nodes": 33
+        "module_name": "decoder_3_to_8_with_enable",
+        "total_faults": 84,
+        "total_nodes": 42
     },
     "netlist_analysis": {
         "primary_inputs": [
             "A0",
             "A1",
-            "A2"
+            "A2",
+            "EN"
         ],
         "primary_outputs": [
             "Y0",
@@ -66,6 +66,17 @@
                 "A0_n_2",
                 "A0_n_3",
                 "A0_n_4"
+            ],
+            "EN": [
+                "EN",
+                "EN_1",
+                "EN_2",
+                "EN_3",
+                "EN_4",
+                "EN_5",
+                "EN_6",
+                "EN_7",
+                "EN_8"
             ]
         }
     },
@@ -399,10 +410,100 @@
             "node": "A2_n_4",
             "fault_type": "stuck-at-1",
             "description": "Node 'A2_n_4' stuck at logic 1"
+        },
+        "EN:0": {
+            "node": "EN",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN' stuck at logic 0"
+        },
+        "EN:1": {
+            "node": "EN",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN' stuck at logic 1"
+        },
+        "EN_1:0": {
+            "node": "EN_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN_1' stuck at logic 0"
+        },
+        "EN_1:1": {
+            "node": "EN_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN_1' stuck at logic 1"
+        },
+        "EN_2:0": {
+            "node": "EN_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN_2' stuck at logic 0"
+        },
+        "EN_2:1": {
+            "node": "EN_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN_2' stuck at logic 1"
+        },
+        "EN_3:0": {
+            "node": "EN_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN_3' stuck at logic 0"
+        },
+        "EN_3:1": {
+            "node": "EN_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN_3' stuck at logic 1"
+        },
+        "EN_4:0": {
+            "node": "EN_4",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN_4' stuck at logic 0"
+        },
+        "EN_4:1": {
+            "node": "EN_4",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN_4' stuck at logic 1"
+        },
+        "EN_5:0": {
+            "node": "EN_5",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN_5' stuck at logic 0"
+        },
+        "EN_5:1": {
+            "node": "EN_5",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN_5' stuck at logic 1"
+        },
+        "EN_6:0": {
+            "node": "EN_6",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN_6' stuck at logic 0"
+        },
+        "EN_6:1": {
+            "node": "EN_6",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN_6' stuck at logic 1"
+        },
+        "EN_7:0": {
+            "node": "EN_7",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN_7' stuck at logic 0"
+        },
+        "EN_7:1": {
+            "node": "EN_7",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN_7' stuck at logic 1"
+        },
+        "EN_8:0": {
+            "node": "EN_8",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN_8' stuck at logic 0"
+        },
+        "EN_8:1": {
+            "node": "EN_8",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN_8' stuck at logic 1"
         }
     },
     "fault_summary": {
-        "stuck_at_0_count": 33,
-        "stuck_at_1_count": 33
+        "stuck_at_0_count": 42,
+        "stuck_at_1_count": 42
     }
 }

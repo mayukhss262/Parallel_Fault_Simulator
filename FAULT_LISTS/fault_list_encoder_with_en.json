@@ -1,0 +1,269 @@
+{
+    "metadata": {
+        "module_name": "encoder_8_to_3",
+        "total_faults": 42,
+        "total_nodes": 21
+    },
+    "netlist_analysis": {
+        "primary_inputs": [
+            "I0",
+            "I1",
+            "I2",
+            "I3",
+            "I4",
+            "I5",
+            "I6",
+            "I7",
+            "EN"
+        ],
+        "primary_outputs": [
+            "Y0",
+            "Y1",
+            "Y2"
+        ],
+        "fanout_branches": {
+            "I3": [
+                "I3",
+                "I3_1",
+                "I3_2"
+            ],
+            "I5": [
+                "I5",
+                "I5_1",
+                "I5_2"
+            ],
+            "I7": [
+                "I7",
+                "I7_1",
+                "I7_2"
+            ],
+            "EN": [
+                "EN",
+                "EN_1",
+                "EN_2",
+                "EN_3"
+            ],
+            "w_6_or_7": [
+                "w_6_or_7",
+                "w_6_or_7_1",
+                "w_6_or_7_2"
+            ]
+        }
+    },
+    "stuck_at_faults": {
+        "EN:0": {
+            "node": "EN",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN' stuck at logic 0"
+        },
+        "EN:1": {
+            "node": "EN",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN' stuck at logic 1"
+        },
+        "EN_1:0": {
+            "node": "EN_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN_1' stuck at logic 0"
+        },
+        "EN_1:1": {
+            "node": "EN_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN_1' stuck at logic 1"
+        },
+        "EN_2:0": {
+            "node": "EN_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN_2' stuck at logic 0"
+        },
+        "EN_2:1": {
+            "node": "EN_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN_2' stuck at logic 1"
+        },
+        "EN_3:0": {
+            "node": "EN_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'EN_3' stuck at logic 0"
+        },
+        "EN_3:1": {
+            "node": "EN_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'EN_3' stuck at logic 1"
+        },
+        "I0:0": {
+            "node": "I0",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I0' stuck at logic 0"
+        },
+        "I0:1": {
+            "node": "I0",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I0' stuck at logic 1"
+        },
+        "I1:0": {
+            "node": "I1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I1' stuck at logic 0"
+        },
+        "I1:1": {
+            "node": "I1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I1' stuck at logic 1"
+        },
+        "I2:0": {
+            "node": "I2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I2' stuck at logic 0"
+        },
+        "I2:1": {
+            "node": "I2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I2' stuck at logic 1"
+        },
+        "I3:0": {
+            "node": "I3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I3' stuck at logic 0"
+        },
+        "I3:1": {
+            "node": "I3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I3' stuck at logic 1"
+        },
+        "I3_1:0": {
+            "node": "I3_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I3_1' stuck at logic 0"
+        },
+        "I3_1:1": {
+            "node": "I3_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I3_1' stuck at logic 1"
+        },
+        "I3_2:0": {
+            "node": "I3_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I3_2' stuck at logic 0"
+        },
+        "I3_2:1": {
+            "node": "I3_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I3_2' stuck at logic 1"
+        },
+        "I4:0": {
+            "node": "I4",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I4' stuck at logic 0"
+        },
+        "I4:1": {
+            "node": "I4",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I4' stuck at logic 1"
+        },
+        "I5:0": {
+            "node": "I5",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I5' stuck at logic 0"
+        },
+        "I5:1": {
+            "node": "I5",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I5' stuck at logic 1"
+        },
+        "I5_1:0": {
+            "node": "I5_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I5_1' stuck at logic 0"
+        },
+        "I5_1:1": {
+            "node": "I5_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I5_1' stuck at logic 1"
+        },
+        "I5_2:0": {
+            "node": "I5_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I5_2' stuck at logic 0"
+        },
+        "I5_2:1": {
+            "node": "I5_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I5_2' stuck at logic 1"
+        },
+        "I6:0": {
+            "node": "I6",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I6' stuck at logic 0"
+        },
+        "I6:1": {
+            "node": "I6",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I6' stuck at logic 1"
+        },
+        "I7:0": {
+            "node": "I7",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I7' stuck at logic 0"
+        },
+        "I7:1": {
+            "node": "I7",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I7' stuck at logic 1"
+        },
+        "I7_1:0": {
+            "node": "I7_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I7_1' stuck at logic 0"
+        },
+        "I7_1:1": {
+            "node": "I7_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I7_1' stuck at logic 1"
+        },
+        "I7_2:0": {
+            "node": "I7_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'I7_2' stuck at logic 0"
+        },
+        "I7_2:1": {
+            "node": "I7_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'I7_2' stuck at logic 1"
+        },
+        "w_6_or_7:0": {
+            "node": "w_6_or_7",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'w_6_or_7' stuck at logic 0"
+        },
+        "w_6_or_7:1": {
+            "node": "w_6_or_7",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'w_6_or_7' stuck at logic 1"
+        },
+        "w_6_or_7_1:0": {
+            "node": "w_6_or_7_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'w_6_or_7_1' stuck at logic 0"
+        },
+        "w_6_or_7_1:1": {
+            "node": "w_6_or_7_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'w_6_or_7_1' stuck at logic 1"
+        },
+        "w_6_or_7_2:0": {
+            "node": "w_6_or_7_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'w_6_or_7_2' stuck at logic 0"
+        },
+        "w_6_or_7_2:1": {
+            "node": "w_6_or_7_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'w_6_or_7_2' stuck at logic 1"
+        }
+    },
+    "fault_summary": {
+        "stuck_at_0_count": 21,
+        "stuck_at_1_count": 21
+    }
+}

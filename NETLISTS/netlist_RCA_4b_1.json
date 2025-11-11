@@ -1,43 +1,43 @@
 {
     "ripple_carry_adder_4bit": {
         "ports": {
-            "A3": {
-                "direction": "Input"
-            },
-            "A2": {
+            "A0": {
                 "direction": "Input"
             },
             "A1": {
                 "direction": "Input"
             },
-            "A0": {
+            "A2": {
                 "direction": "Input"
             },
-            "B3": {
-                "direction": "Input"
-            },
-            "B2": {
-                "direction": "Input"
-            },
-            "B1": {
+            "A3": {
                 "direction": "Input"
             },
             "B0": {
                 "direction": "Input"
             },
+            "B1": {
+                "direction": "Input"
+            },
+            "B2": {
+                "direction": "Input"
+            },
+            "B3": {
+                "direction": "Input"
+            },
             "CIN": {
                 "direction": "Input"
             },
-            "SUM3": {
-                "direction": "Output"
-            },
-            "SUM2": {
+            "SUM0": {
                 "direction": "Output"
             },
             "SUM1": {
                 "direction": "Output"
             },
-            "SUM0": {
+            "SUM2": {
+                "direction": "Output"
+            },
+            "SUM3": {
                 "direction": "Output"
             },
             "COUT": {
@@ -65,7 +65,7 @@
                         "FA0_CIN_1"
                     ],
                     "outputs": [
-                        "C1"
+                        "SUM0"
                     ]
                 }
             },
@@ -114,7 +114,7 @@
                         "FA0_and3_out"
                     ],
                     "outputs": [
-                        "SUM3"
+                        "C1"
                     ]
                 }
             },
@@ -138,7 +138,7 @@
                         "FA1_CIN_1"
                     ],
                     "outputs": [
-                        "C2"
+                        "SUM1"
                     ]
                 }
             },
@@ -187,7 +187,7 @@
                         "FA1_and3_out"
                     ],
                     "outputs": [
-                        "SUM2"
+                        "C2"
                     ]
                 }
             },
@@ -211,7 +211,7 @@
                         "FA2_CIN_1"
                     ],
                     "outputs": [
-                        "C3"
+                        "SUM2"
                     ]
                 }
             },
@@ -260,7 +260,7 @@
                         "FA2_and3_out"
                     ],
                     "outputs": [
-                        "SUM1"
+                        "C3"
                     ]
                 }
             },
@@ -284,7 +284,7 @@
                         "FA3_CIN_1"
                     ],
                     "outputs": [
-                        "COUT"
+                        "SUM3"
                     ]
                 }
             },
@@ -333,7 +333,7 @@
                         "FA3_and3_out"
                     ],
                     "outputs": [
-                        "SUM0"
+                        "COUT"
                     ]
                 }
             }
@@ -410,12 +410,12 @@
             "FA3_xor1_out"
         ],
         "fanouts": {
-            "A3": [
+            "A0": [
                 "FA0_A_1",
                 "FA0_A_2",
                 "FA0_A_3"
             ],
-            "B3": [
+            "B0": [
                 "FA0_B_1",
                 "FA0_B_2",
                 "FA0_B_3"
@@ -425,12 +425,12 @@
                 "FA0_CIN_2",
                 "FA0_CIN_3"
             ],
-            "A2": [
+            "A1": [
                 "FA1_A_1",
                 "FA1_A_2",
                 "FA1_A_3"
             ],
-            "B2": [
+            "B1": [
                 "FA1_B_1",
                 "FA1_B_2",
                 "FA1_B_3"
@@ -440,12 +440,12 @@
                 "FA1_CIN_2",
                 "FA1_CIN_3"
             ],
-            "A1": [
+            "A2": [
                 "FA2_A_1",
                 "FA2_A_2",
                 "FA2_A_3"
             ],
-            "B1": [
+            "B2": [
                 "FA2_B_1",
                 "FA2_B_2",
                 "FA2_B_3"
@@ -455,12 +455,12 @@
                 "FA2_CIN_2",
                 "FA2_CIN_3"
             ],
-            "A0": [
+            "A3": [
                 "FA3_A_1",
                 "FA3_A_2",
                 "FA3_A_3"
             ],
-            "B0": [
+            "B3": [
                 "FA3_B_1",
                 "FA3_B_2",
                 "FA3_B_3"

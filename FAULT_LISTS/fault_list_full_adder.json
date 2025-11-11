@@ -1,0 +1,164 @@
+{
+    "metadata": {
+        "module_name": "full_adder",
+        "total_faults": 24,
+        "total_nodes": 12
+    },
+    "netlist_analysis": {
+        "primary_inputs": [
+            "A",
+            "B",
+            "CIN"
+        ],
+        "primary_outputs": [
+            "SUM",
+            "COUT"
+        ],
+        "fanout_branches": {
+            "A": [
+                "A",
+                "A_1",
+                "A_2",
+                "A_3"
+            ],
+            "B": [
+                "B",
+                "B_1",
+                "B_2",
+                "B_3"
+            ],
+            "CIN": [
+                "CIN",
+                "CIN_1",
+                "CIN_2",
+                "CIN_3"
+            ]
+        }
+    },
+    "stuck_at_faults": {
+        "A:0": {
+            "node": "A",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'A' stuck at logic 0"
+        },
+        "A:1": {
+            "node": "A",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'A' stuck at logic 1"
+        },
+        "A_1:0": {
+            "node": "A_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'A_1' stuck at logic 0"
+        },
+        "A_1:1": {
+            "node": "A_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'A_1' stuck at logic 1"
+        },
+        "A_2:0": {
+            "node": "A_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'A_2' stuck at logic 0"
+        },
+        "A_2:1": {
+            "node": "A_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'A_2' stuck at logic 1"
+        },
+        "A_3:0": {
+            "node": "A_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'A_3' stuck at logic 0"
+        },
+        "A_3:1": {
+            "node": "A_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'A_3' stuck at logic 1"
+        },
+        "B:0": {
+            "node": "B",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'B' stuck at logic 0"
+        },
+        "B:1": {
+            "node": "B",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'B' stuck at logic 1"
+        },
+        "B_1:0": {
+            "node": "B_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'B_1' stuck at logic 0"
+        },
+        "B_1:1": {
+            "node": "B_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'B_1' stuck at logic 1"
+        },
+        "B_2:0": {
+            "node": "B_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'B_2' stuck at logic 0"
+        },
+        "B_2:1": {
+            "node": "B_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'B_2' stuck at logic 1"
+        },
+        "B_3:0": {
+            "node": "B_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'B_3' stuck at logic 0"
+        },
+        "B_3:1": {
+            "node": "B_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'B_3' stuck at logic 1"
+        },
+        "CIN:0": {
+            "node": "CIN",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'CIN' stuck at logic 0"
+        },
+        "CIN:1": {
+            "node": "CIN",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'CIN' stuck at logic 1"
+        },
+        "CIN_1:0": {
+            "node": "CIN_1",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'CIN_1' stuck at logic 0"
+        },
+        "CIN_1:1": {
+            "node": "CIN_1",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'CIN_1' stuck at logic 1"
+        },
+        "CIN_2:0": {
+            "node": "CIN_2",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'CIN_2' stuck at logic 0"
+        },
+        "CIN_2:1": {
+            "node": "CIN_2",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'CIN_2' stuck at logic 1"
+        },
+        "CIN_3:0": {
+            "node": "CIN_3",
+            "fault_type": "stuck-at-0",
+            "description": "Node 'CIN_3' stuck at logic 0"
+        },
+        "CIN_3:1": {
+            "node": "CIN_3",
+            "fault_type": "stuck-at-1",
+            "description": "Node 'CIN_3' stuck at logic 1"
+        }
+    },
+    "fault_summary": {
+        "stuck_at_0_count": 12,
+        "stuck_at_1_count": 12
+    }
+}

@@ -1,0 +1,232 @@
+{
+    "encoder_8_to_3": {
+        "ports": {
+            "I0": {
+                "direction": "Input"
+            },
+            "I1": {
+                "direction": "Input"
+            },
+            "I2": {
+                "direction": "Input"
+            },
+            "I3": {
+                "direction": "Input"
+            },
+            "I4": {
+                "direction": "Input"
+            },
+            "I5": {
+                "direction": "Input"
+            },
+            "I6": {
+                "direction": "Input"
+            },
+            "I7": {
+                "direction": "Input"
+            },
+            "EN": {
+                "direction": "Input"
+            },
+            "Y0": {
+                "direction": "Output"
+            },
+            "Y1": {
+                "direction": "Output"
+            },
+            "Y2": {
+                "direction": "Output"
+            }
+        },
+        "cells": {
+            "or0_1": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "I1",
+                        "I3_1"
+                    ],
+                    "outputs": [
+                        "w_1_or_3"
+                    ]
+                }
+            },
+            "or0_2": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "I5_1",
+                        "I7_1"
+                    ],
+                    "outputs": [
+                        "w_5_or_7"
+                    ]
+                }
+            },
+            "or0_3": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "w_1_or_3",
+                        "w_5_or_7"
+                    ],
+                    "outputs": [
+                        "y0_pre"
+                    ]
+                }
+            },
+            "and0": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "y0_pre",
+                        "EN_1"
+                    ],
+                    "outputs": [
+                        "Y0"
+                    ]
+                }
+            },
+            "or1_1": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "I2",
+                        "I3_2"
+                    ],
+                    "outputs": [
+                        "w_2_or_3"
+                    ]
+                }
+            },
+            "or1_2": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "I6",
+                        "I7_2"
+                    ],
+                    "outputs": [
+                        "w_6_or_7"
+                    ]
+                }
+            },
+            "or1_3": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "w_2_or_3",
+                        "w_6_or_7_1"
+                    ],
+                    "outputs": [
+                        "y1_pre"
+                    ]
+                }
+            },
+            "and1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "y1_pre",
+                        "EN_2"
+                    ],
+                    "outputs": [
+                        "Y1"
+                    ]
+                }
+            },
+            "or2_1": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "I4",
+                        "I5_2"
+                    ],
+                    "outputs": [
+                        "w_4_or_5"
+                    ]
+                }
+            },
+            "or2_3": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "w_4_or_5",
+                        "w_6_or_7_2"
+                    ],
+                    "outputs": [
+                        "y2_pre"
+                    ]
+                }
+            },
+            "and2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "y2_pre",
+                        "EN_3"
+                    ],
+                    "outputs": [
+                        "Y2"
+                    ]
+                }
+            }
+        },
+        "nets": [
+            "EN",
+            "EN_1",
+            "EN_2",
+            "EN_3",
+            "I0",
+            "I1",
+            "I2",
+            "I3",
+            "I3_1",
+            "I3_2",
+            "I4",
+            "I5",
+            "I5_1",
+            "I5_2",
+            "I6",
+            "I7",
+            "I7_1",
+            "I7_2",
+            "Y0",
+            "Y1",
+            "Y2",
+            "w_1_or_3",
+            "w_2_or_3",
+            "w_4_or_5",
+            "w_5_or_7",
+            "w_6_or_7",
+            "w_6_or_7_1",
+            "w_6_or_7_2",
+            "y0_pre",
+            "y1_pre",
+            "y2_pre"
+        ],
+        "fanouts": {
+            "I3": [
+                "I3_1",
+                "I3_2"
+            ],
+            "I5": [
+                "I5_1",
+                "I5_2"
+            ],
+            "I7": [
+                "I7_1",
+                "I7_2"
+            ],
+            "EN": [
+                "EN_1",
+                "EN_2",
+                "EN_3"
+            ],
+            "w_6_or_7": [
+                "w_6_or_7_1",
+                "w_6_or_7_2"
+            ]
+        }
+    }
+}

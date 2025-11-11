@@ -1,0 +1,145 @@
+{
+    "full_adder": {
+        "ports": {
+            "A": {
+                "direction": "Input"
+            },
+            "B": {
+                "direction": "Input"
+            },
+            "CIN": {
+                "direction": "Input"
+            },
+            "SUM": {
+                "direction": "Output"
+            },
+            "COUT": {
+                "direction": "Output"
+            }
+        },
+        "cells": {
+            "u_xor1": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "A_1",
+                        "B_1"
+                    ],
+                    "outputs": [
+                        "xor1_out"
+                    ]
+                }
+            },
+            "u_xor2": {
+                "type": "xor",
+                "connections": {
+                    "inputs": [
+                        "xor1_out",
+                        "CIN_1"
+                    ],
+                    "outputs": [
+                        "SUM"
+                    ]
+                }
+            },
+            "u_and1": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "A_2",
+                        "B_2"
+                    ],
+                    "outputs": [
+                        "and1_out"
+                    ]
+                }
+            },
+            "u_and2": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "B_3",
+                        "CIN_2"
+                    ],
+                    "outputs": [
+                        "and2_out"
+                    ]
+                }
+            },
+            "u_and3": {
+                "type": "and",
+                "connections": {
+                    "inputs": [
+                        "CIN_3",
+                        "A_3"
+                    ],
+                    "outputs": [
+                        "and3_out"
+                    ]
+                }
+            },
+            "u_or1": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "and2_out",
+                        "and3_out"
+                    ],
+                    "outputs": [
+                        "temp_or"
+                    ]
+                }
+            },
+            "u_or2": {
+                "type": "or",
+                "connections": {
+                    "inputs": [
+                        "and1_out",
+                        "temp_or"
+                    ],
+                    "outputs": [
+                        "COUT"
+                    ]
+                }
+            }
+        },
+        "nets": [
+            "A",
+            "A_1",
+            "A_2",
+            "A_3",
+            "B",
+            "B_1",
+            "B_2",
+            "B_3",
+            "CIN",
+            "CIN_1",
+            "CIN_2",
+            "CIN_3",
+            "COUT",
+            "SUM",
+            "and1_out",
+            "and2_out",
+            "and3_out",
+            "temp_or",
+            "xor1_out"
+        ],
+        "fanouts": {
+            "A": [
+                "A_1",
+                "A_2",
+                "A_3"
+            ],
+            "B": [
+                "B_1",
+                "B_2",
+                "B_3"
+            ],
+            "CIN": [
+                "CIN_1",
+                "CIN_2",
+                "CIN_3"
+            ]
+        }
+    }
+}

@@ -65,7 +65,7 @@
                         "FA0_CIN_1"
                     ],
                     "outputs": [
-                        "C1"
+                        "SUM0"
                     ]
                 }
             },
@@ -114,7 +114,7 @@
                         "FA0_and3_out"
                     ],
                     "outputs": [
-                        "SUM0"
+                        "C1"
                     ]
                 }
             },
@@ -138,7 +138,7 @@
                         "FA1_CIN_1"
                     ],
                     "outputs": [
-                        "C2"
+                        "SUM1"
                     ]
                 }
             },
@@ -187,7 +187,7 @@
                         "FA1_and3_out"
                     ],
                     "outputs": [
-                        "SUM1"
+                        "C2"
                     ]
                 }
             },
@@ -211,7 +211,7 @@
                         "FA2_CIN_1"
                     ],
                     "outputs": [
-                        "C3"
+                        "SUM2"
                     ]
                 }
             },
@@ -260,7 +260,7 @@
                         "FA2_and3_out"
                     ],
                     "outputs": [
-                        "SUM2"
+                        "C3"
                     ]
                 }
             },
@@ -284,7 +284,7 @@
                         "FA3_CIN_1"
                     ],
                     "outputs": [
-                        "COUT"
+                        "SUM3"
                     ]
                 }
             },
@@ -333,7 +333,7 @@
                         "FA3_and3_out"
                     ],
                     "outputs": [
-                        "SUM3"
+                        "COUT"
                     ]
                 }
             }

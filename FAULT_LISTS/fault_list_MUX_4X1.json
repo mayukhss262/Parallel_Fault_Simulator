@@ -1,7 +1,6 @@
 {
     "metadata": {
         "module_name": "mux_4_to_1",
-        "generation_timestamp": "2025-11-11T23:35:50.420308",
         "total_faults": 36,
         "total_nodes": 18
     },
