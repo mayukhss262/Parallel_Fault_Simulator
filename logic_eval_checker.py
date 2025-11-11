@@ -1,12 +1,7 @@
-# logic_evaluator_tester.py
 
 """
 This script tests all gate types in logic_evaluator.py for all possible
 3-bit input combinations using Verilog 4-state logic (0, 1, x, z).
-
-Usage:
-    python logic_evaluator_tester.py          # Terminal summary only (default)
-    python logic_evaluator_tester.py write    # Create detailed output file
 """
 
 import itertools
@@ -41,8 +36,6 @@ class TestStats:
             self.failed += 1
             if details:
                 self.failures.append(details)
-
-# ========= Oracle (expected) logic for 4-state gates ========= #
 
 def _bit_not(b: str) -> str:
     if b == '1':
@@ -473,3 +466,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
