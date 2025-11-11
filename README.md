@@ -55,6 +55,8 @@ test_vector_list_gen_v3.py --> the top module to create test vectors. Takes a  n
 exhaustive_list_gen_v2.py  --> generates all possible test vectors --> to be called from test_vector_list_gen_v3. [in the decided format]
 atpg_v2.py  --> modified version of atpg_tester.py just to be called from test_vector_list_gen_v3. [in the decided format]
 
+packed_vector_test_list.py --> takes the test vector list text file created and the netlist.json as input and created a packed version of the test vector list maintaining the proper order of MSB and LSB.
+
 **ALL DEPENDENCIES OF THE TOP MODULES ARE STORED IN A SUBFOLDR CALLED TEST_GEN_subscripts ( ALL PATH MANAGED)**
 
 **VERILOG STYLE INPUT TO NETLIST PORT MAPPING**
