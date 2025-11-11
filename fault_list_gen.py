@@ -69,8 +69,6 @@ def generate_stuck_at_faults(analysis_result):
     # Add primary inputs
     all_nodes.update(analysis_result['primary_inputs'])
     
-    # DO NOT add primary outputs (excluded as per requirement)
-    # all_nodes.update(analysis_result['primary_outputs'])
     
     # Add all fanout branches (both parent and child wires)
     for parent_wire, all_branches in analysis_result['fanout_branches'].items():
@@ -98,20 +96,10 @@ def generate_stuck_at_faults(analysis_result):
 
 
 def create_fault_json_structure(analysis_result, stuck_at_faults):
-    """
-    Creates a comprehensive JSON structure with analysis results and fault list
-    
-    Args:
-        analysis_result: Dictionary containing analysis results
-        stuck_at_faults: Dictionary containing stuck-at faults
-    
-    Returns:
-        Dictionary containing complete fault analysis data
-    """
+  
     fault_json = {
         "metadata": {
             "module_name": analysis_result['module_name'],
-            "generation_timestamp": datetime.now().isoformat(),
             "total_faults": len(stuck_at_faults),
             "total_nodes": len(stuck_at_faults) // 2  # Each node has 2 faults (SA0 and SA1)
         },
@@ -133,22 +121,11 @@ def create_fault_json_structure(analysis_result, stuck_at_faults):
 
 
 def extract_design_name_from_filename(filename):
-    """
-    Extracts the design name from a filename with pattern 'netlist_[design_name].json'
-    
-    Args:
-        filename: The input filename
-    
-    Returns:
-        The extracted design_name as a string
-    """
-    # Get just the filename without path
+
     basename = os.path.basename(filename)
-    
-    # Remove extension
+
     filename_without_ext = os.path.splitext(basename)[0]
-    
-    # Try to match the pattern netlist_[design_name]
+ 
     match = re.match(r'netlist_(.+)', filename_without_ext)
     
     if match:
@@ -204,12 +181,7 @@ def export_faults_to_json(fault_data, input_filename, output_filename=None):
 
 
 def print_netlist_analysis(analysis_result):
-    """
-    Prints the netlist analysis in a formatted way
-    
-    Args:
-        analysis_result: Dictionary containing analysis results
-    """
+
     print("=" * 70)
     print(f"NETLIST ANALYSIS FOR MODULE: {analysis_result['module_name']}")
     print("=" * 70)
