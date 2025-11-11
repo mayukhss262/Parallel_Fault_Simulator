@@ -73,9 +73,9 @@ def get_port_info_from_json(netlist_file_path):
         print(f"Error processing JSON netlist '{netlist_file_path}': {e}")
         return None
 
-# -----------------------------------------------------------------
-# V V V V V V V V V V  THIS IS THE MODIFIED FUNCTION V V V V V V V V
-# -----------------------------------------------------------------
+
+
+
 
 def pack_test_vectors(unpacked_vector_file, port_info):
     """
@@ -94,7 +94,7 @@ def pack_test_vectors(unpacked_vector_file, port_info):
                 if not line or line.startswith("#"): 
                     continue
 
-                # --- NEW PARSING LOGIC ---
+                # --- PARSING LOGIC ---
                 unpacked_vector = {}
                 try:
                     # Split the line by spaces to get "KEY=VALUE" pairs
@@ -116,13 +116,13 @@ def pack_test_vectors(unpacked_vector_file, port_info):
                 # --- END OF NEW PARSING LOGIC ---
 
 
-                # This part of the logic remains the same as before
+               
                 packed_vector = {}
                 for port in port_info:
                     port_name = port['name']
                     if port['is_vector']:
                         packed_value = ""
-                        # --- MODIFIED: Iterate exactly according to inferred MSB/LSB order ---
+                       
                         start, end, step = 0, 0, 0
                         if port['msb'] > port['lsb']: # Standard order [MSB:LSB]
                             start, end, step = port['msb'], port['lsb'] - 1, -1 # Iterate MSB down to LSB
@@ -134,15 +134,15 @@ def pack_test_vectors(unpacked_vector_file, port_info):
                             unpacked_bit_name = f"{port_name}{i}"
                             # Use .upper() or .lower() on unpacked_bit_name if your
                             # netlist (A/a) and vector file (A/a) have a case mismatch.
-                            # For now, we assume they match.
+                            
                             bit_value = unpacked_vector.get(unpacked_bit_name, 'X')
                             packed_value += bit_value
-                        # --- End of modification ---
+                        
 
                         packed_vector[port_name] = packed_value
                     else:
-                        # Handle scalar ports (e.g., CIN)
-                        # Case-matching for scalars is also important.
+                       
+                        
                         packed_vector[port_name] = unpacked_vector.get(port_name, 'X')
 
                 packed_vectors.append(packed_vector)
@@ -152,12 +152,12 @@ def pack_test_vectors(unpacked_vector_file, port_info):
         print(f"Error: Could not find unpacked vector file: {unpacked_vector_file}")
         return None
 
-# -----------------------------------------------------------------
-# ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ THIS WAS THE MODIFIED FUNCTION ^ ^ ^ ^ ^ ^ ^ ^
-# -----------------------------------------------------------------
 
 
-# --- Main function remains the same as the previous version ---
+
+
+
+
 def main():
     if len(sys.argv) != 3:
         print("Usage: python pack_vectors_from_json.py <netlist.json> <unpacked_vectors.txt>")
@@ -204,4 +204,5 @@ def main():
         print(f"Error writing to output file '{output_file}': {e}")
 
 if __name__ == "__main__":
+
     main()
